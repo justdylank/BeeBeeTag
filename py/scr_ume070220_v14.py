@@ -5,6 +5,7 @@ def PreInit():
 
 @Subroutine
 def MatchInit():
+    Health(23000)
     JumpYVelocity(36000)
     SuperJumpYVelocity(42000)
     Unknown12011(1500)
@@ -1777,8 +1778,8 @@ def Airdash():
     def upon_IMMEDIATE():
         AttackDefaults_AirNormal()
         AttackLevel_(4)
-        Damage(1500)
-        AttackP2(80)
+        Damage(1200)
+        AttackP2(60)
         AirUntechableTime(30)
         AirPushbackX(40000)
         AirPushbackY(20000)
@@ -1871,8 +1872,8 @@ def AirBackdash():
     def upon_IMMEDIATE():
         AttackDefaults_AirNormal()
         AttackLevel_(4)
-        Damage(1500)
-        AttackP2(80)
+        Damage(1200)
+        AttackP2(60)
         AirUntechableTime(30)
         AirPushbackX(40000)
         AirPushbackY(20000)
@@ -4018,7 +4019,8 @@ def Capture_Ex():
         AttackDefaults_StandingSpecial()
         AttackLevel_(4)
         Damage(1000)
-        AttackP1(80)
+        AttackP1(60)
+        AttackP2(50)
         Unknown11044(1)
         MinimumDamagePct(10)
         Unknown30065(0)
