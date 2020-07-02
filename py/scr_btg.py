@@ -3009,7 +3009,7 @@ def NmlAtk5B():
                 GFX_0('RollAtkShotBreak', 102)
                 clearUponHandler(52)
         Unknown2004(1, 0)
-        HitCancel('NmlAtk2A')
+        HitOrBlockCancelCancel('NmlAtk2A')
         HitCancel('NmlAtk2B')
         HitCancel('CmnActCrushAttack')
         HitCancel('NmlAtk2C')
