@@ -2107,7 +2107,7 @@ def CmnActChangePartnerAssistAtk_D():
     GFX_0('StayMagneticA', 0)
     GFX_0('StayMagneticA', 1)
     sprite('tg401_04', 2)
-    Unknown7007('btg203_0', 50, 'btg203_1', 50, 'btg203_2', 50, '', 0)
+    Unknown7007('btg203_0', 100, 'btg203_1', 100, 'btg203_2', 100, '', 0)
     SFX_0('005_swing_grap_2_2')
     SFX_0('014_electric_s')
     SFX_0('014_electric_l')
