@@ -3576,7 +3576,7 @@ def RushB():
         AttackP2(80)
         Unknown11092(1)
         AirPushbackX(20000)
-        AirPushbackY(20000)
+        AirPushbackY(10000)
         AirHitstunAnimation(13)
         GroundedHitstunAnimation(13)
         AirUntechableTime(60)
@@ -3584,11 +3584,11 @@ def RushB():
 
         def upon_STATE_END():
             Unknown12046(0)
-    sprite('Action_110_00', 6)
-    sprite('Action_110_01', 5)
-    sprite('Action_110_02', 5)
+    sprite('Action_110_00', 8)
+    sprite('Action_110_01', 6)
+    sprite('Action_110_02', 6)
     Unknown7007('ume200_0', 100, 'ume200_1', 100, 'ume200_2', 100, '', 0)
-    sprite('Action_110_03', 5)
+    sprite('Action_110_03', 6)
     sprite('Action_110_04', 3)
     physicsXImpulse(30000)
     Unknown12046(100)
@@ -3618,12 +3618,12 @@ def RushB():
     Recovery()
     Unknown1019(60)
     Unknown12046(0)
-    sprite('Action_110_13', 4)
+    sprite('Action_110_13', 3)
     Unknown1084(1)
-    sprite('Action_110_14', 3)
-    sprite('Action_110_15', 3)
-    sprite('Action_110_16', 3)
-    sprite('Action_110_17', 3)
+    sprite('Action_110_14', 2)
+    sprite('Action_110_15', 2)
+    sprite('Action_110_16', 2)
+    sprite('Action_110_17', 2)
 
 @State
 def Rush_Ex():
