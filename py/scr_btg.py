@@ -3257,7 +3257,7 @@ def NmlAtk2B():
         Hitstop(15)
         AttackAttributes(0, 0, 1, 0, 0)
         HitAirUnblockable(0)
-        HitOrBlockJumpCancel(1)
+        HitOrBlockJumpCancel(0)
         HitCancel('NmlAtk4A')
         HitCancel('NmlAtk5A')
         HitCancel('NmlAtk2A')
