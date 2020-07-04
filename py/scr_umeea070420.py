@@ -284,7 +284,7 @@ def Atk_Shot_Mer_178():
     def upon_IMMEDIATE():
         Unknown2010()
         AttackLevel_(2)
-        AttackP1(80)
+        AttackP1(90)
         GroundedHitstunAnimation(9)
         AirUntechableTime(40)
         Unknown9021(1)
@@ -324,7 +324,7 @@ def Atk_Shot_Mer_178B():
     def upon_IMMEDIATE():
         Unknown2010()
         AttackLevel_(2)
-        AttackP1(80)
+        AttackP1(90)
         GroundedHitstunAnimation(9)
         AirUntechableTime(40)
         Unknown9021(1)
@@ -508,7 +508,7 @@ def Atk_Shot_Mer_184_1():
     def upon_IMMEDIATE():
         Unknown2010()
         AttackLevel_(2)
-        AttackP1(80)
+        AttackP1(90)
         GroundedHitstunAnimation(9)
         AirUntechableTime(40)
         Unknown9021(1)
@@ -556,7 +556,7 @@ def Atk_Shot_Mer_184_2():
     def upon_IMMEDIATE():
         Unknown2010()
         AttackLevel_(2)
-        AttackP1(80)
+        AttackP1(90)
         GroundedHitstunAnimation(9)
         AirUntechableTime(40)
         Unknown9021(1)
@@ -604,7 +604,7 @@ def Atk_Shot_Mer_184_3():
     def upon_IMMEDIATE():
         Unknown2010()
         AttackLevel_(2)
-        AttackP1(80)
+        AttackP1(90)
         GroundedHitstunAnimation(9)
         AirUntechableTime(40)
         Unknown9021(1)

@@ -1777,9 +1777,9 @@ def Airdash():
 
     def upon_IMMEDIATE():
         AttackDefaults_AirNormal()
-        AttackLevel_(4)
+        AttackLevel_(3)
         Damage(1200)
-        AttackP2(60)
+        AttackP2(70)
         AirUntechableTime(30)
         AirPushbackX(40000)
         AirPushbackY(20000)
@@ -1871,9 +1871,9 @@ def AirBackdash():
 
     def upon_IMMEDIATE():
         AttackDefaults_AirNormal()
-        AttackLevel_(4)
+        AttackLevel_(3)
         Damage(1200)
-        AttackP2(60)
+        AttackP2(70)
         AirUntechableTime(30)
         AirPushbackX(40000)
         AirPushbackY(20000)
@@ -2262,6 +2262,7 @@ def AN_NmlAtk5B_2nd():
     def upon_IMMEDIATE():
         AttackDefaults_StandingNormal()
         AttackLevel_(3)
+        AttackP2(70)
         PushbackX(15300)
         AirPushbackX(12000)
         AirPushbackY(16000)
@@ -2589,6 +2590,7 @@ def NmlAtkAIR5C():
     def upon_IMMEDIATE():
         AttackDefaults_AirNormal()
         AttackLevel_(4)
+        AttackP2(75)
         PushbackX(12000)
         AirPushbackX(20000)
         AirPushbackY(-30000)
@@ -3072,7 +3074,7 @@ def NmlAtkThrow():
     def upon_IMMEDIATE():
         Unknown17011('ThrowExe', 1, 0, 0)
         Unknown11054(120000)
-        physicsXImpulse(8000)
+        physicsXImpulse(0)
 
         def upon_3():
             if (SLOT_18 == 7):
@@ -3087,6 +3089,7 @@ def NmlAtkThrow():
             if (SLOT_18 >= 3):
                 if (SLOT_19 <= 180000):
                     sendToLabel(1)
+    gotoLabel(1)
     sprite('Action_010_00', 6)
     sprite('Action_010_01', 6)
     label(0)
@@ -3260,7 +3263,7 @@ def NmlAtkBackThrow():
     def upon_IMMEDIATE():
         Unknown17011('BackThrowExe', 1, 0, 0)
         Unknown11054(120000)
-        physicsXImpulse(8000)
+        physicsXImpulse(0)
 
         def upon_3():
             if (SLOT_18 == 7):
@@ -3275,6 +3278,7 @@ def NmlAtkBackThrow():
             if (SLOT_18 >= 3):
                 if (SLOT_19 < 180000):
                     sendToLabel(1)
+    gotoLabel(1)
     sprite('Action_010_00', 6)
     sprite('Action_010_01', 6)
     label(0)
@@ -3619,7 +3623,7 @@ def RushB():
     Recovery()
     Unknown1019(60)
     Unknown12046(0)
-    sprite('Action_110_13', 3)
+    sprite('Action_110_13', 5)
     Unknown1084(1)
     sprite('Action_110_14', 2)
     sprite('Action_110_15', 2)
@@ -4427,9 +4431,9 @@ def CmnActInvincibleAttack():
             sendToLabel(1)
     sprite('Action_121_00', 4)
     Unknown1084(1)
-    sprite('Action_121_01', 3)
+    sprite('Action_121_01', 5)
     Unknown7007('ume202_0', 100, 'ume202_1', 100, 'ume202_2', 100, '', 0)
-    sprite('Action_121_02', 3)
+    sprite('Action_121_02', 5)
     physicsXImpulse(5500)
     physicsYImpulse(30000)
     setGravity(2000)
