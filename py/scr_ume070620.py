@@ -85,9 +85,9 @@ def MatchInit():
     Unknown15009()
     Unknown14015(6000, 213000, -172000, -24000, 1000, 50)
     Move_EndRegister()
-    Move_Register('CmnActCrushAttack', 0x66)
-    Unknown15008()
-    Unknown14015(0, 450000, -200000, 200000, 500, 25)
+    Move_Register('CmnActCrushAttackNew', 0x66)
+    Unknown14020(1)
+    Unknown14015(300000, 600000, -200000, 100000, 1500, 0)
     Move_EndRegister()
     Move_Register('NmlAtk2C', 0x28)
     MoveMaxChainRepeat(1)
@@ -1966,7 +1966,7 @@ def ChainRoot():
     HitOrBlockCancel('NmlAtk5B')
     HitOrBlockCancel('NmlAtk2B')
     HitOrBlockCancel('NmlAtk2C')
-    HitOrBlockCancel('CmnActCrushAttack')
+    HitOrBlockCancel('CmnActCrushAttackNew')
     HitJumpCancel(1)
 
 @State
@@ -2013,6 +2013,7 @@ def AN_NmlAtk5A_2nd():
         HitOrBlockCancel('AN_NmlAtk5A_3rd')
         HitOrBlockCancel('NmlAtkThrow')
         HitOrBlockCancel('NmlAtkBackThrow')
+        HitOrBlockJumpCancel(1)
     sprite('Action_001_00', 4)
     sprite('Action_001_01', 3)
     Unknown7009(0)
@@ -2554,6 +2555,9 @@ def NmlAtkAIR5B():
         AirUntechableTime(22)
         HitOrBlockCancel('NmlAtkAIR5A')
         HitOrBlockCancel('NmlAtkAIR5C')
+        HitOrBlockCancel('AirShotA')
+        HitOrBlockCancel('AirShotB')
+        HitOrBlockCancel('AirShot_Ex')
         JumpCancel_(0)
         Unknown14082(1)
 
@@ -2577,12 +2581,6 @@ def NmlAtkAIR5B():
     sprite('Action_009_09', 4)
     sprite('Action_009_10', 4)
     sprite('Action_009_11', 3)
-    label(0)
-    sprite('Action_020_00', 4)
-    sprite('Action_020_01', 4)
-    sprite('Action_020_02', 4)
-    sprite('Action_020_03', 4)
-    gotoLabel(0)
 
 @State
 def NmlAtkAIR5C():
@@ -2650,6 +2648,54 @@ def NmlAtkAIR5C():
     sprite('Action_098_07', 6)
     Unknown1084(1)
 
+@State
+def CmnActCrushAttackNew():
+
+    def upon_IMMEDIATE():
+        AttackDefaults_AirNormal()
+        AttackLevel_(5)
+    sprite('Action_068_00', 4)
+    sprite('Action_068_02', 3)
+    Unknown1084(1)
+    SLOT_12 = SLOT_19
+    Unknown1019(4)
+    physicsYImpulse(23000)
+    if (SLOT_12 >= 20000):
+        SLOT_12 = 20000
+    setGravity(1800)
+    clearUponHandler(2)
+    sendToLabelUpon(2, 1)
+    sprite('Action_068_03', 3)
+    tag_voice(1, 'ume156_0', 'ume156_1', '', '')
+    sprite('Action_068_04', 3)
+    sprite('Action_068_05', 3)
+    sprite('Action_068_06', 2)
+    sprite('Action_007_00', 2)
+    sprite('Action_007_01', 3)
+    Unknown7007('ume100_0', 100, 'ume100_1', 100, 'ume100_2', 100, '', 0)
+    sprite('Action_007_02', 2)
+    sprite('Action_007_03ex', 3)
+    SFX_3('SE041')
+    GFX_0('Mer_082', -1)
+    sprite('Action_007_04', 4)
+    sprite('Action_007_05', 5)
+    sprite('Action_007_06', 4)
+    sprite('Action_007_07', 4)
+    label(0)
+    sprite('Action_236_15', 3)
+    sprite('Action_236_16', 3)
+    sprite('Action_236_17', 3)
+    sprite('Action_236_18', 3)
+    gotoLabel(0)
+    label(1)
+    sprite('Action_021_00', 2)
+    Unknown1084(1)
+    clearUponHandler(2)
+    sprite('Action_021_01', 3)
+    sprite('Action_021_02', 3)
+    sprite('Action_021_03', 2)
+    sprite('Action_021_04', 3)
+    
 @State
 def CmnActCrushAttack():
 
@@ -3563,6 +3609,7 @@ def RushA():
     RefreshMultihit()
     sprite('Action_110_12', 3)
     Recovery()
+    HitOrBlockCancel('Rush_Ex')
     Unknown12046(0)
     sprite('Action_110_13', 6)
     sprite('Action_110_14', 4)
@@ -3582,6 +3629,7 @@ def RushB():
         Unknown11092(1)
         AirPushbackX(20000)
         AirPushbackY(10000)
+        PushbackX(20000)
         AirHitstunAnimation(13)
         GroundedHitstunAnimation(13)
         AirUntechableTime(60)
@@ -3621,6 +3669,7 @@ def RushB():
     RefreshMultihit()
     sprite('Action_110_12', 3)
     Recovery()
+    HitOrBlockCancel('Rush_Ex')
     Unknown1019(60)
     Unknown12046(0)
     sprite('Action_110_13', 5)
@@ -3640,7 +3689,7 @@ def Rush_Ex():
         AttackP1(80)
         AttackP2(80)
         Unknown11092(1)
-        AirPushbackX(20000)
+        AirPushbackX(10000)
         AirPushbackY(20000)
         AirHitstunAnimation(13)
         GroundedHitstunAnimation(13)
@@ -3709,6 +3758,7 @@ def Rush_Ex():
     RefreshMultihit()
     sprite('Action_110_12', 3)
     Recovery()
+    HitOrBlockCancel('Rush_Ex')
     Unknown1019(60)
     Unknown12046(0)
     sprite('Action_110_13', 4)
