@@ -252,7 +252,7 @@ def MatchInit():
     Move_EndRegister()
     Move_Register('CommandThrowC_A', 0x2)
     Move_AirGround_(0x2001)
-    Move_Input_(INPUT_236)
+    Move_Input_(INPUT_214)
     Move_Input_(INPUT_PRESS_A)
     Unknown14004(1)
     Unknown15010()
