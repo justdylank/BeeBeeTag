@@ -187,9 +187,10 @@ def MatchInit():
     Unknown15021(2000)
     Unknown14015(300000, 550000, -100000, 200000, 1000, 50)
     Move_EndRegister()
-    Move_Register('CmnActCrushAttack', 0x66)
-    Unknown15008()
-    Unknown14015(0, 400000, -100000, 200000, 100, 25)
+    Move_Register('NmlAtk5C', 0x66)
+    Unknown15009()
+    Unknown15021(250)
+    Unknown14015(200000, 550000, -100000, 200000, 1000, 50)
     Move_EndRegister()
     Move_Register('NmlAtk2C', 0x28)
     Unknown15009()
@@ -2752,42 +2753,101 @@ def CmnActChangePartnerAssistAdmiss():
 def CmnActChangePartnerAssistAtk_A():
 
     def upon_IMMEDIATE():
-        AttackDefaults_StandingSpecial()
+        callSubroutine('NormalMagicInitialize')
 
         def upon_43():
-            if (SLOT_48 == 4406):
+            if (SLOT_48 == 6001):
                 clearUponHandler(43)
                 Recovery()
-    sprite('ph440_13', 6)
-    sprite('ph440_14', 6)
-    tag_voice(1, 'bph307_0', 'bph156_1', '', '')
-    sprite('ph440_15', 9)
-    sprite('ph440_15', 3)
-    GFX_0('BurstDDMaster', -1)
-    Unknown23029(1, 4401, 0)
-    sprite('ph440_16', 12)
-    sprite('ph440_17', 2)
-    sprite('ph440_18', 2)
-    sprite('ph440_19', 3)
-    ScreenShake(25000, 10000)
-    sprite('ph440_20', 3)
-    sprite('ph440_21', 3)
-    sprite('ph440_19', 3)
-    sprite('ph440_20', 3)
-    sprite('ph440_21', 3)
-    sprite('ph440_19', 3)
-    sprite('ph440_20', 3)
-    sprite('ph440_21', 3)
-    sprite('ph440_22', 5)
-    sprite('ph440_23', 5)
-    sprite('ph440_24', 5)
-
+                Unknown2063()
+        if (SLOT_31 >= 10000):
+            sendToLabel(2)
+        else:
+            if (SLOT_31 >= 5000):
+                sendToLabel(1)
+            else:
+                sendToLabel(0)
+    label(0)
+    sprite('ph203_01', 3)
+    sprite('ph203_02', 3)
+    SFX_4('bph208')
+    GFX_0('Wind_Herald', -1)
+    sprite('ph203_04', 2)
+    sprite('ph203_05', 2)
+    sprite('ph203_06', 2)
+    sprite('ph203_07', 3)
+    SLOT_6 = 200
+    GFX_0('DriveAssistAtk_GNN', -1)
+    callSubroutine('MagicPointRankDown')
+    sprite('ph203_08', 5)
+    sprite('ph203_09', 5)
+    sprite('ph203_10', 5)
+    sprite('ph203_11', 5)
+    sprite('ph203_12', 5)
+    sprite('ph203_13', 5)
+    ExitState()
+    label(1)
+    sprite('ph204_01', 3)
+    sprite('ph204_02', 3)
+    SFX_4('bph211')
+    GFX_0('Wind_Herald', -1)
+    sprite('ph204_03', 2)
+    sprite('ph204_05', 2)
+    sprite('ph204_06', 2)
+    sprite('ph204_07', 3)
+    SLOT_6 = 200
+    GFX_0('DriveAssistAtk_GGN', -1)
+    callSubroutine('MagicPointRankDown')
+    physicsXImpulse(-7500)
+    Unknown8000(100, 1, 0)
+    sprite('ph204_07', 2)
+    StartMultihit()
+    sprite('ph204_08', 4)
+    Unknown1019(50)
+    sprite('ph204_09', 4)
+    Unknown1019(50)
+    sprite('ph204_10', 4)
+    sprite('ph204_11', 4)
+    Unknown1019(50)
+    sprite('ph204_12', 4)
+    Unknown1019(0)
+    sprite('ph212_11', 4)
+    sprite('ph212_12', 4)
+    ExitState()
+    label(2)
+    sprite('ph205_01', 3)
+    sprite('ph205_02', 3)
+    SFX_4('bph217')
+    GFX_0('Wind_Herald', -1)
+    sprite('ph205_03', 2)
+    sprite('ph205_04', 2)
+    sprite('ph205_05', 2)
+    sprite('ph205_06', 3)
+    SLOT_6 = 200
+    GFX_0('DriveAssistAtk_GGG', -1)
+    callSubroutine('MagicPointRankDown')
+    physicsXImpulse(-10000)
+    Unknown8000(100, 1, 0)
+    sprite('ph205_06', 2)
+    StartMultihit()
+    sprite('ph205_07', 4)
+    Unknown1019(50)
+    sprite('ph205_08', 4)
+    sprite('ph205_09', 4)
+    sprite('ph205_10', 4)
+    Unknown1019(50)
+    sprite('ph205_11', 4)
+    Unknown1019(0)
+    sprite('ph205_12', 4)
+    sprite('ph205_13', 4)
+    ExitState()    
+   
 @State
 def CmnActChangePartnerAssistAtk_B():
 
     def upon_IMMEDIATE():
         AttackDefaults_StandingSpecial()
-        callSubroutine('MagicNormalAtkInit')
+        callSubroutine('MagicNormalAssistInit')
         AttackLevel_(4)
         Damage(1800)
         AttackP1(70)
@@ -3301,6 +3361,35 @@ def MagicNormalAtkInit():
             SLOT_55 = 0
             setInvincible(0)
 
+@Subroutine
+def MagicNormalAssistInit():
+    ProjectileDurabilityLvl(1)
+    Unknown11084(1)
+
+    def upon_ON_HIT_OR_BLOCK():
+        clearUponHandler(10)
+        SLOT_31 = (SLOT_31 + 1200)
+        callSubroutine('MagicIconUpDate')
+
+    def upon_43():
+        if (SLOT_48 == 9002):
+            setInvincible(1)
+            Unknown22019(0, 0, 0, 1, 0)
+            SLOT_55 = 1
+            SLOT_31 = (SLOT_31 + 1200)
+            callSubroutine('MagicIconUpDate')
+            WhiffCancelEnable(1)
+            Unknown13015(1)
+            if SLOT_57:
+                Unknown13010(1)
+            else:
+                Unknown13008(1)
+
+    def upon_3():
+        if SLOT_55:
+            SLOT_55 = 0
+            setInvincible(0)
+
 @State
 def NmlAtk5A():
 
@@ -3317,7 +3406,7 @@ def NmlAtk5A():
         HitOrBlockCancel('NmlAtk4B')
         HitOrBlockCancel('NmlAtk2A')
         HitOrBlockCancel('NmlAtk2B')
-        HitOrBlockCancel('CmnActCrushAttack')
+        HitOrBlockCancel('NmlAtk5C')
         HitOrBlockCancel('NmlAtk2C')
         HitOrBlockCancel('NmlAtkThrow')
         HitOrBlockCancel('NmlAtkBackThrow')
@@ -3328,7 +3417,7 @@ def NmlAtk5A():
         WhiffCancel('NmlAtk4B')
         WhiffCancel('NmlAtk2A')
         WhiffCancel('NmlAtk2B')
-        WhiffCancel('CmnActCrushAttack')
+        WhiffCancel('NmlAtk5C')
         WhiffCancel('NmlAtk2C')
         WhiffCancel('NmlAtkThrow')
         WhiffCancel('NmlAtkBackThrow')
@@ -3364,7 +3453,7 @@ def NmlAtk5AA():
         HitOrBlockCancel('NmlAtk4B')
         HitOrBlockCancel('NmlAtk2A')
         HitOrBlockCancel('NmlAtk2B')
-        HitOrBlockCancel('CmnActCrushAttack')
+        HitOrBlockCancel('NmlAtk5C')
         HitOrBlockCancel('NmlAtk2C')
         HitOrBlockCancel('NmlAtkThrow')
         HitOrBlockCancel('NmlAtkBackThrow')
@@ -3375,7 +3464,7 @@ def NmlAtk5AA():
         WhiffCancel('NmlAtk4B')
         WhiffCancel('NmlAtk2A')
         WhiffCancel('NmlAtk2B')
-        WhiffCancel('CmnActCrushAttack')
+        WhiffCancel('NmlAtk5C')
         WhiffCancel('NmlAtk2C')
         WhiffCancel('NmlAtkThrow')
         WhiffCancel('NmlAtkBackThrow')
@@ -3416,7 +3505,7 @@ def NmlAtk5AAA():
         HitOrBlockCancel('NmlAtk4B')
         HitOrBlockCancel('NmlAtk2A')
         HitOrBlockCancel('NmlAtk2B')
-        HitOrBlockCancel('CmnActCrushAttack')
+        HitOrBlockCancel('NmlAtk5C')
         HitOrBlockCancel('NmlAtk2C')
         HitJumpCancel(1)
         WhiffCancel('NmlAtk5AAAA_Lv1')
@@ -3427,7 +3516,7 @@ def NmlAtk5AAA():
         WhiffCancel('NmlAtk4B')
         WhiffCancel('NmlAtk2A')
         WhiffCancel('NmlAtk2B')
-        WhiffCancel('CmnActCrushAttack')
+        WhiffCancel('NmlAtk5C')
         WhiffCancel('NmlAtk2C')
         callSubroutine('MagicNormalAtkInit')
     sprite('ph200_00', 3)
@@ -3472,6 +3561,10 @@ def MagicPointRankDown():
 @Subroutine
 def MagicPointReset():
     SLOT_31 = 0
+
+@Subroutine
+def MagicPointReduce():
+    SLOT_31 = (SLOT_31 - 5000)
 
 @State
 def NmlAtk5AAAA_Lv1():
@@ -3642,7 +3735,7 @@ def NmlAtk4A():
         AirHitstunAnimation(17)
         GroundedHitstunAnimation(9)
         Unknown9016(1)
-        HitOrBlockCancel('CmnActCrushAttack')
+        HitOrBlockCancel('NmlAtk5C')
         HitOrBlockJumpCancel(1)
         HitOrBlockCancel('NmlAtkThrow')
         HitOrBlockCancel('NmlAtkBackThrow')
@@ -3652,7 +3745,7 @@ def NmlAtk4A():
         WhiffCancel('NmlAtk4B')
         WhiffCancel('NmlAtk2A')
         WhiffCancel('NmlAtk2B')
-        WhiffCancel('CmnActCrushAttack')
+        WhiffCancel('NmlAtk5C')
         WhiffCancel('NmlAtk2C')
         WhiffCancel('NmlAtkThrow')
         WhiffCancel('NmlAtkBackThrow')
@@ -3802,7 +3895,7 @@ def NmlAtk5B():
         HitOrBlockCancel('NmlAtk5BB_Lv3')
         HitOrBlockCancel('NmlAtk4B')
         HitOrBlockCancel('NmlAtk2B')
-        HitOrBlockCancel('CmnActCrushAttack')
+        HitOrBlockCancel('NmlAtk5C')
         HitOrBlockCancel('NmlAtk2C')
         HitOrBlockJumpCancel(1)
         WhiffCancel('NmlAtk4A')
@@ -3811,7 +3904,7 @@ def NmlAtk5B():
         WhiffCancel('NmlAtk5BB_Lv3')
         WhiffCancel('NmlAtk4B')
         WhiffCancel('NmlAtk2B')
-        WhiffCancel('CmnActCrushAttack')
+        WhiffCancel('NmlAtk5C')
         WhiffCancel('NmlAtk2C')
         callSubroutine('MagicNormalAtkInit')
     sprite('ph201_00', 3)
@@ -3948,7 +4041,7 @@ def NmlAtk4B():
         Unknown9017(1)
         GroundedHitstunAnimation(9)
         HitOrBlockCancel('NmlAtk5B')
-        HitOrBlockCancel('CmnActCrushAttack')
+        HitOrBlockCancel('NmlAtk5C')
         HitOrBlockCancel('NmlAtk2C')
         HitOrBlockJumpCancel(1)
         HitOrBlockCancel('NmlAtkThrow')
@@ -3961,7 +4054,7 @@ def NmlAtk4B():
         WhiffCancel('NmlAtk5B')
         WhiffCancel('NmlAtk2A')
         WhiffCancel('NmlAtk2B')
-        WhiffCancel('CmnActCrushAttack')
+        WhiffCancel('NmlAtk5C')
         WhiffCancel('NmlAtk2C')
         WhiffCancel('NmlAtkThrow')
         WhiffCancel('NmlAtkBackThrow')
@@ -4001,7 +4094,7 @@ def NmlAtk2A():
         HitOrBlockCancel('NmlAtk5B')
         HitOrBlockCancel('NmlAtk4B')
         HitOrBlockCancel('NmlAtk2B')
-        HitOrBlockCancel('CmnActCrushAttack')
+        HitOrBlockCancel('NmlAtk5C')
         HitOrBlockCancel('NmlAtk2C')
         HitOrBlockCancel('NmlAtkThrow')
         HitOrBlockCancel('NmlAtkBackThrow')
@@ -4010,7 +4103,7 @@ def NmlAtk2A():
         WhiffCancel('NmlAtk5B')
         WhiffCancel('NmlAtk4B')
         WhiffCancel('NmlAtk2B')
-        WhiffCancel('CmnActCrushAttack')
+        WhiffCancel('NmlAtk5C')
         WhiffCancel('NmlAtk2C')
         WhiffCancel('NmlAtkThrow')
         WhiffCancel('NmlAtkBackThrow')
@@ -4047,12 +4140,12 @@ def NmlAtk2B():
         HitOrBlockCancel('NmlAtk5B')
         HitOrBlockCancel('NmlAtk4B')
         HitOrBlockCancel('NmlAtk2B')
-        HitOrBlockCancel('CmnActCrushAttack')
+        HitOrBlockCancel('NmlAtk5C')
         HitOrBlockCancel('NmlAtk2C')
         WhiffCancel('NmlAtk4A')
         WhiffCancel('NmlAtk5B')
         WhiffCancel('NmlAtk4B')
-        WhiffCancel('CmnActCrushAttack')
+        WhiffCancel('NmlAtk5C')
         WhiffCancel('NmlAtk2C')
         callSubroutine('MagicNormalAtkInit')
     sprite('ph231_00', 3)
@@ -4607,37 +4700,35 @@ def NmlAtkAIR5C_Lv3():
     ExitState()
 
 @State
-def CmnActCrushAttack():
+def NmlAtk5C():
 
     def upon_IMMEDIATE():
-        Unknown30072('')
-        Unknown9266(1)
-
-        def upon_STATE_END():
-            Unknown4020(0)
+        AttackDefaults_StandingNormal()
+        callSubroutine('MagicNormalAtkInit')
     sprite('ph402_00', 3)
-    sprite('ph402_01', 3)
     tag_voice(1, 'bph202_2', 'bph202_1', '', '')
+    SFX_1('ph202')
+    sprite('ph402_01', 3)
+    sprite('ph402_02', 3)
+    sprite('ph402_03', 4)
+    sprite('ph402_04', 4)
+    GFX_0('MidAssault_Atk', -1)
     sprite('ph402_02', 3)
     sprite('ph402_03', 3)
-    sprite('ph402_04', 3)
-    GFX_0('MidAssault_Atk', -1)
-    Unknown38(6, 1)
-    Unknown4020(6)
-    sprite('ph402_02', 3)
     sprite('ph402_05', 3)
     SFX_0('004_swing_grap_1_1')
     sprite('ph402_06', 2)
     sprite('ph402_07', 2)
     GFX_0('Eff_402Fire_PL', -1)
-    sprite('ph402_08', 3)
-    sprite('ph402_08', 2)
-    DisableAttackRestOfMove()
-    sprite('ph402_09', 4)
+    sprite('ph402_08', 5)
+    sprite('ph402_09', 5)
     ScreenShake(5000, 20000)
-    sprite('ph402_10', 4)
+    sprite('ph402_10', 5)
     sprite('ph402_11', 4)
     sprite('ph402_12', 4)
+    sprite('ph204_12', 4)
+    sprite('ph212_11', 4)
+    sprite('ph212_12', 4)
 
 @State
 def CmnActCrushAttackChase1st():
@@ -5509,7 +5600,7 @@ def MagicActivateA_Lv2():
     GFX_1('phef_ggb_mc', 103)
     GFX_0('DriveAtk_GGB', -1)
     Unknown38(8, 1)
-    callSubroutine('MagicPointReset')
+    callSubroutine('MagicPointReduce')
     sprite('ph204_08', 4)
     Unknown2037(1)
     sprite('ph204_09', 4)
@@ -5607,7 +5698,7 @@ def MagicActivateB_Lv2():
     GFX_1('phef_rrn_mc', 103)
     GFX_0('DriveAtk_RRB_Lv3', -1)
     GFX_0('Eff_DriveMagicCircle', -1)
-    callSubroutine('MagicPointReset')
+    callSubroutine('MagicPointReduce')
     if SLOT_37:
         Unknown8000(100, 1, 0)
     sprite('ph205_04', 3)
@@ -6086,7 +6177,7 @@ def MagicActivateIce_Lv2():
     sprite('ph203_07', 3)
     SLOT_6 = 100
     GFX_0('DriveAirAtk_BBN', -1)
-    callSubroutine('MagicPointReset')
+    callSubroutine('MagicPointReduce')
     if SLOT_37:
         Unknown8000(100, 1, 0)
     sprite('ph203_08', 4)
@@ -6198,7 +6289,7 @@ def MagicActivateWind_Lv2():
     sprite('ph203_07', 3)
     SLOT_6 = 200
     GFX_0('DriveAirAtk_GGN', -1)
-    callSubroutine('MagicPointReset')
+    callSubroutine('MagicPointReduce')
     if SLOT_37:
         Unknown8000(100, 1, 0)
     sprite('ph203_08', 4)
@@ -6308,7 +6399,7 @@ def MagicActivateFire_Lv2():
     sprite('ph203_07', 3)
     SLOT_6 = 300
     GFX_0('DriveAirAtk_RRN', -1)
-    callSubroutine('MagicPointReset')
+    callSubroutine('MagicPointReduce')
     if SLOT_37:
         Unknown8000(100, 1, 0)
     sprite('ph203_08', 4)
