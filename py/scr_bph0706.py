@@ -4035,6 +4035,7 @@ def NmlAtk4B():
     def upon_IMMEDIATE():
         AttackDefaults_StandingNormal()
         AttackLevel_(4)
+        AttackP1(90)
         AirPushbackX(10000)
         AirPushbackY(27000)
         AirUntechableTime(29)
@@ -4703,7 +4704,7 @@ def NmlAtkAIR5C_Lv3():
 def NmlAtk5C():
 
     def upon_IMMEDIATE():
-        AttackDefaults_StandingNormal()
+        AttackDefaults_StandingSpecial()
         callSubroutine('MagicNormalAtkInit')
     sprite('ph402_00', 3)
     tag_voice(1, 'bph202_2', 'bph202_1', '', '')
