@@ -5560,6 +5560,30 @@ def MagicActivateA_Lv2():
 
     def upon_IMMEDIATE():
         callSubroutine('SpecialMagicInitialize')
+    sprite('ph205_00', 3)
+    sprite('ph205_01', 3)
+    GFX_1('phef_rrn_mc', 103)
+    SFX_4('bph220')
+    sprite('ph205_04', 3)
+    sprite('ph205_05', 3)
+    sprite('ph205_06', 3)
+    Unknown21015('DriveAtk_BBR', 5021, 0)
+    GFX_0('DriveAtk_BBR', -1)
+    callSubroutine('MagicPointReduce')
+    sprite('ph205_07', 5)
+    sprite('ph205_10', 3)
+    sprite('ph205_11', 3)
+    sprite('ph205_12', 3)
+    Unknown23183('ph205_15', 3, 2, 36)
+    Unknown1043()
+    sprite('ph205_13', 3)
+    Unknown23183('ph205_16', 3, 2, 36)
+
+@State
+def MagicActivateA_Lv3():
+
+    def upon_IMMEDIATE():
+        callSubroutine('SpecialMagicInitialize')
         Unknown2037(0)
 
         def upon_3():
@@ -5596,7 +5620,7 @@ def MagicActivateA_Lv2():
     GFX_1('phef_ggb_mc', 103)
     GFX_0('DriveAtk_GGB', -1)
     Unknown38(8, 1)
-    callSubroutine('MagicPointReduce')
+    callSubroutine('MagicPointReset') 
     sprite('ph204_08', 4)
     Unknown2037(1)
     sprite('ph204_09', 4)
@@ -5621,30 +5645,6 @@ def MagicActivateA_Lv2():
     Unknown1043()
     sprite('ph212_12', 4)
     Unknown23183('ph204_16', 4, 2, 36)
-
-@State
-def MagicActivateA_Lv3():
-
-    def upon_IMMEDIATE():
-        callSubroutine('SpecialMagicInitialize')
-    sprite('ph205_00', 3)
-    sprite('ph205_01', 3)
-    GFX_1('phef_rrn_mc', 103)
-    SFX_4('bph220')
-    sprite('ph205_04', 3)
-    sprite('ph205_05', 3)
-    sprite('ph205_06', 3)
-    Unknown21015('DriveAtk_BBR', 5021, 0)
-    GFX_0('DriveAtk_BBR', -1)
-    callSubroutine('MagicPointReset')
-    sprite('ph205_07', 5)
-    sprite('ph205_10', 3)
-    sprite('ph205_11', 3)
-    sprite('ph205_12', 3)
-    Unknown23183('ph205_15', 3, 2, 36)
-    Unknown1043()
-    sprite('ph205_13', 3)
-    Unknown23183('ph205_16', 3, 2, 36)
 
 @State
 def MagicActivateB_Lv1():
