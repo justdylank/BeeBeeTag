@@ -58,6 +58,13 @@ def MatchInit():
     Unknown15013(2000)
     Unknown15015(30, 40)
     Move_EndRegister()
+    Move_Register('NmlAtk5A4th', 0x7)
+    MoveMaxChainRepeat(1)
+    Unknown14005(1)
+    Move_AirGround_(0x3083)
+    Unknown15012(2000)
+    Unknown15013(2000)
+    Move_EndRegister()
     Move_Register('NmlAtk4A', 0x6)
     MoveMaxChainRepeat(1)
     Unknown14015(2000, 580000, -117000, 143000, 1500, 50)
@@ -94,6 +101,7 @@ def MatchInit():
     Unknown15013(2000)
     Move_EndRegister()
     Move_Register('NmlAtk5B', 0x19)
+    MoveMaxChainRepeat(1)
     Move_AirGround_(0x300e)
     Move_AirGround_(0x2000)
     Move_AirGround_(0x3083)
@@ -202,15 +210,6 @@ def MatchInit():
     Move_AirGround_(0x3083)
     Unknown15009()
     Unknown14015(900000, 1200000, -200000, 200000, 50, 10)
-    Move_EndRegister()
-    Move_Register('EXBufula', 0x2)
-    Move_AirGround_(0x2000)
-    Move_AirGround_(0x300e)
-    Move_AirGround_(0x3086)
-    Move_Input_(INPUT_22)
-    Move_Input_(INPUT_PRESS_C)
-    Move_AirGround_(0x3083)
-    Unknown14015(14000, 1800000, -27000, 95000, 50, 50)
     Move_EndRegister()
     Move_Register('CmnActInvincibleAttack', 0x64)
     Unknown15013(0)
@@ -2292,10 +2291,11 @@ def NmlAtk4A2nd():
     def upon_IMMEDIATE():
         AttackDefaults_StandingNormal()
         AttackLevel_(3)
-        AttackP2(85)
+        AttackP2(90)
         Unknown9016(1)
         AirPushbackX(12000)
         AirPushbackY(12000)
+        hitstun(14)
         blockstun(13)
         PushbackX(15300)
         Hitstop(7)
@@ -2303,6 +2303,7 @@ def NmlAtk4A2nd():
         HitOrBlockCancel('NmlAtk4A3rd')
         HitOrBlockCancel('NmlAtk5A')
         HitOrBlockCancel('NmlAtk5B')
+        HitOrBlockCancel('NmlAtk2A')
         HitOrBlockCancel('NmlAtk2B')
         HitOrBlockCancel('NmlAtk5C')
         HitOrBlockCancel('NmlAtk2C')
@@ -2343,7 +2344,7 @@ def NmlAtk4A3rd():
     def upon_IMMEDIATE():
         AttackDefaults_StandingNormal()
         AttackLevel_(3)
-        AttackP2(85)
+        AttackP2(90)
         Unknown9016(1)
         AirPushbackX(12000)
         AirPushbackY(12000)
@@ -2353,8 +2354,6 @@ def NmlAtk4A3rd():
         Damage(1200)
         HitJumpCancel(1)
         HitOrBlockCancel('NmlAtk4A4th')
-        HitOrBlockCancel('NmlAtk5A')
-        HitOrBlockCancel('NmlAtk5B')
         HitOrBlockCancel('NmlAtk2B')
         HitOrBlockCancel('NmlAtk5C')
         HitOrBlockCancel('NmlAtk2C')
@@ -2389,7 +2388,7 @@ def NmlAtk4A4th():
     def upon_IMMEDIATE():
         AttackDefaults_StandingNormal()
         AttackLevel_(3)
-        AttackP2(85)
+        AttackP2(90)
         Unknown9016(1)
         AirPushbackX(12000)
         AirPushbackY(12000)
@@ -2398,8 +2397,6 @@ def NmlAtk4A4th():
         Hitstop(7)
         Damage(1300)
         HitOrBlockCancel('NmlAtk4A5th')
-        HitOrBlockCancel('NmlAtk5A')
-        HitOrBlockCancel('NmlAtk5B')
         HitOrBlockCancel('NmlAtk2B')
         HitOrBlockCancel('NmlAtk5C')
         HitOrBlockCancel('NmlAtk2C')
@@ -2440,7 +2437,7 @@ def NmlAtk4A5th():
     def upon_IMMEDIATE():
         AttackDefaults_StandingNormal()
         AttackLevel_(3)
-        AttackP2(85)
+        AttackP2(90)
         Unknown9016(1)
         AirPushbackX(12000)
         AirPushbackY(12000)
@@ -2450,8 +2447,6 @@ def NmlAtk4A5th():
         Damage(1400)        
         HitJumpCancel(1)
         HitOrBlockCancel('NmlAtk4A6th')
-        HitOrBlockCancel('NmlAtk5A')
-        HitOrBlockCancel('NmlAtk5B')
         HitOrBlockCancel('NmlAtk2B')
         HitOrBlockCancel('NmlAtk5C')
         HitOrBlockCancel('NmlAtk2C')
@@ -2594,6 +2589,7 @@ def NmlAtk5A3rd():
     Unknown30055(0, 0, 0)
     Unknown30056(0, 0, 0)
     SFX_3('slash_rapier_fast')
+    HitOrBlockCancel('NmlAtk5A4th')
     sprite('mi208_07', 3)
     Recovery()
     Unknown2063()
@@ -2609,17 +2605,58 @@ def NmlAtk5A3rd():
     sprite('mi203_11', 3)
 
 @State
+def NmlAtk5A4th():
+
+    def upon_IMMEDIATE():
+        AttackDefaults_StandingNormal()
+        JumpCancel_(0)
+
+        def upon_43():
+            if (SLOT_48 == 7000):
+                Recovery()
+                Unknown2063()
+    sprite('mi204_00', 4)
+    sprite('mi204_01', 4)
+    sprite('mi204_02', 4)
+    Unknown23029(11, 9992, 0)
+    sprite('mi204_03', 4)
+    GFX_1('persona_enter_ply', 0)
+    Unknown7007('pmi120_2', 100, 'pmi121_2', 100, 'pmi123_0', 100, 'pmi123_1', 100)
+    sprite('mi204_04', 4)
+    sprite('mi204_05', 4)
+    sprite('mi204_03', 5)
+    SFX_3('cloth_h')
+    sprite('mi204_04', 5)
+    sprite('mi204_05', 5)
+    sprite('mi204_03', 6)
+    sprite('mi204_04', 6)
+    sprite('mi204_05', 6)
+    sprite('mi204_01', 5)
+    sprite('mi204_00', 5)
+    sprite('mi204_06', 4)
+
+@State
 def NmlAtk5B():
 
     def upon_IMMEDIATE():
         AttackDefaults_StandingSpecial()
+        HitOrBlockCancel('NmlAtk5A')
+        HitOrBlockCancel('NmlAtk2B')
         HitOrBlockCancel('NmlAtk2C')
         HitOrBlockCancel('BDashCancel')
         HitOrBlockCancel('FDashCancel')
         HitOrBlockCancel('MarinKarin')
+        HitOrBlockCancel('Tentarafoo')
+        HitOrBlockCancel('EXTentarafoo')
+        HitOrBlockCancel('EXBufula')
+        HitOrBlockCancel('Bufudyne')
+        HitOrBlockCancel('BufudyneSP')
+        HitOrBlockCancel('Setsuna_Samidare_Uchi')
+        HitOrBlockCancel('Setsuna_Samidare_UchiSP')
     sprite('mi204_00', 4)
     sprite('mi204_01', 4)
     sprite('mi204_02', 4)
+    label(0)
     Unknown23029(11, 9991, 0)
     sprite('mi204_03', 4)
     GFX_1('persona_enter_ply', 0)
@@ -2806,9 +2843,6 @@ def NmlAtk2C():
         AirPushbackY(20000)
         AirUntechableTime(40)
         Unknown9016(1)
-        
-        def upon_77():
-            Unknown2037(1)
     sprite('mi211_00ex', 5)
     sprite('mi211_01', 3)
     physicsXImpulse(35000)
@@ -2947,6 +2981,7 @@ def NmlAtkAIR5B():
     def upon_IMMEDIATE():
         AttackDefaults_AirNormal()
         AttackLevel_(3)
+        AttackP1(70)
         AirUntechableTime(50)
         AirPushbackX(24000)
         AirPushbackY(-36000)
@@ -4179,6 +4214,52 @@ def EXTentarafoo():
     sprite('mi403_00', 5)
 
 @State
+def ABufula():
+
+    def upon_IMMEDIATE():
+        AttackDefaults_StandingSpecial()
+    sprite('mi402_00', 3)
+    sprite('mi402_01', 3)
+    sprite('mi402_02', 3)
+    sprite('mi402_03', 3)
+    Unknown23029(11, 4020, 0)
+    Unknown21015('AIceMiller_Shot', 4020, 0)
+    SFX_3('slash_knife_slow')
+    sprite('mi402_04', 5)
+    GFX_1('persona_enter_ply', 0)
+    Unknown7007('pmi204_1', 100, 'pmi206_0', 100, 'pmi206_2', 100, 'pmi207_0', 100)
+    sprite('mi402_05', 5)
+    SFX_3('cloth_h')
+    sprite('mi402_06', 5)
+    sprite('mi402_07', 5)
+    sprite('mi402_05', 5)
+    sprite('mi402_06', 5)
+    sprite('mi402_07', 5)
+
+@State
+def BBufula():
+
+    def upon_IMMEDIATE():
+        AttackDefaults_StandingSpecial()
+    sprite('mi402_00', 3)
+    sprite('mi402_01', 3)
+    sprite('mi402_02', 3)
+    sprite('mi402_03', 3)
+    Unknown23029(11, 4021, 0)
+    Unknown21015('BIceMiller_Shot', 4021, 0)
+    SFX_3('slash_knife_slow')
+    sprite('mi402_04', 5)
+    GFX_1('persona_enter_ply', 0)
+    Unknown7007('pmi204_1', 100, 'pmi206_0', 100, 'pmi206_2', 100, 'pmi207_0', 100)
+    sprite('mi402_05', 5)
+    SFX_3('cloth_h')
+    sprite('mi402_06', 5)
+    sprite('mi402_07', 5)
+    sprite('mi402_05', 5)
+    sprite('mi402_06', 5)
+    sprite('mi402_07', 5)
+
+@State
 def EXBufula():
 
     def upon_IMMEDIATE():
@@ -4189,8 +4270,8 @@ def EXBufula():
     ConsumeSuperMeter(-5000)
     sprite('mi402_02', 3)
     sprite('mi402_03', 3)
-    Unknown23029(11, 4022, 0)
-    Unknown21015('EXIceMiller_Shot', 4020, 0)
+    Unknown23029(11, 4022, 0)    
+    Unknown21015('EXIceMiller_Shot', 4022, 0)
     SFX_3('slash_knife_slow')
     sprite('mi402_04', 5)
     GFX_1('persona_enter_ply', 0)

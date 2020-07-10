@@ -28,9 +28,11 @@ def PMI_ReceptionSignal():
 
     def upon_43():
         if (SLOT_48 == 9990):
-            Unknown23185('PMI_Persona5A4th', 50)
+            Unknown23185('PMI_Persona4A6th', 50)    
         if (SLOT_48 == 9991):
             Unknown23185('PMI_Persona5C', 50)
+        if (SLOT_48 == 9992):
+            Unknown23185('PMI_Persona5A4th', 50)
         if (SLOT_48 == 9980):
             Unknown23185('PMI_Persona4PS', 50)
         if (SLOT_48 == 4320):
@@ -220,7 +222,7 @@ def PersonaDeleteEffect():
     Unknown1084(1)
 
 @State
-def PMI_Persona5A4th():
+def PMI_Persona4A6th():
 
     def upon_IMMEDIATE():
         Unknown23023()
@@ -317,7 +319,7 @@ def PMI_Persona5A4th():
     enterState('PersonaDeleteAndIdling')
 
 @State
-def PMI_Persona5C():
+def PMI_Persona5A4th():
 
     def upon_IMMEDIATE():
         Unknown23023()
@@ -335,6 +337,7 @@ def PMI_Persona5C():
         EnableCollision(1)
         Unknown2053(1)
         callSubroutine('PMI_CheckWarp')
+        Unknown11044(1)
 
         def upon_56():
 
@@ -344,7 +347,7 @@ def PMI_Persona5C():
         Unknown23059(1)
     sprite('ar204_00', 3)
     sprite('ar204_01', 1)
-    physicsXImpulse(80000)
+    physicsXImpulse(150000)
     Unknown4007(0)
     sprite('ar204_01', 1)
     Unknown1019(60)
@@ -388,6 +391,7 @@ def PMI_Persona5C():
         GroundedHitstunAnimation(9)
         Unknown9190(1)
         Unknown9118(30)
+        Unknown30088(1)
     sprite('ar204_10', 4)
     Unknown23029(3, 7000, 0)
     if (SLOT_51 == 1):
@@ -409,6 +413,109 @@ def PMI_Persona5C():
     sprite('ar204_14', 5)
     label(2)
     sprite('keep', 32767)
+    enterState('PersonaDeleteAndIdling')
+
+@State
+def PMI_Persona5C():
+
+    def upon_IMMEDIATE():
+        Unknown23023()
+        Unknown23184(3, 100, 0, 0, -200000, 200000, 0, 0)
+        callSubroutine('PMI_AttackInit')
+        AttackLevel_(3)
+        Damage(500)
+        AttackP1(90)
+        AttackP2(70)
+        Unknown11092(1)
+        Hitstop(1)
+        Unknown9310(10)
+        Unknown9266(9)
+        Unknown23078(0)
+        Unknown4007(3)
+        EnableCollision(1)
+        Unknown2053(1)
+        callSubroutine('PMI_CheckWarp')
+        Unknown23059(1)
+    sprite('ar204_00', 3)
+    sprite('ar204_01', 1)
+    physicsXImpulse(80000)
+    Unknown4007(0)
+    sprite('ar204_01', 1)
+    Unknown1019(60)
+    sprite('ar204_01', 1)
+    Unknown1019(60)
+    label(0)
+    sprite('ar204_02', 2)
+    Unknown1019(0)
+    sprite('ar204_03', 1)
+    GFX_0('aref_204', 100)
+    RefreshMultihit()
+    AirPushbackY(-5000)
+    AirPushbackX(0)
+    PushbackX(4000)
+    SFX_3('hit_h_middle')
+    sprite('ar204_03', 1)
+    Unknown23022(0)
+    sprite('ar204_04', 2)
+    sprite('ar204_05', 2)
+    sprite('ar204_06', 2)
+    RefreshMultihit()
+    AirPushbackY(-5000)
+    AirPushbackX(-2000)
+    PushbackX(8000)
+    SFX_3('hit_l_slow')
+    sprite('ar204_07', 2)
+    sprite('ar204_08', 2)
+    sprite('ar204_09', 3)
+    
+    def upon_3():
+        if CheckInput(0x0E):
+            AirUntechableTime(40)
+            Unknown9310(0)
+            AirPushbackY(-100000)
+            AirPushbackX(10000)
+            AirHitstunAnimation(9)
+            GroundedHitstunAnimation(9)
+            Unknown9190(1)
+            Unknown9118(30)
+            SLOT_51 = 12
+        SLOT_51 = (SLOT_51 + 1)
+        
+    if (SLOT_51 >= 12):
+            AirUntechableTime(40)
+            Unknown9310(0)
+            AirPushbackY(-100000)
+            AirPushbackX(10000)
+            AirHitstunAnimation(9)
+            GroundedHitstunAnimation(9)
+            Unknown9190(1)
+            Unknown9118(30)        
+    RefreshMultihit()
+    AirPushbackY(-15000)
+    AirPushbackX(2000)
+    PushbackX(2000)
+    SFX_3('hit_m_middle')   
+    sprite('ar204_10', 4)
+    Unknown23029(3, 7000, 0)    
+    def upon_3():
+        if CheckInput(0x0E):
+            SLOT_51 = 12
+
+    if (SLOT_51 >= 12):
+        sendToLabel(1)
+    gotoLabel(0) 
+    label(1)
+    sprite('ar204_11', 3)
+    physicsXImpulse(0)
+    sprite('ar204_12', 4)
+    sprite('ar204_13', 4)
+    sprite('ar204_14', 4)
+    sprite('ar204_12', 5)
+    sprite('ar204_13', 5)
+    sprite('ar204_14', 5)
+    sprite('ar204_12', 5)
+    sprite('ar204_13', 5)
+    sprite('ar204_14', 5)
     enterState('PersonaDeleteAndIdling')
 
 @State
@@ -909,11 +1016,12 @@ def PMI_PersonaABufula():
 
     def upon_IMMEDIATE():
         Unknown23023()
-        Unknown23184(3, 100, 50000, 0, 0, 0, 0, 0)
+        Unknown23184(3, 100, -100000, 0, -300000, 1000000, -1000000, 1000000)
         callSubroutine('PMI_SPAttackInit')
         callSubroutine('PMI_CheckWarp')
+        Unknown23059(1)
     sprite('ar402_00', 4)
-    GFX_0('AIceMiller_Shot', 100)
+    GFX_0('AIceMiller_Break', 0)
     sprite('ar402_01', 4)
     sprite('ar402_02', 4)
     sprite('ar402_03', 4)
@@ -929,11 +1037,12 @@ def PMI_PersonaBBufula():
 
     def upon_IMMEDIATE():
         Unknown23023()
-        Unknown23184(3, 100, 50000, 0, 0, 0, 0, 0)
+        Unknown23184(3, 100, -100000, 0, -300000, 1000000, -1000000, 1000000)
         callSubroutine('PMI_SPAttackInit')
         callSubroutine('PMI_CheckWarp')
+        Unknown23059(1)
     sprite('ar402_00', 4)
-    GFX_0('BIceMiller_Shot', 100)
+    GFX_0('BIceMiller_Shot', 0)
     sprite('ar402_01', 4)
     sprite('ar402_02', 4)
     sprite('ar402_03', 4)
@@ -949,11 +1058,12 @@ def PMI_PersonaEXBufula():
 
     def upon_IMMEDIATE():
         Unknown23023()
-        Unknown23184(3, 100, 50000, 0, 0, 0, 0, 0)
+        Unknown23184(3, 100, -100000, 0, -300000, 1000000, -1000000, 1000000)
         callSubroutine('PMI_SPAttackInit')
         callSubroutine('PMI_CheckWarp')
+        Unknown23059(1)
     sprite('ar402_00', 4)
-    GFX_0('EXIceMiller_Shot', 100)
+    GFX_0('EXIceMiller_Shot', 0)
     sprite('ar402_01', 4)
     sprite('ar402_02', 4)
     sprite('ar402_03', 4)
@@ -2020,8 +2130,23 @@ def AIceMiller_Shot():
         YImpluseBeforeWallbounce(1500)
         GroundedHitstunAnimation(10)
         AirHitstunAnimation(10)
+        FreezeCount(1)
+        FreezeDuration(30)
+        Unknown2053(1)
+        Unknown11092(1)
         Unknown9021(1)
-        Unknown9266(9)
+        Unknown9266(9)               
+      
+        def upon_3():
+            if SLOT_38:
+                Unknown23045(105)
+                if (SLOT_22 < SLOT_0):
+                    Unknown13(25)
+            else:
+                Unknown23045(105)
+                if (SLOT_22 > SLOT_0):
+                    Unknown13(25)
+        Unknown53(1)
         MinimumDamagePct(10)
         Unknown30065(0)
         Unknown11032(150000, -150000, 1000000, -1000000)
@@ -2029,7 +2154,7 @@ def AIceMiller_Shot():
         Unknown3038(1)
         Unknown23020(2000)
         Unknown23021(2000)
-
+        
         def upon_19():
             Unknown23022(1)
             Unknown23090(25)
@@ -2041,11 +2166,11 @@ def AIceMiller_Shot():
 
         def upon_17():
             sendToLabel(1)
-        Unknown23089(3, 1, 1, 1, 1, 0, 3, 0)
+        Unknown23089(1, 1, 1, 1, 1, 0, 1, 0)
         sendToLabelUpon(54, 1)
         Unknown3032()
-        teleportRelativeX(200000)
-        teleportRelativeY(220000)
+        teleportRelativeX(250000)
+        teleportRelativeY(230000)
         SFX_3('ice_fast')
         SFX_3('distortion_b')
 
@@ -2073,7 +2198,7 @@ def AIceMiller_Shot():
     RefreshMultihit()
     Unknown1019(95)
     SLOT_51 = (SLOT_51 + 1)
-    (SLOT_51 >= 36)
+    (SLOT_51 >= 12)
     if SLOT_0:
         _gotolabel(1)
     loopRest()
@@ -2082,7 +2207,7 @@ def AIceMiller_Shot():
     sprite('vr_ar402_00', 10)
     physicsXImpulse(-10000)
     SLOT_51 = (SLOT_51 + 1)
-    (SLOT_51 >= 36)
+    (SLOT_51 >= 12)
     if SLOT_0:
         _gotolabel(1)
 
@@ -2090,7 +2215,7 @@ def AIceMiller_Shot():
         Unknown1019(80)
     sprite('vr_ar402_00', 10)
     SLOT_51 = (SLOT_51 + 1)
-    (SLOT_51 >= 36)
+    (SLOT_51 >= 12)
     if SLOT_0:
         _gotolabel(1)
     loopRest()
@@ -2128,8 +2253,20 @@ def BIceMiller_Shot():
         AirHitstunAnimation(10)
         FreezeCount(1)
         FreezeDuration(30)
+        Unknown2053(1)
         Unknown9021(1)
         Unknown9266(9)
+        
+        def upon_3():
+            if SLOT_38:
+                Unknown23045(105)
+                if (SLOT_22 < SLOT_0):
+                    Unknown13(25)
+            else:
+                Unknown23045(105)
+                if (SLOT_22 > SLOT_0):
+                    Unknown13(25)
+        Unknown53(1)
         MinimumDamagePct(10)
         Unknown30065(0)
         Unknown11032(150000, -150000, 1000000, -1000000)
@@ -2137,7 +2274,7 @@ def BIceMiller_Shot():
         Unknown3038(1)
         Unknown23020(2000)
         Unknown23021(2000)
-
+        
         def upon_19():
             Unknown23022(1)
             Unknown23090(25)
@@ -2149,15 +2286,15 @@ def BIceMiller_Shot():
 
         def upon_17():
             sendToLabel(1)
-        Unknown23089(3, 1, 1, 1, 1, 0, 3, 0)
+        Unknown23089(1, 1, 1, 1, 1, 0, 1, 0)
         sendToLabelUpon(54, 1)
         Unknown3032()
-        teleportRelativeX(550000)
+        teleportRelativeX(600000)
         SFX_3('ice_fast')
         SFX_3('distortion_b')
 
         def upon_43():
-            if (SLOT_48 == 4020):
+            if (SLOT_48 == 4021):
                 clearUponHandler(43)
                 Unknown23090(25)
         GFX_0('Icemirrorstart_Yugami', 100)
@@ -2180,7 +2317,7 @@ def BIceMiller_Shot():
     RefreshMultihit()
     Unknown1019(95)
     SLOT_51 = (SLOT_51 + 1)
-    (SLOT_51 >= 36)
+    (SLOT_51 >= 16)
     if SLOT_0:
         _gotolabel(1)
     loopRest()
@@ -2189,7 +2326,7 @@ def BIceMiller_Shot():
     sprite('vr_ar402_00', 10)
     physicsXImpulse(-10000)
     SLOT_51 = (SLOT_51 + 1)
-    (SLOT_51 >= 36)
+    (SLOT_51 >= 16)
     if SLOT_0:
         _gotolabel(1)
 
@@ -2197,7 +2334,7 @@ def BIceMiller_Shot():
         Unknown1019(80)
     sprite('vr_ar402_00', 10)
     SLOT_51 = (SLOT_51 + 1)
-    (SLOT_51 >= 36)
+    (SLOT_51 >= 16)
     if SLOT_0:
         _gotolabel(1)
     loopRest()
@@ -2226,17 +2363,19 @@ def EXIceMiller_Shot():
         Unknown2010()
         AttackLevel_(2)
         AttackP2(85)
-        Hitstop(3)
-        AirPushbackX(1000)
+        AirUntechableTime(60)
+        Hitstop(6)
+        AirPushbackX(1500)
         AirPushbackY(15000)
         PushbackX(1000)
         YImpluseBeforeWallbounce(1500)
         GroundedHitstunAnimation(10)
         AirHitstunAnimation(10)
-        Unknown9021(1)
-        Unknown9266(9)
         FreezeCount(3)
         FreezeDuration(30)
+        Unknown2053(1)
+        Unknown9021(1)
+        Unknown9266(9)
         MinimumDamagePct(10)
         Unknown30065(0)
         Unknown11032(150000, -150000, 1000000, -1000000)
@@ -2259,12 +2398,12 @@ def EXIceMiller_Shot():
         Unknown23089(3, 1, 1, 1, 1, 0, 3, 0)
         sendToLabelUpon(54, 1)
         Unknown3032()
-        teleportRelativeX(200000)
+        teleportRelativeX(250000)
         SFX_3('ice_fast')
         SFX_3('distortion_b')
 
         def upon_43():
-            if (SLOT_48 == 4020):
+            if (SLOT_48 == 4022):
                 clearUponHandler(43)
                 Unknown23090(25)
         GFX_0('Icemirrorstart_Yugami', 100)
@@ -2281,7 +2420,7 @@ def EXIceMiller_Shot():
     Unknown4015()
     sprite('vr_ar402_00', 1)
     StartMultihit()
-    physicsXImpulse(2500)
+    physicsXImpulse(3000)
     label(0)
     sprite('vr_ar402_00', 10)
     RefreshMultihit()
