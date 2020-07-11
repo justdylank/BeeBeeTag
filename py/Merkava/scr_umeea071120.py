@@ -284,6 +284,7 @@ def Atk_Shot_Mer_178():
     def upon_IMMEDIATE():
         Unknown2010()
         AttackLevel_(2)
+        Damage(1500)
         AttackP2(90)
         GroundedHitstunAnimation(9)
         AirUntechableTime(40)
@@ -319,11 +320,57 @@ def Atk_Shot_Mer_178():
     gotoLabel(0)
 
 @State
+def Atk_Shot_Mer_178_Charge():
+
+    def upon_IMMEDIATE():
+        Unknown2010()
+        AttackLevel_(3)
+        Damage(1250)
+        AttackP2(90)
+        GroundedHitstunAnimation(9)
+        AirUntechableTime(60)
+        Unknown9021(1)
+        Unknown9017(1)
+        physicsXImpulse(15000)
+        physicsYImpulse(-35000)
+        Unknown1072(150000)
+        Unknown53(1)
+
+        def upon_ON_HIT_OR_BLOCK():
+            GFX_0('Mer_187', -1)
+            SFX_0('016_explode_0')
+            clearUponHandler(10)
+        Unknown23089(2, 1, 1, 1, 1, 0, 2, 1)
+
+        def upon_54():
+            Unknown13(25)
+
+        def upon_LANDING():
+            Unknown13(25)
+            GFX_0('Mer_187', -1)
+            SFX_0('016_explode_0')
+    label(0)
+    sprite('Action_178_01', 3)
+    GFX_0('Mer_160', -1)
+    RefreshMultihit()
+    sprite('Action_178_02', 3)
+    GFX_0('Mer_160', -1)
+    RefreshMultihit()
+    sprite('Action_178_03', 3)
+    GFX_0('Mer_160', -1)
+    RefreshMultihit()
+    sprite('Action_178_04', 3)
+    GFX_0('Mer_160', -1)
+    RefreshMultihit()
+    gotoLabel(0)
+
+@State
 def Atk_Shot_Mer_178B():
 
     def upon_IMMEDIATE():
         Unknown2010()
         AttackLevel_(2)
+        Damage(1500)
         AttackP2(90)
         GroundedHitstunAnimation(9)
         AirUntechableTime(40)
@@ -356,6 +403,51 @@ def Atk_Shot_Mer_178B():
     GFX_0('Mer_160', -1)
     sprite('Action_178_04', 3)
     GFX_0('Mer_160', -1)
+    gotoLabel(0)
+
+@State
+def Atk_Shot_Mer_178B_Charge():
+
+    def upon_IMMEDIATE():
+        Unknown2010()
+        AttackLevel_(3)
+        Damage(1250)
+        AttackP2(90)
+        GroundedHitstunAnimation(9)
+        AirUntechableTime(60)
+        Unknown9021(1)
+        Unknown9017(1)
+        physicsXImpulse(30000)
+        physicsYImpulse(-15000)
+        Unknown1072(120000)
+        Unknown53(1)
+
+        def upon_ON_HIT_OR_BLOCK():
+            GFX_0('Mer_187', -1)
+            SFX_0('016_explode_0')
+            clearUponHandler(10)
+        Unknown23089(2, 1, 1, 1, 1, 0, 2, 1)
+
+        def upon_54():
+            Unknown13(25)
+
+        def upon_LANDING():
+            Unknown13(25)
+            GFX_0('Mer_187', -1)
+            SFX_0('016_explode_0')
+    label(0)
+    sprite('Action_178_01', 3)
+    GFX_0('Mer_160', -1)
+    RefreshMultihit()
+    sprite('Action_178_02', 3)
+    GFX_0('Mer_160', -1)
+    RefreshMultihit()
+    sprite('Action_178_03', 3)
+    GFX_0('Mer_160', -1)
+    RefreshMultihit()
+    sprite('Action_178_04', 3)
+    GFX_0('Mer_160', -1)
+    RefreshMultihit()
     gotoLabel(0)
 
 @State
@@ -508,6 +600,7 @@ def Atk_Shot_Mer_184_1():
     def upon_IMMEDIATE():
         Unknown2010()
         AttackLevel_(2)
+        Damage(1500)
         AttackP2(90)
         GroundedHitstunAnimation(9)
         AirUntechableTime(40)
@@ -556,6 +649,7 @@ def Atk_Shot_Mer_184_2():
     def upon_IMMEDIATE():
         Unknown2010()
         AttackLevel_(2)
+        Damage(1500)
         AttackP2(90)
         GroundedHitstunAnimation(9)
         AirUntechableTime(40)
@@ -604,6 +698,7 @@ def Atk_Shot_Mer_184_3():
     def upon_IMMEDIATE():
         Unknown2010()
         AttackLevel_(2)
+        Damage(1500)
         AttackP1(90)
         GroundedHitstunAnimation(9)
         AirUntechableTime(40)
