@@ -423,9 +423,8 @@ def PMI_Persona5C():
         Unknown23184(3, 100, 0, 0, -200000, 200000, 0, 0)
         callSubroutine('PMI_AttackInit')
         AttackLevel_(3)
-        Damage(500)
-        AttackP1(90)
-        AttackP2(70)
+        Damage(250)
+        AttackP1(60)
         Unknown11092(1)
         Hitstop(1)
         Unknown9310(10)
@@ -435,14 +434,18 @@ def PMI_Persona5C():
         EnableCollision(1)
         Unknown2053(1)
         callSubroutine('PMI_CheckWarp')
+        SLOT_10 = 1
+
+        def upon_STATE_END():
+            SLOT_10 = 0
         Unknown23059(1)
-    sprite('ar204_00', 3)
-    sprite('ar204_01', 1)
-    physicsXImpulse(80000)
+    sprite('ar204_00', 4)
+    sprite('ar204_01', 3)
     Unknown4007(0)
-    sprite('ar204_01', 1)
+    sprite('ar204_01', 3)
+    physicsXImpulse(80000)
     Unknown1019(60)
-    sprite('ar204_01', 1)
+    sprite('ar204_01', 2)
     Unknown1019(60)
     label(0)
     sprite('ar204_02', 2)
@@ -479,37 +482,46 @@ def PMI_Persona5C():
             Unknown9190(1)
             Unknown9118(30)
             SLOT_51 = 12
-        SLOT_51 = (SLOT_51 + 1)
-        
-    if (SLOT_51 >= 12):
-            AirUntechableTime(40)
-            Unknown9310(0)
-            AirPushbackY(-100000)
-            AirPushbackX(10000)
-            AirHitstunAnimation(9)
-            GroundedHitstunAnimation(9)
-            Unknown9190(1)
-            Unknown9118(30)        
+        else:
+            if (not CheckInput(0x0E)):
+                SLOT_51 = (SLOT_51 + 1)
+            if (SLOT_51 >= 10):
+                AirUntechableTime(40)
+                Unknown9310(0)
+                AirPushbackY(-100000)
+                AirPushbackX(10000)
+                AirHitstunAnimation(9)
+                GroundedHitstunAnimation(9)
+                Unknown9190(1)
+                Unknown9118(30)       
+                
     RefreshMultihit()
     AirPushbackY(-15000)
     AirPushbackX(2000)
     PushbackX(2000)
     SFX_3('hit_m_middle')   
     sprite('ar204_10', 4)
-    Unknown23029(3, 7000, 0)    
+
+    if (not CheckInput(0xa)):
+                sendToLabel(1)
+    
+    Unknown23029(3, 7000, 0)
     def upon_3():
         if CheckInput(0x0E):
             SLOT_51 = 12
-
+            
     if (SLOT_51 >= 12):
         sendToLabel(1)
+    loopRest()
     gotoLabel(0) 
     label(1)
     sprite('ar204_11', 3)
     physicsXImpulse(0)
+    clearUponHandler(3)
     sprite('ar204_12', 4)
     sprite('ar204_13', 4)
     sprite('ar204_14', 4)
+    SLOT_10 = 0
     sprite('ar204_12', 5)
     sprite('ar204_13', 5)
     sprite('ar204_14', 5)
