@@ -1033,7 +1033,7 @@ def PMI_PersonaABufula():
         callSubroutine('PMI_CheckWarp')
         Unknown23059(1)
     sprite('ar402_00', 4)
-    GFX_0('AIceMiller_Break', 0)
+    GFX_0('AIceMiller_Shot', 0)
     sprite('ar402_01', 4)
     sprite('ar402_02', 4)
     sprite('ar402_03', 4)
@@ -1844,6 +1844,7 @@ def Tentarafu_dmy():
         Damage(300)
         AttackP1(70)
         AttackP2(100)
+        blockstun(10)
         AirPushbackX(0)
         AirPushbackY(0)
         AirHitstunAnimation(4)
@@ -1854,7 +1855,7 @@ def Tentarafu_dmy():
         Unknown11068(1)
         Unknown11066(1)
         Unknown11044(1)
-        Unknown11069('Tentarafu_dmy')
+        Unknown11069('EXTentarafu_dmy')
         Unknown3032()
         Unknown4010(2)
         Unknown4009(2)
@@ -1954,7 +1955,7 @@ def Tentarafu_dmy():
     RefreshMultihit()
     Unknown21015('Tentarafoo', 4033, 0)
     FreezeCount(2)
-    FreezeDuration(45)
+    FreezeDuration(40)
 
 @State
 def EXTentarafu_dmy():
@@ -2187,11 +2188,13 @@ def AIceMiller_Shot():
         SFX_3('distortion_b')
 
         def upon_43():
-            if (SLOT_48 == 4020):
+            if (SLOT_31 == 2):
                 clearUponHandler(43)
-                Unknown23090(25)
+                Unknown23090(25)   
+                SLOT_31 = (SLOT_31 - 1)     
         GFX_0('Icemirrorstart_Yugami', 100)
         GFX_0('450icemirrorstart', 100)
+        SLOT_31 = (SLOT_31 + 1)   
     sprite('vr_ar402_00', 12)
     StartMultihit()
     Unknown23022(1)
@@ -2248,6 +2251,20 @@ def AIceMiller_Shot():
     Unknown23119(-16730881, 5, 1)
     Unknown3004(-70)
     GFX_0('450icemirrorbreak', 100)
+    SLOT_31 = 0
+    ExitState()
+    label(3)
+    clearUponHandler(17)
+    clearUponHandler(14)
+    clearUponHandler(19)
+    clearUponHandler(43)
+    clearUponHandler(3)
+    sprite('vr_ar402_00', 1)
+    Unknown1084(1)
+    Unknown23119(-16730881, 5, 1)
+    Unknown3004(-70)
+    GFX_0('450icemirrorbreak', 100)
+    SLOT_31 = 0
 
 @State
 def BIceMiller_Shot():
@@ -2306,11 +2323,13 @@ def BIceMiller_Shot():
         SFX_3('distortion_b')
 
         def upon_43():
-            if (SLOT_48 == 4021):
+            if (SLOT_31 == 2):
                 clearUponHandler(43)
                 Unknown23090(25)
+                SLOT_31 = (SLOT_31 - 1)
         GFX_0('Icemirrorstart_Yugami', 100)
         GFX_0('450icemirrorstart', 100)
+        SLOT_31 = (SLOT_31 + 1)
     sprite('vr_ar402_00', 12)
     StartMultihit()
     Unknown23022(1)
@@ -2367,6 +2386,20 @@ def BIceMiller_Shot():
     Unknown23119(-16730881, 5, 1)
     Unknown3004(-70)
     GFX_0('450icemirrorbreak', 100)
+    SLOT_31 = 0
+    ExitState()
+    label(3)
+    clearUponHandler(17)
+    clearUponHandler(14)
+    clearUponHandler(19)
+    clearUponHandler(43)
+    clearUponHandler(3)
+    sprite('vr_ar402_00', 1)
+    Unknown1084(1)
+    Unknown23119(-16730881, 5, 1)
+    Unknown3004(-70)
+    GFX_0('450icemirrorbreak', 100)
+    SLOT_31 = 0
 
 @State
 def EXIceMiller_Shot():
@@ -2415,11 +2448,13 @@ def EXIceMiller_Shot():
         SFX_3('distortion_b')
 
         def upon_43():
-            if (SLOT_48 == 4022):
+            if (SLOT_31 == 2):
                 clearUponHandler(43)
                 Unknown23090(25)
+                SLOT_31 = (SLOT_31 - 1)    
         GFX_0('Icemirrorstart_Yugami', 100)
         GFX_0('450icemirrorstart', 100)
+        SLOT_31 = (SLOT_31 + 1)
     sprite('vr_ar402_00', 12)
     StartMultihit()
     Unknown23022(1)
@@ -2476,6 +2511,20 @@ def EXIceMiller_Shot():
     Unknown23119(-16730881, 5, 1)
     Unknown3004(-70)
     GFX_0('450icemirrorbreak', 100)
+    SLOT_31 = 0
+    ExitState()
+    label(3)
+    clearUponHandler(17)
+    clearUponHandler(14)
+    clearUponHandler(19)
+    clearUponHandler(43)
+    clearUponHandler(3)
+    sprite('vr_ar402_00', 1)
+    Unknown1084(1)
+    Unknown23119(-16730881, 5, 1)
+    Unknown3004(-70)
+    GFX_0('450icemirrorbreak', 100)
+    SLOT_31 = 0
 
 @State
 def __450icemirrorstart():
