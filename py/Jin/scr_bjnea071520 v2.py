@@ -474,7 +474,7 @@ def IcicleAttack():
         else:
             Unknown1002(550000)
         AttackLevel_(4)
-        AttackP2(75)
+        AttackP2(90)
         AirPushbackY(20000)
         AirPushbackX(-6000)
         PushbackX(-12000)
@@ -1152,7 +1152,88 @@ def ice_shot():
         Unknown4061(1)
         Unknown2010()
         AttackLevel_(3)
-        Hitstop(8)
+        Hitstop(10)
+        Unknown9019(1)
+        SLOT_4 = 1
+
+        def upon_STATE_END():
+            SLOT_4 = 0
+
+        def upon_3():
+            if SLOT_38:
+                Unknown23045(105)
+                if (SLOT_22 < SLOT_0):
+                    Unknown13(25)
+            else:
+                Unknown23045(105)
+                if (SLOT_22 > SLOT_0):
+                    Unknown13(25)
+        Unknown1096(750)
+        Unknown53(1)
+        Unknown23089(1, 1, 1, 1, 1, 0, 1, 0)
+        sendToLabelUpon(54, 1)
+        loopRelated(17, 75)
+
+        def upon_17():
+            Unknown23090(25)
+
+        def upon_43():
+            if (SLOT_48 == 5109):
+                Unknown23090(25)
+            if (SLOT_48 == 4300):
+                Unknown23090(25)
+    sprite('vrjnef400_00', 1)
+    GFX_0('IceMakePtc', 0)
+    SFX_0('017_freeze_0')
+    sprite('vrjnef400_01', 1)
+    sprite('vrjnef400_02', 1)
+    GFX_0('IceMakePtc', 0)
+    SFX_0('017_freeze_0')
+    sprite('vrjnef400_03', 1)
+    sprite('vrjnef400_04', 1)
+    GFX_0('IceMakePtc', 0)
+    SFX_0('017_freeze_0')
+    sprite('vrjnef400_05', 1)
+    sprite('vrjnef400_06', 1)
+    GFX_0('IceMakePtc', 0)
+    SFX_0('017_freeze_0')
+    sprite('vrjnef400_07', 1)
+    sprite('vrjnef400_08', 1)
+    GFX_0('IceMakePtc', 0)
+    SFX_0('017_freeze_1')
+    Unknown1028(1000)
+    sprite('vrjnef400_09', 3)
+    GFX_1('jnef_iceshot', 0)
+    sprite('vrjnef400_09', 3)
+    GFX_1('jnef_iceshot', 0)
+    sprite('vrjnef400_09', 3)
+    GFX_1('jnef_iceshot', 0)
+    label(0)
+    sprite('vrjnef400_09', 3)
+    GFX_1('jnef_iceshot', 0)
+    loopRest()
+    gotoLabel(0)
+    label(1)
+    sprite('keep', 10)
+    Unknown1084(1)
+    StartMultihit()
+    Unknown3004(-25)
+    SFX_0('018_ice_break_1')
+    Unknown4047(111, 111, 111)
+    Unknown4045('jnef_icebr', 0)
+    GFX_0('IceMakePtc', 1)
+    GFX_0('IceMakePtc', 2)
+    clearUponHandler(54)
+    clearUponHandler(10)
+    
+@State
+def ice_shot_B():
+
+    def upon_IMMEDIATE():
+        Unknown4061(1)
+        Unknown2010()
+        AttackLevel_(3)
+        Hitstop(10)
         Unknown9019(1)
         SLOT_4 = 1
 
@@ -1308,6 +1389,90 @@ def ice_shot_Assist():
 
 @State
 def air_ice_shot():
+
+    def upon_IMMEDIATE():
+        Unknown4061(1)
+        Unknown2010()
+        AttackLevel_(3)
+        Hitstop(8)
+        Unknown9019(1)
+        SLOT_4 = 1
+
+        def upon_STATE_END():
+            SLOT_4 = 0
+
+        def upon_3():
+            if SLOT_38:
+                Unknown23045(105)
+                if (SLOT_22 < SLOT_0):
+                    Unknown13(25)
+            else:
+                Unknown23045(105)
+                if (SLOT_22 > SLOT_0):
+                    Unknown13(25)
+        Unknown1096(750)
+        Unknown53(1)
+        Unknown23089(1, 1, 1, 1, 1, 0, 1, 0)
+        sendToLabelUpon(54, 1)
+        loopRelated(17, 75)
+
+        def upon_17():
+            Unknown23090(25)
+
+        def upon_43():
+            if (SLOT_48 == 5109):
+                Unknown23090(25)
+            if (SLOT_48 == 4300):
+                Unknown23090(25)
+    sprite('vrjnef400_00', 2)
+    GFX_0('IceMakePtc', 0)
+    SFX_0('017_freeze_0')
+    sprite('vrjnef400_01', 2)
+    sprite('vrjnef400_02', 2)
+    SFX_0('017_freeze_0')
+    sprite('vrjnef400_03', 2)
+    GFX_0('IceMakePtc', 0)
+    sprite('vrjnef400_04', 1)
+    SFX_0('017_freeze_0')
+    sprite('vrjnef400_05', 2)
+    sprite('vrjnef400_06', 1)
+    GFX_0('IceMakePtc', 0)
+    SFX_0('017_freeze_0')
+    sprite('vrjnef400_07', 2)
+    sprite('vrjnef400_08', 2)
+    SFX_0('017_freeze_1')
+    Unknown1108(0)
+    physicsXImpulse(10000)
+    Unknown1028(600)
+    sprite('vrjnef400_09', 3)
+    GFX_1('jnef_iceshot', 0)
+    sprite('vrjnef400_09', 3)
+    GFX_1('jnef_iceshot', 0)
+    sprite('vrjnef400_09', 3)
+    GFX_1('jnef_iceshot', 0)
+    label(0)
+    sprite('vrjnef400_09', 3)
+    GFX_1('jnef_iceshot', 0)
+    loopRest()
+    gotoLabel(0)
+    label(1)
+    sprite('keep', 10)
+    Unknown3004(-25)
+    Unknown2001()
+    SFX_0('018_ice_break_1')
+    Unknown4047(111, 111, 111)
+    Unknown4045('jnef_icebr', 0)
+    GFX_0('IceMakePtc', 1)
+    GFX_0('IceMakePtc', 2)
+    physicsXImpulse(0)
+    Unknown1028(0)
+    physicsYImpulse(0)
+    setGravity(0)
+    clearUponHandler(54)
+    clearUponHandler(10)
+    
+@State
+def air_ice_shot_B():
 
     def upon_IMMEDIATE():
         Unknown4061(1)
@@ -1933,6 +2098,11 @@ def UltimateSlashShotObj():
         AfterimageSize_2(500)
         Unknown3033()
         Unknown2037(0)
+        
+        def upon_12():
+            if Unknown23166('CmnActFreeze'):
+                FreezeCount(50)
+                FreezeDuration(60)
 
         def upon_78():
             Unknown21015('ice_shot', 5109, 0)
@@ -2005,6 +2175,11 @@ def OverDriveSlashShotObj():
         AfterimageSize_1(1000)
         AfterimageSize_2(500)
         Unknown3033()
+        
+        def upon_12():
+            if Unknown23166('CmnActFreeze'):
+                FreezeCount(50)
+                FreezeDuration(60)
 
         def upon_45():
             if Unknown2065(25):
