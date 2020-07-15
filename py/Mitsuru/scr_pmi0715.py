@@ -409,6 +409,8 @@ def MatchInit():
     Unknown12059(6, 'CmnActBDash')
     Unknown12059(7, 'NmlAtkThrow')
     Unknown12059(8, 'CmnActChangePartnerQuickOut')
+    Unknown23003(0, 0, 4, 1, 1, 0, -6908226, -65536)
+    Unknown23004(0, 1)
 
 @Subroutine
 def OnPreDraw():
@@ -2921,6 +2923,7 @@ def NmlAtkAIR2A():
         AirUntechableTime(19)
         hitstun(19)
         blockstun(18)
+        HitOrBlockCancel('NmlAtkAIR5A')
         HitOrBlockCancel('NmlAtkAIR5B')
         HitOrBlockCancel('NmlAtkAIR5C')
         HitOrBlockCancel('NmlAtkAIR2C')
@@ -4009,17 +4012,18 @@ def coup_droitEX():
     def upon_IMMEDIATE():
         AttackDefaults_StandingSpecial()
         AttackLevel_(4)
-        Damage(2200)
+        Damage(2000)
         AttackP1(80)
-        AttackP2(90)
+        AttackP2(75)
         PushbackX(45000)
-        AirPushbackX(60000)
+        AirPushbackX(65000)
         AirPushbackY(10000)
         GroundedHitstunAnimation(18)
         AirHitstunAnimation(18)
         hitstun(27)
         blockstun(13)
-        AirUntechableTime(29)
+        Unknown9178(1)
+        AirUntechableTime(34)
         Unknown9202(17)
         Unknown9016(1)
         MinimumDamagePct(10)
@@ -4129,16 +4133,7 @@ def Tentarafoo():
     sprite('mi403_05', 3)
     sprite('mi403_06', 3)
     sprite('mi403_07', 3)
-    sprite('mi403_05', 3)
-    sprite('mi403_06', 3)
-    sprite('mi403_07', 3)
-    sprite('mi403_05', 3)
     tag_voice(0, 'pmi209_0', 'pmi209_1', 'pmi209_2', '')
-    sprite('mi403_06', 3)
-    sprite('mi403_07', 3)
-    sprite('mi403_05', 3)
-    sprite('mi403_06', 3)
-    sprite('mi403_07', 3)
     sprite('mi403_05', 3)
     sprite('mi403_06', 3)
     sprite('mi403_07', 3)
@@ -4157,9 +4152,9 @@ def EXTentarafoo():
                 Unknown13045(0)
                 sendToLabel(1)
     sprite('mi403_00', 3)
+    sprite('mi403_01', 4)
     Unknown23125('')
     ConsumeSuperMeter(-5000)
-    sprite('mi403_01', 4)
     tag_voice(1, 'pmi208_0', 'pmi208_1', 'pmi208_2', '')
     sprite('mi403_01', 1)
     Unknown23029(11, 4031, 0)
@@ -4211,7 +4206,7 @@ def EXTentarafoo():
     sprite('mi403_02', 5)
     sprite('mi403_01', 5)
     sprite('mi403_00', 5)
-
+    
 @State
 def ABufula():
 
