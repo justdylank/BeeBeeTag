@@ -4637,6 +4637,7 @@ def NmlAtk5C():
         AirPushbackY(-45000)
         YImpluseBeforeWallbounce(0)
         AirUntechableTime(60)
+        HitOverhead(2)
         Unknown9310(1)
         Unknown9190(1)
         Unknown9118(30)
