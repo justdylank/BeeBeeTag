@@ -5246,6 +5246,7 @@ def CmnActInvincibleAttack():
         StarterRating(2)
         AttackLevel_(4)
         Damage(2300)
+        HitAirUnblockable(0)
         AirHitstunAnimation(10)
         GroundedHitstunAnimation(10)
         AirUntechableTime(48)

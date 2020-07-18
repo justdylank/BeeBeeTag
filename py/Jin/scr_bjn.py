@@ -3220,6 +3220,8 @@ def NmlAtk6B():
         HitOrBlockCancel('NmlAtk2B')
         HitOrBlockCancel('NmlAtk2C')
         HitOrBlockCancel('NmlAtk5C')
+        HitOrBlockCancel('NmlAtkThrow')
+        HitOrBlockCancel('NmlAtkBackThrow')
         HitOrBlockCancel('DashCancel')
 
         def upon_ON_HIT_OR_BLOCK():
