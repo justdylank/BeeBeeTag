@@ -1948,7 +1948,7 @@ def NmlAtk5B(): #5B
     def upon_IMMEDIATE():
         AttackDefaults_StandingNormal()
         AttackLevel_(3)
-        AttackP1(100)
+        AttackP1(90)
         GroundedHitstunAnimation(13)
         AirHitstunAnimation(13)
         AirPushbackX(8000)
@@ -2142,6 +2142,7 @@ def NmlAtk2C(): #2C
         AttackDefaults_CrouchingNormal()
         AttackLevel_(4)
         AttackP1(90)
+        AttackP2(75)
         AirPushbackY(20000)
         AirUntechableTime(30)
         AirHitstunAnimation(11)
@@ -3029,7 +3030,7 @@ def CmnActInvincibleAttack():
     def upon_IMMEDIATE():
         Unknown17024()
         AttackLevel_(3)
-        Damage(500)
+        Damage(800)
         Unknown11092(1)
         AirHitstunAnimation(9)
         GroundedHitstunAnimation(9)
@@ -3118,7 +3119,7 @@ def CmnActInvincibleAttackAir():
     def upon_IMMEDIATE():
         Unknown17025()
         AttackLevel_(3)
-        Damage(550)
+        Damage(850)
         Unknown11092(1)
         AirHitstunAnimation(9)
         GroundedHitstunAnimation(9)
