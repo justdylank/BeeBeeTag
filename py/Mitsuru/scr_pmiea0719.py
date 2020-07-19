@@ -1844,7 +1844,6 @@ def Tentarafu_dmy():
         Damage(300)
         AttackP1(70)
         AttackP2(100)
-        blockstun(10)
         AirPushbackX(0)
         AirPushbackY(0)
         AirHitstunAnimation(4)
@@ -1855,7 +1854,7 @@ def Tentarafu_dmy():
         Unknown11068(1)
         Unknown11066(1)
         Unknown11044(1)
-        Unknown11069('EXTentarafu_dmy')
+        Unknown11069('Tentarafu_dmy')
         Unknown3032()
         Unknown4010(2)
         Unknown4009(2)
@@ -1937,10 +1936,10 @@ def Tentarafu_dmy():
     Damage(3000)
     AttackP2(80)
     AirUntechableTime(45)
-    AirPushbackY(30000)
+    AirPushbackY(38000)
     GroundedHitstunAnimation(10)
     AirHitstunAnimation(10)
-    FreezeCount(1)
+    FreezeCount(0)
     FreezeDuration(0)
     Unknown9021(1)
     Unknown9266(9)
@@ -1954,8 +1953,6 @@ def Tentarafu_dmy():
     Unknown3038(1)
     RefreshMultihit()
     Unknown21015('Tentarafoo', 4033, 0)
-    FreezeCount(2)
-    FreezeDuration(40)
 
 @State
 def EXTentarafu_dmy():
