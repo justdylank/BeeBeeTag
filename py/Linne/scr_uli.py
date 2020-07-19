@@ -3107,9 +3107,9 @@ def CmnActInvincibleAttack():
     Unknown8000(100, 1, 1)
     Unknown1084(1)
     clearUponHandler(2)
-    sprite('Action_101_34', 5)
-    sprite('Action_101_35', 8)
-    sprite('Action_101_36', 6)
+    sprite('Action_101_34', 6)
+    sprite('Action_101_35', 9)
+    sprite('Action_101_36', 7)
 
 @State
 def CmnActInvincibleAttackAir():
@@ -3183,9 +3183,9 @@ def CmnActInvincibleAttackAir():
     Unknown8000(100, 1, 1)
     Unknown1084(1)
     clearUponHandler(2)
-    sprite('Action_101_34', 2)
-    sprite('Action_101_35', 3)
-    sprite('Action_101_36', 3)
+    sprite('Action_101_34', 4)
+    sprite('Action_101_35', 6)
+    sprite('Action_101_36', 6)
 
 @State
 def Shot_A(): #236A
