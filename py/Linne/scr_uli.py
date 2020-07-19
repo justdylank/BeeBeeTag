@@ -2114,7 +2114,7 @@ def NmlAtk2B(): #2B
 
     def upon_IMMEDIATE():
         AttackDefaults_CrouchingNormal()
-        AttackLevel_(2)
+        AttackLevel_(3)
         AttackP1(90)
         HitLow(2)
         Unknown9016(1)
@@ -2141,6 +2141,7 @@ def NmlAtk2C(): #2C
     def upon_IMMEDIATE():
         AttackDefaults_CrouchingNormal()
         AttackLevel_(4)
+        AttackP1(90)
         AirPushbackY(20000)
         AirUntechableTime(30)
         AirHitstunAnimation(11)
@@ -2223,7 +2224,7 @@ def NmlAtkAIR5B(): #j.B
 
     def upon_IMMEDIATE():
         AttackDefaults_AirNormal()
-        AttackLevel_(4)
+        AttackLevel_(3)
         Damage(1600)
         Unknown9016(1)
         AirPushbackX(10000)
@@ -2253,7 +2254,7 @@ def NmlAtkAIR5C(): #j.C
         AttackDefaults_AirNormal()
         AttackLevel_(3)
         AttackP1(90)
-        AttackP2(70)
+        AttackP2(60)
         GroundedHitstunAnimation(11)
         AirPushbackX(24000) 
         AirPushbackY(-29000)
@@ -3257,8 +3258,8 @@ def ShotDashCancel(): #DASHCANCEL
     Unknown8006(100, 1, 1)
     sprite('Action_045_11', 2)
 
-    sprite('Action_045_12', 2)
-    sprite('Action_045_13', 1)
+    sprite('Action_045_12', 3)
+    sprite('Action_045_13', 2)
     physicsXImpulse(0)
     loopRest()
 
