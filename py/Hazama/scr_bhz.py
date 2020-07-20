@@ -1644,9 +1644,8 @@ def CmnActOverDriveLoop():
 
 @State
 def CmnActOverDriveEnd():
-    sprite('hz333_08', 4)
-    sprite('hz333_09', 4)
-    sprite('hz333_10', 4)
+    sprite('hz333_09', 1)
+    sprite('hz333_10', 1)
 
 @State
 def CmnActAirOverDriveBegin():
@@ -1669,16 +1668,8 @@ def CmnActAirOverDriveLoop():
 
 @State
 def CmnActAirOverDriveEnd():
-    sprite('hz333_16', 2)
-    sprite('hz333_17', 2)
-    sprite('hz333_18', 2)
-    sprite('hz020_05', 3)
-    sprite('hz020_06', 3)
-    label(0)
-    sprite('hz020_07', 4)
-    sprite('hz020_08', 4)
-    loopRest()
-    gotoLabel(0)
+    sprite('hz333_17', 1)
+    sprite('hz333_18', 1)
 
 @State
 def CmnActCrossRushBegin():
@@ -4655,7 +4646,7 @@ def NmlAtk5C():
         HitCancel('UltimateAssault')
         HitCancel('UltimateAssault_OD')
         HitCancel('UltimateShot')
-        HitCancel('UltimateShotOD')
+        HitCancel('UltimateShot_OD')
     sprite('hz410_00', 3)
     sprite('hz410_01', 3)
     SystemGFX('GuardCrushWind', 1)
