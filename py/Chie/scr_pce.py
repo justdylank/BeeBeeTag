@@ -1721,9 +1721,8 @@ def CmnActOverDriveLoop():
 
 @State
 def CmnActOverDriveEnd():
-    sprite('ce121_07', 4)
-    sprite('ce121_08', 4)
-    sprite('ce010_00', 4)
+    sprite('ce121_07', 1)
+    sprite('ce121_08', 1)
 
 @State
 def CmnActAirOverDriveBegin():
@@ -1746,15 +1745,8 @@ def CmnActAirOverDriveLoop():
 
 @State
 def CmnActAirOverDriveEnd():
-    sprite('ce121_07', 3)
-    sprite('ce121_08', 3)
-    sprite('ce020_05', 3)
-    sprite('ce020_06', 3)
-    label(0)
-    sprite('ce020_07', 4)
-    sprite('ce020_08', 4)
-    loopRest()
-    gotoLabel(0)
+    sprite('ce121_07', 1)
+    sprite('ce121_08', 1)
 
 @State
 def CmnActCrossRushBegin():
@@ -4245,6 +4237,7 @@ def CmnActInvincibleAttack():
         GroundedHitstunAnimation(11)
         AirPushbackX(12000)
         AirPushbackY(15000)
+        HitAirUnblockable(0)
         HitLow(2)
         Hitstop(4)
         Unknown11063(1)
@@ -4367,12 +4360,12 @@ def CmnActInvincibleAttack():
     loopRest()
     gotoLabel(4)
     label(5)
-    sprite('ce010_00', 2)
+    sprite('ce010_00', 5)
     Unknown8000(100, 1, 1)
     Unknown1084(1)
     Unknown18009(1)
-    sprite('ce010_01', 2)
-    sprite('ce010_02', 4)
+    sprite('ce010_01', 5)
+    sprite('ce010_02', 5)
 
 @State
 def CmnActInvincibleAttackAir():
@@ -4455,12 +4448,12 @@ def CmnActInvincibleAttackAir():
     loopRest()
     gotoLabel(4)
     label(5)
-    sprite('ce010_00', 2)
+    sprite('ce010_00', 5)
     Unknown8000(100, 1, 1)
     Unknown1084(1)
     Unknown18009(1)
-    sprite('ce010_01', 2)
-    sprite('ce010_02', 4)
+    sprite('ce010_01', 5)
+    sprite('ce010_02', 5)
 
 @State
 def AbaremakuriLandA():
