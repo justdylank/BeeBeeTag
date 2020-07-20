@@ -4410,9 +4410,9 @@ def SlashA():
     Unknown7006('uyu201_0', 100, 'uyu201_1', 100, 'uyu305_0', 100, '', 0)
     sprite('Action_438_07', 1)
     GFX_0('SlashA_Blade', 100)
-    callSubroutine('SlashHasei_Input')
     sprite('Action_438_08', 1)
     sprite('Action_438_09', 2)
+    callSubroutine('SlashHasei_Input')
     SFX_3('SE_DrawnSword')
     sprite('Action_438_12', 6)
     Recovery()
@@ -4483,9 +4483,9 @@ def SlashB():
     Unknown7006('uyu200_0', 100, 'uyu200_1', 100, 'uyu200_2', 100, '', 0)
     sprite('Action_437_07', 1)
     GFX_0('SlashB_Blade', 100)
-    callSubroutine('SlashHasei_Input')
     sprite('Action_437_08', 1)
     sprite('Action_437_09', 2)
+    callSubroutine('SlashHasei_Input')
     SFX_3('SE_DrawnSword')
     sprite('Action_437_12', 6)
     setInvincible(0)
@@ -4565,12 +4565,13 @@ def SlashC():
         ConsumeSuperMeter(-5000)
     Unknown1084(1)
     sprite('Action_438_06', 2)
+    SLOT_31 = (SLOT_31 + (-1))
     Unknown7006('uyu200_0', 100, 'uyu200_1', 100, 'uyu208_1', 100, 'uyu207_2', 100)
     sprite('Action_438_07', 1)
     GFX_0('SlashEx_Blade', 100)
-    callSubroutine('SlashHasei_Input')
     sprite('Action_438_08', 1)
     sprite('Action_438_09ex02', 2)
+    callSubroutine('SlashHasei_Input')
     SFX_3('SE_DrawnSword')
     sprite('Action_438_12', 6)
     Recovery()
@@ -4579,7 +4580,7 @@ def SlashC():
     if (not SLOT_7):
         if SLOT_58:
             if SLOT_57:
-                enterState('SlashFinishSP')
+                enterState('SlashFinish')
     if SLOT_7:
         if SLOT_58:
             if SLOT_57:
@@ -4974,6 +4975,7 @@ def AirSlashC():
     sprite('Action_478_00', 3)
     sprite('Action_478_00', 2)
     Unknown1084(1)
+    SLOT_31 = (SLOT_31 + (-1))
     Unknown23125('')
     ConsumeSuperMeter(-5000)
     sprite('Action_478_01', 3)
@@ -4987,8 +4989,8 @@ def AirSlashC():
     Unknown1084(1)
     sprite('Action_478_04', 2)
     Unknown7006('uyu200_0', 100, 'uyu200_1', 100, 'uyu208_1', 100, 'uyu207_2', 100)
-    sprite('Action_478_05', 2)
     callSubroutine('SlashHasei_Input')
+    sprite('Action_478_05', 2)
     sprite('Action_478_07ex02', 2)
     SFX_3('SE_DrawnSword')
     GFX_0('AirSlashEx_Blade', 100)
@@ -4999,14 +5001,14 @@ def AirSlashC():
     if (not SLOT_7):
         if SLOT_58:
             if SLOT_57:
-                enterState('AirSlashFinishSP')
+                enterState('AirSlashFinish')
     if SLOT_7:
         if SLOT_58:
             if SLOT_57:
                 enterState('AirSlashFinishSP')
     sprite('Action_478_11', 4)
-    callSubroutine('SlashHasei_Clear')
     sprite('Action_478_12', 3)
+    callSubroutine('SlashHasei_Clear')
     sprite('Action_478_12', 1)
     Unknown1018()
     Unknown1023()
@@ -5984,8 +5986,7 @@ def ShukuchiC():
     Unknown2034(0)
     Unknown1086(22)
     Unknown1007(150000)
-    if (SLOT_5 >= 3):
-        teleportRelativeY(270000)
+    teleportRelativeY(270000)
     if (SLOT_25 <= 60000):
         teleportRelativeX(-60000)
     else:

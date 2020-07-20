@@ -272,6 +272,7 @@ def PCE_Persona5C():
         callSubroutine('PCE_AttackInit')
         AttackLevel_(4)
         AttackP1(90)
+        blockstun(20)
         Unknown9016(1)
         AirUntechableTime(20)
         Unknown9156(27)
@@ -385,6 +386,7 @@ def PCE_Persona2C():
         callSubroutine('PCE_AttackInit')
         AttackLevel_(4)
         Damage(1100)
+        blockstun(14)
         Unknown9016(1)
         Unknown9266(9)
         AirUntechableTime(30)
@@ -1655,7 +1657,7 @@ def PCE_PersonaKokutengekiEx():
 
     def upon_IMMEDIATE():
         Unknown23023()
-        Unknown23184(3, 100, 220000, 60000, 0, 2000000, 0, 0)
+        Unknown23184(3, 100, 160000, 60000, 0, 2000000, 0, 0)
         callSubroutine('PCE_SPAttackInit')
         Unknown2009()
         AttackLevel_(5)
