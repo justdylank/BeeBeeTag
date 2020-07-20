@@ -82,9 +82,9 @@ def MatchInit():
     Unknown14015(300000, 1500000, -200000, 300000, 1500, 300)
     Unknown15014(100)
     Move_EndRegister()
-    Move_Register('CmnActCrushAttack', 0x66)
-    Unknown14015(0, 350000, -200000, 200000, 500, 0)
-    Unknown15014(0)
+    Move_Register('NmlAtk5C', 0x66)
+    Unknown14015(300000, 1500000, -200000, 300000, 1500, 300)
+    Unknown15014(100)
     Move_EndRegister()
     Move_Register('NmlAtk2C', 0x28)
     Unknown14015(150000, 400000, 0, 300000, 1000, 50)
@@ -173,6 +173,7 @@ def MatchInit():
     Unknown15013(100000)
     Move_EndRegister()
     Move_Register('Sledge_A', 0x2)
+    Move_AirGround_(0x2000)
     Move_Input_(0xac)
     Move_Input_(INPUT_236)
     Move_Input_(INPUT_PRESS_A)
@@ -1561,10 +1562,9 @@ def CmnActOverDriveLoop():
 
 @State
 def CmnActOverDriveEnd():
-    sprite('tg333_07', 4)
+    sprite('tg333_07', 1)
     Unknown26('tgef_overdrive_eyeflash')
-    sprite('tg333_08', 4)
-    sprite('tg333_09', 4)
+    sprite('tg333_09', 1)
 
 @State
 def CmnActAirOverDriveBegin():
@@ -1617,17 +1617,9 @@ def CmnActAirOverDriveLoop():
 
 @State
 def CmnActAirOverDriveEnd():
-    sprite('tg333_15', 2)
+    sprite('tg333_15', 1)
     Unknown26('tgef_overdrive_eyeflash')
-    sprite('tg333_16', 2)
-    sprite('tg333_17', 2)
-    sprite('tg020_05', 3)
-    sprite('tg020_06', 3)
-    label(0)
-    sprite('tg020_07', 4)
-    sprite('tg020_08', 4)
-    loopRest()
-    gotoLabel(0)
+    sprite('tg333_17', 1)
 
 @State
 def CmnActCrossRushBegin():
@@ -2528,7 +2520,7 @@ def NmlAtk5A():
         HitOrBlockCancel('Sledge_B')
         HitOrBlockCancel('NmlAtk6B')
         HitOrBlockCancel('NmlAtk2A')
-        HitOrBlockCancel('CmnActCrushAttack')
+        HitOrBlockCancel('NmlAtk5C')
         HitOrBlockCancel('NmlAtk2C')
         HitOrBlockCancel('NmlAtk5A2nd')
         HitOrBlockCancel('NmlAtkThrow')
@@ -2555,8 +2547,8 @@ def NmlAtk5A():
     sprite('tg202_08', 3)
     sprite('tg202_09', 3)
     sprite('tg202_10', 3)
-    sprite('tg202_11', 3)
-    sprite('tg202_12', 3)
+    sprite('tg202_11', 4)
+    sprite('tg202_12', 4)
 
 @State
 def NmlAtk5A2nd():
@@ -2578,7 +2570,7 @@ def NmlAtk5A2nd():
         HitOrBlockCancel('NmlAtk5B')
         HitOrBlockCancel('NmlAtk6B')
         HitOrBlockCancel('NmlAtk2A')
-        HitOrBlockCancel('CmnActCrushAttack')
+        HitOrBlockCancel('NmlAtk5C')
         HitOrBlockCancel('NmlAtk2C')
         HitOrBlockCancel('NmlAtk5A3rd')
         HitOrBlockCancel('CommandThrow')
@@ -2704,7 +2696,7 @@ def NmlAtk5A3rd():
         HitOrBlockCancel('NmlAtk5A4th')
         HitOrBlockCancel('NmlAtk6B')
         HitOrBlockCancel('NmlAtk2C')
-        HitOrBlockCancel('CmnActCrushAttack')
+        HitOrBlockCancel('NmlAtk5C')
         HitOrBlockCancel('AntiAir_A')
         HitOrBlockCancel('AntiAir_B')
         HitOrBlockCancel('Shot')
@@ -2840,7 +2832,7 @@ def NmlAtk4A():
         HitOrBlockCancel('NmlAtk5B')
         HitOrBlockCancel('Sledge_B')
         HitOrBlockCancel('NmlAtk6B')
-        HitOrBlockCancel('CmnActCrushAttack')
+        HitOrBlockCancel('NmlAtk5C')
         HitOrBlockCancel('NmlAtk2C')
         HitOrBlockCancel('NmlAtk4A2nd')
         HitOrBlockCancel('NmlAtkThrow')
@@ -2884,7 +2876,7 @@ def NmlAtk4A2nd():
         HitOrBlockCancel('NmlAtk5B')
         HitOrBlockCancel('Sledge_B')
         HitOrBlockCancel('NmlAtk6B')
-        HitOrBlockCancel('CmnActCrushAttack')
+        HitOrBlockCancel('NmlAtk5C')
         HitOrBlockCancel('NmlAtk2C')
         HitOrBlockCancel('NmlAtkThrow')
         HitOrBlockCancel('NmlAtkBackThrow')
@@ -2929,7 +2921,7 @@ def NmlAtk4A3rd():
         HitOrBlockCancel('Sledge_B')
         HitOrBlockCancel('NmlAtk2A')
         HitOrBlockCancel('NmlAtk6B')
-        HitOrBlockCancel('CmnActCrushAttack')
+        HitOrBlockCancel('NmlAtk5C')
         HitOrBlockCancel('NmlAtk2C')
         HitOrBlockCancel('CommandThrow')
         HitOrBlockCancel('CommandThrowB2')
@@ -2999,7 +2991,7 @@ def NmlAtk2B():
         HitOrBlockCancel('Sledge_B')
         HitOrBlockCancel('NmlAtk6B')
         HitOrBlockCancel('NmlAtk5B')
-        HitOrBlockCancel('CmnActCrushAttack')
+        HitOrBlockCancel('NmlAtk5C')
         HitOrBlockCancel('NmlAtk2C')
         HitOrBlockCancel('NmlAtkThrow')
         HitOrBlockCancel('NmlAtkBackThrow')
@@ -3033,8 +3025,9 @@ def NmlAtk5B():
     def upon_IMMEDIATE():
         AttackDefaults_StandingNormal()
         AttackLevel_(3)
-        Damage(620)
-        AttackP1(90)
+        Damage(1100)
+        AttackP1(95)
+        AttackP2(90)
         Unknown9154(19)
         AirHitstunAnimation(11)
         GroundedHitstunAnimation(3)
@@ -3043,7 +3036,7 @@ def NmlAtk5B():
         HitOrBlockCancel('NmlAtk5B')
         HitOrBlockCancel('NmlAtk2C')
         HitOrBlockCancel('NmlAtk6B')
-        HitOrBlockCancel('CmnActCrushAttack')
+        HitOrBlockCancel('NmlAtk5C')
         HitOrBlockCancel('Sledge_B')
         HitOrBlockCancel('CommandThrow')
         HitOrBlockCancel('CommandThrowB2')
@@ -3366,8 +3359,9 @@ def NmlAtk2A():
     def upon_IMMEDIATE():
         AttackDefaults_CrouchingNormal()
         AttackLevel_(3)
-        Damage(580)
+        Damage(700)
         AttackP1(90)
+        AttackP2(75)
         PushbackX(11000)
         HitLow(2)
         HitOrBlockCancel('NmlAtk5A')
@@ -3378,7 +3372,7 @@ def NmlAtk2A():
         HitOrBlockCancel('CommandThrow')
         HitOrBlockCancel('CommandThrowB2')
         HitOrBlockCancel('CommandThrowEX')
-        HitOrBlockCancel('CmnActCrushAttack')
+        HitOrBlockCancel('NmlAtk5C')
     sprite('tg231_00', 3)
     sprite('tg231_01', 4)
     sprite('tg231_02', 3)
@@ -3397,7 +3391,8 @@ def NmlAtk6B():
     def upon_IMMEDIATE():
         AttackDefaults_CrouchingNormal()
         AttackLevel_(5)
-        AttackP1(80)
+        AttackP1(90)
+        AttackP2(95)
         AirHitstunAnimation(10)
         AirPushbackX(40000)
         AirPushbackY(0)
@@ -3409,7 +3404,7 @@ def NmlAtk6B():
         HitOrBlockJumpCancel(0)
         HitOrBlockCancel('NmlAtk2C')
         HitOrBlockCancel('Sledge_B')
-        HitOrBlockCancel('CmnActCrushAttack')
+        HitOrBlockCancel('NmlAtk5C')
         HitOrBlockCancel('NmlAtk2C')
         HitOrBlockCancel('AntiAir_A')
         HitOrBlockCancel('AntiAir_B')
@@ -3767,8 +3762,8 @@ def NmlAtkAIR2C():
     def upon_IMMEDIATE():
         AttackDefaults_AirNormal()
         AttackLevel_(4)
-        Damage(1200)
-        AttackP1(80)
+        Damage(1800)
+        AttackP2(80)
         AirHitstunAnimation(9)
         GroundedHitstunAnimation(9)
         AirUntechableTime(32)
@@ -3818,10 +3813,24 @@ def NmlAtkAIR2C():
     sprite('tg260_09', 4) 
 
 @State
-def CmnActCrushAttack():
-
+def NmlAtk5C():
+    
     def upon_IMMEDIATE():
-        Unknown30072('')
+        AttackDefaults_StandingSpecial()
+        AttackLevel_(5)
+        HitOverhead(2)
+        AttackP1(70)
+        AttackP2(70)
+        GroundedHitstunAnimation(11)
+        AirHitstunAnimation(11)
+        AirPushbackX(24000) 
+        AirPushbackY(-29000)
+        Unknown9310(25)
+        AirUntechableTime(45)
+        hitstun(30)
+        HitCancel('Shot')
+        HitCancel('Sledge_A')
+        HitCancel('Sledge_B')
     sprite('tg411_00', 2)
     sprite('tg411_01', 1)
     sprite('tg411_01', 2)
@@ -3844,10 +3853,10 @@ def CmnActCrushAttack():
     ScreenShake(0, 15000)
     SFX_3('tgse_26')
     SFX_0('019_quake_0')
-    sprite('tg411_10', 6)
-    sprite('tg411_11', 6)
-    sprite('tg411_12', 6)
-    sprite('tg411_13', 6)
+    sprite('tg411_10', 9)
+    sprite('tg411_11', 9)
+    sprite('tg411_12', 9)
+    sprite('tg411_13', 9)
 
 @State
 def CmnActCrushAttackChase1st():
@@ -4399,7 +4408,7 @@ def NmlAtkThrow():
         Unknown17011('ThrowExe', 1, 0, 0)
         Unknown11054(120000)
         Unknown2018(0, 80)
-        physicsXImpulse(8000)
+        physicsXImpulse(0)
 
         def upon_3():
             if (SLOT_18 >= 25):
@@ -4407,6 +4416,7 @@ def NmlAtkThrow():
             if (SLOT_18 >= 3):
                 if (SLOT_19 <= 180000):
                     sendToLabel(1)
+    gotoLabel(1)
     sprite('tg030_00', 5)
     label(0)
     sprite('tg030_01', 5)
@@ -6288,7 +6298,7 @@ def CmnActInvincibleAttack():
         AirPushbackY(50000)
         YImpluseBeforeWallbounce(2300)
         AirUntechableTime(70)
-        HitAirUnblockable(3)
+        HitAirUnblockable(0)
         AirHitstunAnimation(10)
         GroundedHitstunAnimation(10)
         GuardPoint_(1)
