@@ -2979,7 +2979,7 @@ def NmlAtkAIR2C():
 def NmlAtk5C():
 
     def upon_IMMEDIATE():
-        AttackDefaults_AirNormal()
+        AttackDefaults_StandingSpecial()
         AttackLevel_(5)
         PushbackX(5000)
         AttackAttributes(1, 0, 0, 0, 0)

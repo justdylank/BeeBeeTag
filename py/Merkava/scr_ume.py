@@ -2654,8 +2654,10 @@ def NmlAtkAIR5C():
 def CmnActCrushAttackNew():
 
     def upon_IMMEDIATE():
-        AttackDefaults_AirNormal()
+        AttackDefaults_StandingSpecial()
         AttackLevel_(5)
+        PushbackX(5000)
+        AttackAttributes(1, 0, 0, 0, 0)
     sprite('Action_068_00', 4)
     sprite('Action_068_02', 3)
     Unknown1084(1)
