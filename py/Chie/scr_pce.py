@@ -3487,6 +3487,28 @@ def NmlAtkAIR5C():
     Recovery()
     sprite('ce255_06', 4)
 
+@Subroutine
+def SpecialCancel():
+    HitCancel('CmnActInvincibleAttack')
+    HitCancel('CmnActInvincibleAttackAir')
+    HitCancel('AbaremakuriLandA')
+    HitCancel('DragonKickLandB')
+    HitCancel('TomoeAttackEX')
+    HitCancel('100inchPunchA')
+    HitCancel('100inchPunchB')
+    HitCancel('KokutengekiEX')
+    HitCancel('AbaremakuriAirA')
+    HitCancel('DragonKickAirB')
+    HitCancel('DragonKickAirEX')
+    HitCancel('UltimateGodHand')
+    HitCancel('UltimateGodHandOD')
+    HitCancel('UltimateCharge')
+    HitCancel('UltimateChargeOD')
+    HitCancel('UltimateAguneyasutora_Far')
+    HitCancel('UltimateAguneyasutoraOD_Far')
+    HitCancel('UltimateAguneyasutora_Near')
+    HitCancel('UltimateAguneyasutoraOD_Near')
+
 @State
 def CmnActCrushAttackNew():
 
@@ -3494,6 +3516,7 @@ def CmnActCrushAttackNew():
         AttackDefaults_StandingSpecial()
         AttackLevel_(5)
         Damage(1500)
+        blockstun(12)
         Unknown9310(10)
         AttackP1(75)
         AttackP2(75)
@@ -3505,6 +3528,7 @@ def CmnActCrushAttackNew():
         HitOverhead(2)
         GroundedHitstunAnimation(9)
         sendToLabelUpon(2, 0)
+        callSubroutine('SpecialCancel')
     sprite('ce210_00', 2)
     sprite('ce210_01', 2)
     sprite('ce210_02', 2)
@@ -4070,6 +4094,7 @@ def ThrowExe():
     AirPushbackX(10000)
     AirPushbackY(-40000)
     Hitstop(6)
+    callSubroutine('SpecialCancel')
     callSubroutine('ChargeDamageUp')
     Unknown11050(1, '')
     Unknown11069('')
@@ -4203,6 +4228,7 @@ def BackThrowExe():
     AirPushbackX(10000)
     AirPushbackY(-40000)
     Hitstop(6)
+    callSubroutine('SpecialCancel')
     callSubroutine('ChargeDamageUp')
     Unknown11050(1, '')
     Unknown11069('')

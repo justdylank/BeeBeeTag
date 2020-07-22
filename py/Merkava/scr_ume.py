@@ -1409,8 +1409,8 @@ def CmnActOverDriveLoop():
 
 @State
 def CmnActOverDriveEnd():
-    sprite('Action_262_05', 6)
-    sprite('Action_262_06', 6)
+    sprite('Action_262_05', 1)
+    sprite('Action_262_06', 1)
 
 @State
 def CmnActAirOverDriveBegin():
@@ -1429,15 +1429,8 @@ def CmnActAirOverDriveLoop():
 
 @State
 def CmnActAirOverDriveEnd():
-    sprite('Action_262_07', 3)
-    sprite('Action_262_08', 3)
-    sprite('Action_262_09', 3)
-    sprite('Action_262_10', 3)
-    label(0)
-    sprite('Action_262_11', 4)
-    sprite('Action_262_12', 4)
-    sprite('Action_262_13', 4)
-    gotoLabel(0)
+    sprite('Action_262_07', 1)
+    sprite('Action_262_08', 1)
 
 @State
 def CmnActCrossRushBegin():
@@ -2654,8 +2647,10 @@ def NmlAtkAIR5C():
 def CmnActCrushAttackNew():
 
     def upon_IMMEDIATE():
-        AttackDefaults_AirNormal()
+        AttackDefaults_StandingSpecial()
         AttackLevel_(5)
+        PushbackX(5000)
+        AttackAttributes(1, 0, 0, 0, 0)
     sprite('Action_068_00', 4)
     sprite('Action_068_02', 3)
     Unknown1084(1)

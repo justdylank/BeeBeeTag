@@ -1948,7 +1948,7 @@ def NmlAtk5B(): #5B
     def upon_IMMEDIATE():
         AttackDefaults_StandingNormal()
         AttackLevel_(3)
-        AttackP1(90)
+        AttackP1(95)
         GroundedHitstunAnimation(13)
         AirHitstunAnimation(13)
         AirPushbackX(8000)
@@ -2081,7 +2081,7 @@ def NmlAtk2A(): #2A
     Recovery()
     WhiffCancelEnable(1)
     sprite('Action_004_04', 3)
-    sprite('Action_004_04', 2)
+    sprite('Action_004_04', 3)
     WhiffCancelEnable(0)
     sprite('Action_004_05', 4)
 
@@ -2106,8 +2106,8 @@ def NmlAtk2A_Renda(): #2A(AA)
     sprite('Action_004_03', 3)
     Unknown2063()
     WhiffCancelEnable(1)
-    sprite('Action_004_04', 5)
-    sprite('Action_004_05', 5)
+    sprite('Action_004_04', 3)
+    sprite('Action_004_05', 4)
 
 @State
 def NmlAtk2B(): #2B
@@ -2142,7 +2142,7 @@ def NmlAtk2C(): #2C
         AttackDefaults_CrouchingNormal()
         AttackLevel_(4)
         AttackP1(90)
-        AttackP2(75)
+        AttackP2(80)
         AirPushbackY(20000)
         AirUntechableTime(30)
         AirHitstunAnimation(11)
@@ -3030,7 +3030,7 @@ def CmnActInvincibleAttack():
     def upon_IMMEDIATE():
         Unknown17024()
         AttackLevel_(3)
-        Damage(800)
+        Damage(750)
         Unknown11092(1)
         AirHitstunAnimation(9)
         GroundedHitstunAnimation(9)
@@ -3119,7 +3119,7 @@ def CmnActInvincibleAttackAir():
     def upon_IMMEDIATE():
         Unknown17025()
         AttackLevel_(3)
-        Damage(850)
+        Damage(800)
         Unknown11092(1)
         AirHitstunAnimation(9)
         GroundedHitstunAnimation(9)
