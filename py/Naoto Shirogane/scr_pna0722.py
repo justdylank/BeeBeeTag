@@ -289,13 +289,6 @@ def MatchInit():
     Unknown14015(310000, 1066000, -207000, 285000, 100, 50)
     Unknown15000(0)
     Move_EndRegister()
-    Move_Register('WalkingShotKickEX', 0x2)
-    Unknown14005(1)
-    Move_AirGround_(0x2000)
-    Move_Input_(INPUT_PRESS_C)
-    Unknown14015(-173000, 286000, -123000, 255000, 1000, 50)
-    Unknown15014(3000)
-    Move_EndRegister()
     Move_Register('TrapA', 0x2)
     Move_AirGround_(0x2000)
     Move_Input_(INPUT_22)
@@ -444,7 +437,7 @@ def MatchInit():
     Unknown14015(307000, 1466000, -223000, 355000, 10, 10)
     Unknown15022('030000000500000032000000e8030000')
     Move_EndRegister()
-    Move_Register('UltimateKill', 0x68)
+    Move_Register('WalkingShotUltimate', 0x68)
     Move_AirGround_(0x2000)
     Move_AirGround_(0x3089)
     Move_Input_(INPUT_214)
@@ -453,7 +446,7 @@ def MatchInit():
     Unknown14015(342000, 861000, -198000, 116000, 10, 10)
     Unknown15022('030000000500000032000000e8030000')
     Move_EndRegister()
-    Move_Register('UltimateKillOD', 0x68)
+    Move_Register('WalkingShotUltimateOD', 0x68)
     Move_AirGround_(0x2000)
     Move_AirGround_(0x3089)
     Move_AirGround_(0x3081)
@@ -462,6 +455,20 @@ def MatchInit():
     Unknown15000(0)
     Unknown14015(342000, 861000, -198000, 116000, 10, 10)
     Unknown15022('030000000500000032000000e8030000')
+    Move_EndRegister()
+    Move_Register('WalkingShotUltimateKick', 0x2)
+    Unknown14005(1)
+    Move_AirGround_(0x2000)
+    Move_Input_(INPUT_PRESS_C)
+    Unknown14015(-173000, 286000, -123000, 255000, 1000, 50)
+    Unknown15014(3000)
+    Move_EndRegister()
+    Move_Register('WalkingShotUltimateKickOD', 0x2)
+    Unknown14005(1)
+    Move_AirGround_(0x2000)
+    Move_Input_(INPUT_PRESS_C)
+    Unknown14015(-173000, 286000, -123000, 255000, 1000, 50)
+    Unknown15014(3000)
     Move_EndRegister()
     Move_Register('UltimateKillAir', 0x68)
     Move_AirGround_(0x2001)
@@ -5064,153 +5071,6 @@ def AirBlightEX():
     sprite('na255_00', 4)
 
 @State
-def WalkingShotEX():
-
-    def upon_IMMEDIATE():
-        AttackDefaults_StandingSpecial()
-        Unknown14083(1)
-        SLOT_62 = 1
-        WhiffCancel('WalkingShotKickEX')
-
-        def upon_3():
-            if SLOT_51:
-                if SLOT_52:
-                    SLOT_52 = (SLOT_52 + (-1))
-                else:
-                    if CheckInput(0x1):
-                        if (not (SLOT_53 >= 5)):
-                            SLOT_52 = 8
-                            SLOT_53 = (SLOT_53 + 1)
-                            SLOT_59 = (SLOT_59 + 1)
-                            GFX_0('DanganUltimate', 1)
-                            ScreenShake(10000, 0)
-                    if CheckInput(0xa):
-                        if (not (SLOT_53 >= 5)):
-                            SLOT_52 = 8
-                            SLOT_53 = (SLOT_53 + 1)
-                            SLOT_59 = (SLOT_59 + 1)
-                            GFX_0('DanganUltimate', 1)
-                            ScreenShake(10000, 0)
-            if SLOT_IsInOverdrive2:
-                if (SLOT_18 == 240):
-                    sendToLabel(9)
-                if (not SLOT_158):
-                    clearUponHandler(3)
-                    sendToLabel(9)
-                if (not SLOT_21):
-                    clearUponHandler(3)
-                    sendToLabel(9)
-    sprite('na433_00', 3)
-    sprite('na433_01', 3)
-    Unknown23125('')
-    ConsumeSuperMeter(-5000)
-    tag_voice(1, 'pna219_0', 'pna219_1', '', '')
-    sprite('na433_02', 3)
-    WhiffCancelEnable(1)
-    sprite('na433_03', 5)
-    physicsXImpulse(7000)
-    label(0)
-    sprite('na433_04', 7)
-    SLOT_51 = 1
-    SLOT_54 = 1
-    sprite('na433_05', 7)
-    SFX_FOOTSTEP_(100, 1, 1)
-    sprite('na433_06', 7)
-    sprite('na433_07', 7)
-    sprite('na433_08', 7)
-    SFX_FOOTSTEP_(100, 1, 1)
-    sprite('na433_09', 7)
-    loopRest()
-    gotoLabel(0)
-    label(9)
-    sprite('na433_10', 6)
-    Unknown1084(1)
-    clearUponHandler(3)
-    WhiffCancelEnable(0)
-    SLOT_51 = 0
-    SLOT_54 = 0
-    sprite('na433_11', 1)
-    sprite('na433_11', 1)
-    callSubroutine('HaikyouEx0')
-    sprite('na433_11', 1)
-    callSubroutine('HaikyouEx0')
-    sprite('na433_11', 1)
-    callSubroutine('HaikyouEx0')
-    sprite('na433_11', 1)
-    callSubroutine('HaikyouEx0')
-    sprite('na433_11', 1)
-    callSubroutine('HaikyouEx0')
-    sprite('na433_12', 6)
-
-@State
-def WalkingShotKickEX():
-
-    def upon_IMMEDIATE():
-        AttackDefaults_StandingSpecial()
-        AttackLevel_(5)
-        Damage(2500)
-        AttackP1(80)
-        AttackP2(80)
-        Hitstop(30)
-        GroundedHitstunAnimation(12)
-        AirHitstunAnimation(12)
-        AirUntechableTime(70)
-        AirPushbackX(75000)
-        AirPushbackY(35000)
-        WallbounceReboundTime(20)
-        Unknown9362(1)
-        Unknown9364(45)
-        AirHitstunAfterWallbounce(70)
-        MinimumDamagePct(10)
-        Unknown30065(0)
-        Unknown30068(1)
-        Unknown2006()
-        Unknown3029(1)
-        Unknown3069(2)
-        AfterimageColor_1(128, 0, 0, 0)
-        AfterimageColor_2(0, 0, 0, 0)
-        AfterimageMask_1(0, 4, 50, 160)
-        AfterimageMask_2(0, 0, 0, 16)
-        AfterimageSize_1(1010)
-        AfterimageSize_2(900)
-
-        def upon_12():
-            ScreenShake(50000, 0)
-        setInvincible(1)
-    sprite('na433_13', 1)
-    sprite('na433_14', 2)
-    tag_voice(0, 'pna220_0', 'pna220_1', '', '')
-    sprite('na433_15', 4)
-    sprite('na433_16', 1)
-    sprite('na433_17', 1)
-    GFX_0('Kick_line', 100)
-    SFX_3('slash_blade_middle')
-    sprite('na433_18', 1)
-    sprite('na433_20', 2)
-    GFX_0('Zanzoh_kick', 100)
-    RefreshMultihit()
-    sprite('na433_20', 10)
-    DisableAttackRestOfMove()
-    setInvincible(0)
-    sprite('na433_21', 6)
-    Unknown2004(1, 0)
-    sprite('na433_22', 6)
-    sprite('na433_23', 5)
-    sprite('na433_24', 1)
-    sprite('na433_24', 1)
-    sprite('na433_24', 1)
-    sprite('na433_25', 1)
-    callSubroutine('HaikyouEx0')
-    sprite('na433_25', 1)
-    callSubroutine('HaikyouEx0')
-    sprite('na433_25', 1)
-    callSubroutine('HaikyouEx0')
-    sprite('na433_25', 1)
-    callSubroutine('HaikyouEx0')
-    sprite('na433_25', 1)
-    callSubroutine('HaikyouEx0')
-
-@State
 def TrapA():
 
     def upon_IMMEDIATE():
@@ -5848,6 +5708,292 @@ def SecretGunOD():
     sprite('na211_00', 3)
     sprite('na010_01', 3)
     sprite('na010_00', 3)
+
+@State
+def WalkingShotUltimate():
+
+    def upon_IMMEDIATE():
+        AttackDefaults_StandingDD()
+        Unknown14083(1)
+        SLOT_62 = 1
+        Unknown23055('')
+        WhiffCancel('WalkingShotUltimateKick')
+        
+        def upon_3():
+            if SLOT_51:
+                if SLOT_52:
+                    SLOT_52 = (SLOT_52 + (-1))
+                else:
+                    if CheckInput(0x1):
+                        if (not (SLOT_53 >= 5)):
+                            SLOT_52 = 8
+                            SLOT_53 = (SLOT_53 + 1)
+                            SLOT_59 = (SLOT_59 + 1)
+                            GFX_0('DanganUltimate', 1)
+                            ScreenShake(10000, 0)
+                    if CheckInput(0xa):
+                        if (not (SLOT_53 >= 5)):
+                            SLOT_52 = 8
+                            SLOT_53 = (SLOT_53 + 1)
+                            SLOT_59 = (SLOT_59 + 1)
+                            GFX_0('DanganUltimate', 1)
+                            ScreenShake(10000, 0)
+            if SLOT_IsInOverdrive2:
+                if (SLOT_18 == 240):
+                    sendToLabel(9)
+                if (not SLOT_158):
+                    clearUponHandler(3)
+                    sendToLabel(9)
+                if (not SLOT_21):
+                    clearUponHandler(3)
+                    sendToLabel(9)
+    sprite('na433_00', 3)
+    sprite('na433_01', 3)
+    Unknown2036(5, -1, 0)
+    ConsumeSuperMeter(-10000)
+    Unknown30080('')
+    tag_voice(1, 'pna219_0', 'pna219_1', '', '')
+    sprite('na433_02', 3)
+    WhiffCancelEnable(1)
+    sprite('na433_03', 5)
+    physicsXImpulse(7000)
+    label(0)
+    sprite('na433_04', 7)
+    SLOT_51 = 1
+    SLOT_54 = 1
+    sprite('na433_05', 7)
+    SFX_FOOTSTEP_(100, 1, 1)
+    sprite('na433_06', 7)
+    sprite('na433_07', 7)
+    sprite('na433_08', 7)
+    SFX_FOOTSTEP_(100, 1, 1)
+    sprite('na433_09', 7)
+    loopRest()
+    gotoLabel(0)
+    label(9)
+    sprite('na433_10', 6)
+    Unknown1084(1)
+    clearUponHandler(3)
+    WhiffCancelEnable(0)
+    SLOT_51 = 0
+    SLOT_54 = 0
+    sprite('na433_11', 1)
+    sprite('na433_11', 1)
+    callSubroutine('HaikyouEx0')
+    sprite('na433_11', 1)
+    callSubroutine('HaikyouEx0')
+    sprite('na433_11', 1)
+    callSubroutine('HaikyouEx0')
+    sprite('na433_11', 1)
+    callSubroutine('HaikyouEx0')
+    sprite('na433_11', 1)
+    callSubroutine('HaikyouEx0')
+    sprite('na433_12', 6)
+
+@State
+def WalkingShotUltimateOD():
+
+    def upon_IMMEDIATE():
+        AttackDefaults_StandingDD()
+        Unknown14083(1)
+        SLOT_62 = 1
+        Unknown23055('')
+        WhiffCancel('WalkingShotUltimateKickOD')        
+
+        def upon_3():
+            if SLOT_51:
+                if SLOT_52:
+                    SLOT_52 = (SLOT_52 + (-1))
+                else:
+                    if CheckInput(0x1):
+                        if (not (SLOT_53 >= 5)):
+                            SLOT_52 = 8
+                            SLOT_53 = (SLOT_53 + 1)
+                            SLOT_59 = (SLOT_59 + 1)
+                            GFX_0('DanganUltimate', 1)
+                            ScreenShake(10000, 0)
+                    if CheckInput(0xa):
+                        if (not (SLOT_53 >= 5)):
+                            SLOT_52 = 8
+                            SLOT_53 = (SLOT_53 + 1)
+                            SLOT_59 = (SLOT_59 + 1)
+                            GFX_0('DanganUltimate', 1)
+                            ScreenShake(10000, 0)
+            if SLOT_IsInOverdrive2:
+                if (SLOT_18 == 240):
+                    sendToLabel(9)
+                if (not SLOT_158):
+                    clearUponHandler(3)
+                    sendToLabel(9)
+                if (not SLOT_21):
+                    clearUponHandler(3)
+                    sendToLabel(9)
+    sprite('na433_00', 3)
+    sprite('na433_01', 3)
+    Unknown2036(5, -1, 0)
+    ConsumeSuperMeter(-10000)
+    Unknown30080('')
+    tag_voice(1, 'pna219_0', 'pna219_1', '', '')
+    sprite('na433_02', 3)
+    WhiffCancelEnable(1)
+    sprite('na433_03', 5)
+    physicsXImpulse(7000)
+    label(0)
+    sprite('na433_04', 7)
+    SLOT_51 = 1
+    SLOT_54 = 1
+    sprite('na433_05', 7)
+    SFX_FOOTSTEP_(100, 1, 1)
+    sprite('na433_06', 7)
+    sprite('na433_07', 7)
+    sprite('na433_08', 7)
+    SFX_FOOTSTEP_(100, 1, 1)
+    sprite('na433_09', 7)
+    loopRest()
+    gotoLabel(0)
+    label(9)
+    sprite('na433_10', 6)
+    Unknown1084(1)
+    clearUponHandler(3)
+    WhiffCancelEnable(0)
+    SLOT_51 = 0
+    SLOT_54 = 0
+    sprite('na433_11', 1)
+    sprite('na433_11', 1)
+    callSubroutine('HaikyouEx0')
+    sprite('na433_11', 1)
+    callSubroutine('HaikyouEx0')
+    sprite('na433_11', 1)
+    callSubroutine('HaikyouEx0')
+    sprite('na433_11', 1)
+    callSubroutine('HaikyouEx0')
+    sprite('na433_11', 1)
+    callSubroutine('HaikyouEx0')
+    sprite('na433_12', 6)
+
+@State
+def WalkingShotUltimateKick():
+
+    def upon_IMMEDIATE():
+        AttackDefaults_StandingDD()
+        Unknown23056()
+        Unknown30063(1)
+        AttackLevel_(5)
+        Damage(4500)
+        AttackP1(100)
+        AttackP2(100)
+        MinimumDamagePct(50)
+        Hitstop(30)
+        GroundedHitstunAnimation(9)
+        AirHitstunAnimation(9)
+        AirUntechableTime(70)
+        AirHitstunAfterWallbounce(50)
+        WallbounceReboundTime(40)
+        Unknown9178(3)
+        Unknown9346(0)
+        Unknown9215()
+        AirPushbackX(550000)
+        AirPushbackY(40000)
+        Unknown11068(1)
+        Unknown23055('')
+        
+        def upon_12():
+            ScreenShake(50000, 0)
+        Unknown13024(0)
+        setInvincible(1)
+    sprite('na433_13', 4)
+    sprite('na433_14', 4)
+    sprite('na433_15', 10)
+    Unknown2036(68, -1, 0)
+    sprite('na433_15', 10)
+    ScreenShake(5000, 0)
+    sprite('na433_15', 10)
+    ScreenShake(7500, 0)
+    sprite('na433_15', 10)
+    ScreenShake(10000, 0)
+    sprite('na433_15', 10)
+    ScreenShake(12500, 0)
+    sprite('na433_15', 14)
+    sprite('na433_16', 2)
+    sprite('na433_17', 2)
+    GFX_0('Kick_line', 100)
+    SFX_3('slash_blade_middle')
+    sprite('na433_18', 2)
+    sprite('na433_20', 2)
+    GFX_0('Zanzoh_kick', 100)
+    Unknown23054('na433_19', 3)
+    RefreshMultihit()
+    tag_voice(0, 'pna258_0', 'pna258_1', '', '')
+    sprite('na433_20', 35)
+    setInvincible(0)
+    sprite('na433_21', 6)
+    Unknown2004(1, 0)
+    sprite('na433_22', 6)
+    sprite('na433_23', 5)
+    sprite('na433_24', 4)
+    sprite('na433_25', 4)
+
+@State
+def WalkingShotUltimateKickOD():
+
+    def upon_IMMEDIATE():
+        AttackDefaults_StandingDD()
+        Unknown23056()
+        Unknown30063(1)
+        AttackLevel_(5)
+        Damage(5000)
+        AttackP1(100)
+        AttackP2(100)
+        MinimumDamagePct(50)
+        Hitstop(30)
+        GroundedHitstunAnimation(9)
+        AirHitstunAnimation(9)
+        AirUntechableTime(70)
+        AirHitstunAfterWallbounce(50)
+        WallbounceReboundTime(40)
+        Unknown9178(3)
+        Unknown9346(0)
+        Unknown9215()
+        AirPushbackX(550000)
+        AirPushbackY(40000)
+        Unknown11068(1)
+        Unknown23055('')
+        
+        def upon_12():
+            ScreenShake(50000, 0)
+        Unknown13024(0)
+        setInvincible(1)
+    sprite('na433_13', 4)
+    sprite('na433_14', 4)
+    sprite('na433_15', 10)
+    Unknown2036(68, -1, 0)
+    sprite('na433_15', 10)
+    ScreenShake(5000, 0)
+    sprite('na433_15', 10)
+    ScreenShake(7500, 0)
+    sprite('na433_15', 10)
+    ScreenShake(10000, 0)
+    sprite('na433_15', 10)
+    ScreenShake(12500, 0)
+    sprite('na433_15', 14)
+    sprite('na433_16', 2)
+    sprite('na433_17', 2)
+    GFX_0('Kick_line', 100)
+    SFX_3('slash_blade_middle')
+    sprite('na433_18', 2)
+    sprite('na433_20', 2)
+    GFX_0('Zanzoh_kick', 100)
+    Unknown23054('na433_19', 3)
+    RefreshMultihit()
+    tag_voice(0, 'pna258_0', 'pna258_1', '', '')
+    sprite('na433_20', 35)
+    setInvincible(0)
+    sprite('na433_21', 6)
+    Unknown2004(1, 0)
+    sprite('na433_22', 6)
+    sprite('na433_23', 5)
+    sprite('na433_24', 4)
+    sprite('na433_25', 4)
 
 @State
 def UltimateKill():
