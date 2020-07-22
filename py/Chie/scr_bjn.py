@@ -1541,8 +1541,9 @@ def CmnActOverDriveLoop():
 
 @State
 def CmnActOverDriveEnd():
-    sprite('jn333_08', 1)
-    sprite('jn333_09', 1)
+    sprite('jn333_08', 4)
+    sprite('jn333_09', 4)
+    sprite('jn333_10', 4)
 
 @State
 def CmnActAirOverDriveBegin():
@@ -1565,8 +1566,16 @@ def CmnActAirOverDriveLoop():
 
 @State
 def CmnActAirOverDriveEnd():
-    sprite('jn333_17', 1)
-    sprite('jn333_18', 1)
+    sprite('jn333_16', 2)
+    sprite('jn333_17', 2)
+    sprite('jn333_18', 2)
+    sprite('jn020_06', 3)
+    sprite('jn020_07', 3)
+    label(0)
+    sprite('jn020_08', 4)
+    sprite('jn020_09', 4)
+    loopRest()
+    gotoLabel(0)
 
 @State
 def CmnActCrossRushBegin():
@@ -3601,9 +3610,9 @@ def NmlAtk5C():
         HitCancel('Assault_B')
         HitCancel('Assault_D')
         HitCancel('UltimateAntiAirShot')
-        HitCancel('UltimateAntiAirShot_OD')
+        HitCancel('UltimateAntiAirShotOD')
         HitCancel('UltimateShot')
-        HitCancel('UltimateShot_OD')
+        HitCancel('UltimateShotOD')
         sendToLabelUpon(2, 0)
     sprite('jn414_00', 3)
     sprite('jn414_01', 3)

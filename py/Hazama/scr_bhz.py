@@ -12,7 +12,7 @@ def MatchInit():
     Unknown12024(2)
     Unknown13039(1)
     Unknown2049(1)
-    Unknown23003(0, 1, 5, 1, 2, 2, -1, -1)
+    Unknown23003(0, 1, 5, 1, 3, 3, -1, -1)
     Unknown23005(0, 1)
     Unknown23003(1, 0, 7, 1, 1500, 1500, -1, -1)
     Move_Register('NmlAtk5A', 0x7)
@@ -521,7 +521,7 @@ def OnFrameStep():
         elif (SLOT_32 <= 900):
             SLOT_32 = (SLOT_32 + 5)
         if (SLOT_32 >= 1500):
-            SLOT_31 = 2
+            SLOT_31 = 3
             
 @Subroutine
 def EnableAirAssault():
@@ -1644,9 +1644,8 @@ def CmnActOverDriveLoop():
 
 @State
 def CmnActOverDriveEnd():
-    sprite('hz333_08', 4)
-    sprite('hz333_09', 4)
-    sprite('hz333_10', 4)
+    sprite('hz333_09', 1)
+    sprite('hz333_10', 1)
 
 @State
 def CmnActAirOverDriveBegin():
@@ -1669,16 +1668,8 @@ def CmnActAirOverDriveLoop():
 
 @State
 def CmnActAirOverDriveEnd():
-    sprite('hz333_16', 2)
-    sprite('hz333_17', 2)
-    sprite('hz333_18', 2)
-    sprite('hz020_05', 3)
-    sprite('hz020_06', 3)
-    label(0)
-    sprite('hz020_07', 4)
-    sprite('hz020_08', 4)
-    loopRest()
-    gotoLabel(0)
+    sprite('hz333_17', 1)
+    sprite('hz333_18', 1)
 
 @State
 def CmnActCrossRushBegin():
@@ -3408,7 +3399,7 @@ def UroborosInit():
     AttackAttributes(0, 0, 0, 1, 0)
 
     def upon_12():
-            SLOT_31 = 2
+            SLOT_31 = 3
             SLOT_32 = 0
     
     def upon_ON_HIT_OR_BLOCK():
@@ -4627,9 +4618,10 @@ def NmlAtkAIR5ANew():
 def NmlAtk5C():
 
     def upon_IMMEDIATE():
-        AttackDefaults_StandingNormal()
+        AttackDefaults_StandingSpecial()
         AttackLevel_(5)
         Unknown9016(1)
+        blockstun(12)
         GroundedHitstunAnimation(2)
         Unknown9130(30)
         Unknown9142(20)
@@ -4645,6 +4637,16 @@ def NmlAtk5C():
         Unknown11028(24)
         Unknown23086(1)
         Unknown12051(2)
+        HitCancel('SpecialAssault')
+        HitCancel('SpecialShot')
+        HitCancel('SpecialShot_C')
+        HitCancel('Kamae')
+        HitCancel('AntiAir')
+        HitCancel('SPThrow')
+        HitCancel('UltimateAssault')
+        HitCancel('UltimateAssault_OD')
+        HitCancel('UltimateShot')
+        HitCancel('UltimateShot_OD')
     sprite('hz410_00', 3)
     sprite('hz410_01', 3)
     SystemGFX('GuardCrushWind', 1)
@@ -6747,22 +6749,22 @@ def UltimateShot():
     Unknown20000(0)
     setInvincible(0)
     Unknown23159('UltimateShotFinish')
-    sprite('hz431_43', 5)
+    sprite('hz431_43', 4)
     EnableCollision(1)
     Unknown21015('HZEF_DDBackAura', 1003, 0)
     Unknown21015('DDBodyAura', 1007, 0)
-    sprite('hz431_44', 5)
-    sprite('hz431_45', 5)
-    sprite('hz431_43', 5)
-    sprite('hz431_44', 5)
-    sprite('hz431_45', 5)
-    sprite('hz431_43', 5)
-    sprite('hz431_44', 5)
-    sprite('hz431_45', 5)
-    sprite('hz431_46', 5)
-    sprite('hz431_47', 5)
-    sprite('hz431_48', 5)
-    sprite('hz431_49', 5)
+    sprite('hz431_44', 4)
+    sprite('hz431_45', 4)
+    sprite('hz431_43', 4)
+    sprite('hz431_44', 4)
+    sprite('hz431_45', 4)
+    sprite('hz431_43', 4)
+    sprite('hz431_44', 4)
+    sprite('hz431_45', 4)
+    sprite('hz431_46', 4)
+    sprite('hz431_47', 4)
+    sprite('hz431_48', 4)
+    sprite('hz431_49', 4)
     SFX_3('hzse_09')
     sprite('hz431_50', 4)
     SFX_3('hzse_09')
@@ -6770,7 +6772,7 @@ def UltimateShot():
     SFX_3('hzse_09')
     sprite('hz431_52', 3)
     SFX_0('007_swing_knife_2')
-    sprite('hz431_53', 12)
+    sprite('hz431_53', 8)
     sprite('hz431_55', 4)
 
 @State
