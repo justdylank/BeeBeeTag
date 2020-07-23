@@ -6114,6 +6114,7 @@ def WeavingA():
                 SLOT_51 = 0
                 clearUponHandler(3)
     sprite('ak407_03ex01', 3)
+    WhiffCancelEnable(1)
     if (SLOT_51 >= 1):
         SLOT_51 = (SLOT_51 + (-1))
     SFX_0('cloth_m')
