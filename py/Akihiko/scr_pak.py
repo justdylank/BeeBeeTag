@@ -3281,8 +3281,8 @@ def NmlAtk5B():
     sprite('ak204_01', 1)
     Unknown23029(11, 2040, 0)
     tag_voice(1, 'pak156_0', 'pak156_1', 'pak124_0', 'pak124_0')
-    sprite('ak204_01', 3)
-    sprite('ak204_02', 4)
+    sprite('ak204_01', 5)
+    sprite('ak204_02', 6)
     GFX_1('persona_enter_ply', 0)
     sprite('ak204_03', 5)
     SFX_3('cloth_m')
@@ -3598,8 +3598,6 @@ def NmlAtk5C():
     sprite('ak210_00', 2)
     sprite('ak210_01', 2)
     sprite('ak210_02', 2)
-    setInvincible(1)
-    GuardPoint_(1)
     sprite('ak210_03', 2)
     tag_voice(1, 'pak162_0', 'pak162_1', '', '')
     sprite('ak210_03', 1)
@@ -3608,6 +3606,8 @@ def NmlAtk5C():
     setGravity(2200)
     sprite('ak210_03', 2)
     sprite('ak210_04', 2)
+    setInvincible(1)
+    GuardPoint_(1)
     sprite('ak210_05', 4)
     sprite('ak210_06', 32767)
     loopRest()
@@ -4729,6 +4729,7 @@ def CmnActInvincibleAttack():
         AirPushbackX(0)
         AirPushbackY(16000)
         YImpluseBeforeWallbounce(2200)
+        HitAirUnblockable(0)
         Unknown30055(120000, 40, 0)
         Unknown11001(0, 0, 0)
         AirUntechableTime(60)
@@ -5287,6 +5288,8 @@ def Ducking():
         Unknown22019(0, 1, 0, 1, 0)
         if SLOT_123:
             Unknown30070('Ducking_BCorkHasei')
+    setInvincible(1)
+    Unknown22019(0, 0, 0, 1, 0)
     sprite('ak406_00', 1)
     callSubroutine('CycloneSkillDeriveInput')
     Unknown14074('Ducking')
@@ -5294,10 +5297,9 @@ def Ducking():
     callSubroutine('DistortionSkillDeriveInput')
     Unknown23004(0, 0)
     sprite('ak406_01', 2)
+    setInvincible(0)
     physicsXImpulse(60000)
     Unknown3029(1)
-    setInvincible(1)
-    Unknown22019(0, 0, 0, 1, 0)
     sprite('ak406_02', 2)
     SFX_3('airbackdash_m')
     Unknown7007('pak210_0', 100, 'pak210_1', 100, '', 0, '', 0)
@@ -5314,7 +5316,6 @@ def Ducking():
     Unknown1019(60)
     sprite('ak406_07', 3)
     Unknown1019(60)
-    setInvincible(0)
     sprite('ak406_08', 5)
     Unknown1019(0)
     endState()
@@ -6083,32 +6084,41 @@ def WeavingA():
         callSubroutine('CycloneLvIcon')
         callSubroutine('WeavingCancel')
         if (not SLOT_59):
+            SLOT_51 = 2
             Unknown23004(0, 1)
         if (SLOT_59 == 1):
+            SLOT_51 = 3
             SLOT_52 = 1
         if (SLOT_59 == 2):
+            SLOT_51 = 4
             SLOT_52 = 2
         if (SLOT_59 == 3):
+            SLOT_51 = 5
             SLOT_52 = 3
         if (SLOT_59 == 4):
+            SLOT_51 = 6
             SLOT_52 = 4
         if (SLOT_59 >= 5):
+            SLOT_51 = 7
             SLOT_52 = 5
         SLOT_59 = (SLOT_59 + 1)
-        
-        def upon_3():
-            if (not CheckInput(0x5e)):
-                SLOT_51 = 1
+        SLOT_51 = 5
     label(0)
     sprite('ak407_01ex01', 4)
     setInvincible(1)
     Unknown22019(0, 1, 0, 1, 0)
     sprite('ak407_02ex01', 4)
+    
+    def upon_3():
+            if (not CheckInput(0x5e)):
+                SLOT_51 = 0
+                clearUponHandler(3)
     sprite('ak407_03ex01', 3)
-    WhiffCancelEnable(1)
+    if (SLOT_51 >= 1):
+        SLOT_51 = (SLOT_51 + (-1))
     SFX_0('cloth_m')
     sprite('ak407_04ex01', 4)
-    if SLOT_51:
+    if (not SLOT_51):
         gotoLabel(1)
     sprite('ak407_05ex01', 4)
     sprite('ak407_06ex01', 4)
@@ -6135,21 +6145,23 @@ def WeavingB():
         callSubroutine('CycloneLvIcon')
         callSubroutine('WeavingCancel')
         if (not SLOT_59):
+            SLOT_51 = 1
             Unknown23004(0, 1)
         if (SLOT_59 == 1):
+            SLOT_51 = 2
             SLOT_52 = 1
         if (SLOT_59 == 2):
+            SLOT_51 = 3
             SLOT_52 = 2
         if (SLOT_59 == 3):
+            SLOT_51 = 4
             SLOT_52 = 3
         if (SLOT_59 == 4):
+            SLOT_51 = 5
             SLOT_52 = 4
         if (SLOT_59 >= 5):
+            SLOT_51 = 6
             SLOT_52 = 5
-    
-        def upon_3():
-            if (not CheckInput(0x5e)):
-                SLOT_51 = 1
     sprite('ak407_00', 5)
     sprite('ak407_01', 2)
     setInvincible(1)
@@ -6182,10 +6194,17 @@ def WeavingB():
     sprite('ak407_01ex01', 4)
     Unknown22019(0, 0, 0, 1, 0)
     sprite('ak407_02ex01', 4)
+    
+    def upon_3():
+            if (not CheckInput(0x5e)):
+                SLOT_51 = 0
+                clearUponHandler(3)
     sprite('ak407_03ex01', 3)
+    if (SLOT_51 >= 1):
+        SLOT_51 = (SLOT_51 + (-1))
     SFX_0('cloth_m')
     sprite('ak407_04ex01', 4)
-    if SLOT_51:
+    if (not SLOT_51):
         gotoLabel(1)
     sprite('ak407_05ex01', 4)
     sprite('ak407_06ex01', 4)
@@ -6212,21 +6231,24 @@ def WeavingEX():
         callSubroutine('CycloneLvIcon')
         callSubroutine('WeavingCancel')
         if (not SLOT_59):
+            SLOT_51 = 2
             Unknown23004(0, 1)
         if (SLOT_59 == 1):
+            SLOT_51 = 3
             SLOT_52 = 1
         if (SLOT_59 == 2):
+            SLOT_51 = 4
             SLOT_52 = 2
         if (SLOT_59 == 3):
+            SLOT_51 = 5
             SLOT_52 = 3
         if (SLOT_59 == 4):
+            SLOT_51 = 6
             SLOT_52 = 4
         if (SLOT_59 >= 5):
+            SLOT_51 = 7
             SLOT_52 = 5
-    
-        def upon_3():
-            if (not CheckInput(0x5e)):
-                SLOT_51 = 1
+        SLOT_51 = 20
     sprite('ak407_00', 3)
     sprite('ak407_01', 2)
     Unknown23125('')
@@ -6261,10 +6283,17 @@ def WeavingEX():
     sprite('ak407_01ex01', 4)
     Unknown22019(0, 0, 0, 1, 0)
     sprite('ak407_02ex01', 4)
+    
+    def upon_3():
+            if (not CheckInput(0x5e)):
+                SLOT_51 = 0
+                clearUponHandler(3)
     sprite('ak407_03ex01', 3)
+    if (SLOT_51 >= 1):
+        SLOT_51 = (SLOT_51 + (-1))
     SFX_0('cloth_m')
     sprite('ak407_04ex01', 4)
-    if SLOT_51:
+    if (not SLOT_51):
         gotoLabel(1)
     sprite('ak407_05ex01', 4)
     sprite('ak407_06ex01', 4)
