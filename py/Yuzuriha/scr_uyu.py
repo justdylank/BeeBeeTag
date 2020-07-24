@@ -3344,6 +3344,7 @@ def NmlAtk5C():
 
     def upon_IMMEDIATE():
         AttackDefaults_StandingSpecial()
+        HitOverhead(2)
         AttackLevel_(5)
         PushbackX(5000)
         AttackAttributes(1, 0, 0, 0, 0)
