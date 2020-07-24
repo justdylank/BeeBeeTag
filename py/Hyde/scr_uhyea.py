@@ -149,9 +149,9 @@ def EffNmlAtk66CBlade():
     sprite('Action_093_00', 2)
     sprite('Action_093_01', 2)
     sprite('Action_093_02', 2)
-    sprite('Action_093_03', 3)
-    sprite('Action_093_04', 2)
-    sprite('Action_093_05', 2)
+    sprite('Action_093_03', 4)
+    sprite('Action_093_04', 3)
+    sprite('Action_093_05', 3)
 
 @State
 def EffNmlAtk6CBlade():
@@ -310,7 +310,7 @@ def Hyd_shot_Init():
     Unknown2010()
     AttackLevel_(3)
     AirPushbackY(18000)
-    AirUntechableTime(24)
+    AirUntechableTime(27)
     AirHitstunAnimation(10)
     callSubroutine('InsulatorSpecialInit')
     callSubroutine('Hyd_shot__Delete')
@@ -488,7 +488,7 @@ def UHY_Request_ShotExplode():
 
     def upon_IMMEDIATE():
         Unknown2010()
-        AttackLevel_(3)
+        AttackLevel_(4)
         Damage(800)
         Unknown11092(1)
         AirPushbackX(2500)
@@ -908,7 +908,7 @@ def ShotEx():
     sprite('Action_075_01', 3)
     sprite('Action_075_02', 2)
     RefreshMultihit()
-    physicsXImpulse(24000)
+    physicsXImpulse(22000)
     GFX_0('ShotExEff', -1)
     label(0)
     sprite('Action_075_03', 2)
