@@ -310,7 +310,7 @@ def Hyd_shot_Init():
     Unknown2010()
     AttackLevel_(3)
     AirPushbackY(18000)
-    AirUntechableTime(27)
+    AirUntechableTime(25)
     AirHitstunAnimation(10)
     callSubroutine('InsulatorSpecialInit')
     callSubroutine('Hyd_shot__Delete')
@@ -488,8 +488,8 @@ def UHY_Request_ShotExplode():
 
     def upon_IMMEDIATE():
         Unknown2010()
-        AttackLevel_(4)
-        Damage(800)
+        AttackLevel_(3)
+        Damage(700)
         Unknown11092(1)
         AirPushbackX(2500)
         AirPushbackY(27000)
@@ -757,7 +757,7 @@ def FloatShot():
         AirHitstunAnimation(10)
         GroundedHitstunAnimation(10)
         AirPushbackY(36000)
-        AirUntechableTime(24)
+        AirUntechableTime(27)
         Hitstop(2)
         Unknown11001(10, 10, 15)
         callSubroutine('InsulatorInit')
@@ -829,7 +829,7 @@ def EdgeShot():
     def upon_IMMEDIATE():
         Unknown2009()
         AttackLevel_(3)
-        AttackP2(80)
+        AttackP2(70)
         AirUntechableTime(32)
         AirHitstunAnimation(10)
         GroundedHitstunAnimation(10)
@@ -840,6 +840,72 @@ def EdgeShot():
         callSubroutine('InsulatorInit')
         Unknown2053(1)
         teleportRelativeX(500000)
+        ScreenShake(0, 20000)
+
+        def upon_46():
+            Unknown2003(1)
+        Unknown1096(800)
+    sprite('Action_117_00', 4)
+    SFX_0('211_down_steal_1')
+    sprite('Action_117_01', 5)
+    sprite('Action_117_02', 6)
+    sprite('Action_117_03', 6)
+    sprite('Action_117_04', 9)
+    sprite('Action_117_05', 3)
+    sprite('Action_117_06', 1)
+
+@State
+def EdgeShot_SC_A():
+
+    def upon_IMMEDIATE():
+        Unknown2009()
+        AttackLevel_(5)
+        Damage(1300)
+        AttackP2(80)
+        AirUntechableTime(32)
+        AirHitstunAnimation(10)
+        GroundedHitstunAnimation(10)
+        AirPushbackX(20000)
+        AirPushbackY(27000)
+        PushbackX(10000)
+        Hitstop(4)
+        Unknown11001(0, 4, 6)
+        callSubroutine('InsulatorInit')
+        Unknown2053(1)
+        teleportRelativeX(450000)
+        ScreenShake(0, 20000)
+
+        def upon_46():
+            Unknown2003(1)
+        Unknown1096(800)
+    sprite('Action_117_00', 4)
+    SFX_0('211_down_steal_1')
+    sprite('Action_117_01', 5)
+    sprite('Action_117_02', 6)
+    sprite('Action_117_03', 6)
+    sprite('Action_117_04', 9)
+    sprite('Action_117_05', 3)
+    sprite('Action_117_06', 1)
+
+@State
+def EdgeShot_SC_B():
+
+    def upon_IMMEDIATE():
+        Unknown2009()
+        AttackLevel_(5)
+        Damage(1300)
+        AttackP2(80)
+        AirUntechableTime(32)
+        AirHitstunAnimation(10)
+        GroundedHitstunAnimation(10)
+        AirPushbackX(20000)
+        AirPushbackY(27000)
+        PushbackX(10000)
+        Hitstop(4)
+        Unknown11001(0, 4, 6)
+        callSubroutine('InsulatorInit')
+        Unknown2053(1)
+        teleportRelativeX(700000)
         ScreenShake(0, 20000)
 
         def upon_46():
