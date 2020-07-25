@@ -2305,7 +2305,9 @@ def NmlAtk5C():
 
     def upon_IMMEDIATE():
         AttackDefaults_StandingSpecial()
-        AttackLevel_(3)
+        AttackLevel_(5)
+        Damage(1500)
+        AttackP2(75)
         GroundedHitstunAnimation(5)
         Unknown9016(1) 
         Unknown9310(1)
