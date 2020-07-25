@@ -1411,9 +1411,9 @@ def air_ice_shot():
                 if (SLOT_22 > SLOT_0):
                     Unknown13(25)
         Unknown1096(750)
+        Unknown1072(45000)
         Unknown53(1)
         Unknown23089(1, 1, 1, 1, 1, 0, 1, 0)
-        sendToLabelUpon(54, 1)
         loopRelated(17, 75)
 
         def upon_17():
@@ -1424,6 +1424,10 @@ def air_ice_shot():
                 Unknown23090(25)
             if (SLOT_48 == 4300):
                 Unknown23090(25)
+        
+        def upon_LANDING():
+            Unknown23090(25)
+        sendToLabelUpon(54, 1)
     sprite('vrjnef400_00', 2)
     GFX_0('IceMakePtc', 0)
     SFX_0('017_freeze_0')
@@ -1442,8 +1446,9 @@ def air_ice_shot():
     sprite('vrjnef400_08', 2)
     SFX_0('017_freeze_1')
     Unknown1108(0)
-    physicsXImpulse(10000)
-    Unknown1028(600)
+    physicsYImpulse(-15000)
+    physicsXImpulse(12500)
+    Unknown1072(45000)
     sprite('vrjnef400_09', 3)
     GFX_1('jnef_iceshot', 0)
     sprite('vrjnef400_09', 3)
@@ -1526,8 +1531,8 @@ def air_ice_shot_B():
     sprite('vrjnef400_08', 2)
     SFX_0('017_freeze_1')
     Unknown1108(0)
-    physicsXImpulse(20000)
-    Unknown1028(1100)
+    physicsXImpulse(10000)
+    Unknown1028(600)
     sprite('vrjnef400_09', 3)
     GFX_1('jnef_iceshot', 0)
     sprite('vrjnef400_09', 3)
@@ -1564,6 +1569,8 @@ def ice_shot_ex():
         AttackLevel_(3)
         Damage(1000)
         Unknown11092(1)
+        FreezeCount(10)
+        FreezeDuration(60)
         Hitstop(8)
         AirUntechableTime(36)
         Unknown9019(1)
@@ -1751,6 +1758,8 @@ def air_ice_shot_ex():
         Unknown11092(1)
         Hitstop(8)
         AirUntechableTime(36)
+        FreezeCount(10)
+        FreezeDuration(60)
         Unknown9019(1)
         SLOT_4 = 1
 
@@ -1766,6 +1775,7 @@ def air_ice_shot_ex():
         Unknown3063(0, -100000)
         Unknown3064(0, 10000)
         Unknown1096(1000)
+        Unknown1072(45000)
         callSubroutine('CheckOverDriveSpecial')
         teleportRelativeX(100000)
         DisableAttackRestOfMove()
@@ -1781,6 +1791,10 @@ def air_ice_shot_ex():
                 Unknown23090(25)
             if (SLOT_48 == 4200):
                 Unknown23090(25)
+                
+        def upon_LANDING():
+            Unknown23090(25)
+        sendToLabelUpon(54, 9)
     sprite('vrjnef400_00', 1)
     GFX_0('IceMakePtc', 0)
     SFX_0('017_freeze_0')
@@ -1800,8 +1814,8 @@ def air_ice_shot_ex():
     sprite('vrjnef400_08', 1)
     GFX_0('IceMakePtc', 0)
     SFX_0('017_freeze_1')
-    physicsXImpulse(500)
-    Unknown1028(1000)
+    physicsYImpulse(-10000)
+    physicsXImpulse(10000)
     SLOT_52 = 14
     label(11)
     sprite('vrjnef400_09', 3)
@@ -1812,7 +1826,6 @@ def air_ice_shot_ex():
             SLOT_52 = (SLOT_52 + (-1))
         else:
             SLOT_53 = 1
-            Unknown1028(3000)
     loopRest()
     gotoLabel(11)
     label(9)
