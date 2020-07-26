@@ -2322,7 +2322,7 @@ def NmlAtk3C(): #DOESNT NEED TO EXIST
 def CmnActCrushAttackNew():
 
     def upon_IMMEDIATE():
-        AttackDefaults_AirNormal()
+        AttackDefaults_StandingSpecial()
         AttackLevel_(5)
         GroundedHitstunAnimation(5)
         Unknown9016(1) 
