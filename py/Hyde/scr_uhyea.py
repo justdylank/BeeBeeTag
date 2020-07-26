@@ -489,11 +489,11 @@ def UHY_Request_ShotExplode():
     def upon_IMMEDIATE():
         Unknown2010()
         AttackLevel_(3)
-        Damage(550)
+        Damage(800)
         Unknown11092(1)
         AirPushbackX(2500)
         AirPushbackY(27000)
-        AirUntechableTime(60)
+        AirUntechableTime(45)
         Hitstop(2)
         AirHitstunAnimation(10)
         GroundedHitstunAnimation(10)
