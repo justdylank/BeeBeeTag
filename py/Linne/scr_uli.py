@@ -2325,7 +2325,6 @@ def CmnActCrushAttackNew():
         AttackDefaults_StandingSpecial()
         AttackLevel_(5)
         Damage(2000)
-        AttackP1(60)
         GroundedHitstunAnimation(5)
         Unknown9016(1) 
         Unknown9310(1)
