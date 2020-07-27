@@ -2300,6 +2300,7 @@ def NmlAtk5C():
         AttackDefaults_StandingSpecial()
         AttackLevel_(5)
         Damage(2000)
+        AttackP1(75)
         AttackP2(75)
         PushbackX(5000)
         AttackAttributes(1, 0, 0, 0, 0)
