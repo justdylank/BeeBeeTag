@@ -2324,10 +2324,14 @@ def CmnActCrushAttackNew():
     def upon_IMMEDIATE():
         AttackDefaults_StandingSpecial()
         AttackLevel_(5)
+        Damage(2000)
+        AttackP1(60)
         GroundedHitstunAnimation(5)
         Unknown9016(1) 
         Unknown9310(1)
         AirPushbackY(-29000)
+        HitOverhead(1)
+        AttackAttributes(1, 0, 0, 0, 0)
     sprite('Action_068_00', 4)
     sprite('Action_068_02', 3)
     SLOT_12 = SLOT_19
@@ -2359,14 +2363,12 @@ def CmnActCrushAttackNew():
     gotoLabel(0)
     label(1)
     sprite('Action_069_00', 2)
-    Unknown18009(1)
     Unknown8000(100, 1, 1)
     clearUponHandler(2)
     Unknown1084(1)
     sprite('Action_069_01', 3)
     sprite('Action_069_02', 5)
     sprite('Action_069_03', 3)
-    Unknown18009(0)
 
 @State
 def CmnActCrushAttack():
