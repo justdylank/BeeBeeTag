@@ -860,8 +860,8 @@ def EdgeShot_SC_A():
     def upon_IMMEDIATE():
         Unknown2009()
         AttackLevel_(5)
-        Damage(1300)
-        AttackP2(80)
+        Damage(1000)
+        AttackP2(90)
         AirUntechableTime(32)
         AirHitstunAnimation(10)
         GroundedHitstunAnimation(10)
@@ -926,7 +926,7 @@ def EdgeShot_SC_C():
     def upon_IMMEDIATE():
         Unknown2009()
         AttackLevel_(5)
-        Damage(1500)
+        Damage(1000)
         AttackP2(80)
         blockstun(28)
         MinimumDamagePct(10)
@@ -985,18 +985,7 @@ def EdgeShot_SC_C():
     sprite('Action_117_04', 9)
     sprite('Action_117_05', 3)
     sprite('Action_117_06', 1)
-    RefreshMultihit()
-    teleportRelativeX(150000)
-    def upon_7():
-        teleportRelativeX(-150000)
-    sprite('Action_117_00', 3)
-    SFX_0('211_down_steal_1')
-    sprite('Action_117_01', 4)
-    sprite('Action_117_02', 5)
-    sprite('Action_117_03', 5)
-    sprite('Action_117_04', 9)
-    sprite('Action_117_05', 3)
-    sprite('Action_117_06', 1)
+    
     
 @State
 def ShotEx():
