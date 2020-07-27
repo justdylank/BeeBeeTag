@@ -60,7 +60,7 @@ def InsulatorInit():
     Unknown9016(1)
     Unknown11057(0)
     Unknown11050(2, 'Hyd_501')
-    ChipDamagePct(30)
+    ChipDamagePct(20)
 
 @Subroutine
 def InsulatorSpecialInit():
@@ -68,7 +68,7 @@ def InsulatorSpecialInit():
     Unknown11057(0)
     Unknown11050(2, 'Hyd_501')
     Unknown9266(11)
-    ChipDamagePct(45)
+    ChipDamagePct(30)
 
 @State
 def EffNmlAtk5ABlade():
@@ -489,11 +489,11 @@ def UHY_Request_ShotExplode():
     def upon_IMMEDIATE():
         Unknown2010()
         AttackLevel_(3)
-        Damage(700)
+        Damage(800)
         Unknown11092(1)
         AirPushbackX(2500)
         AirPushbackY(27000)
-        AirUntechableTime(60)
+        AirUntechableTime(45)
         Hitstop(2)
         AirHitstunAnimation(10)
         GroundedHitstunAnimation(10)
@@ -870,7 +870,7 @@ def EdgeShot_SC_A():
         PushbackX(10000)
         Hitstop(4)
         Unknown11001(0, 4, 6)
-        callSubroutine('InsulatorInit')
+        callSubroutine('InsulatorSpecialInit')
         Unknown2053(1)
         teleportRelativeX(450000)
         ScreenShake(0, 20000)
@@ -903,7 +903,7 @@ def EdgeShot_SC_B():
         PushbackX(10000)
         Hitstop(4)
         Unknown11001(0, 4, 6)
-        callSubroutine('InsulatorInit')
+        callSubroutine('InsulatorSpecialInit')
         Unknown2053(1)
         teleportRelativeX(700000)
         ScreenShake(0, 20000)
@@ -920,6 +920,84 @@ def EdgeShot_SC_B():
     sprite('Action_117_05', 3)
     sprite('Action_117_06', 1)
 
+@State
+def EdgeShot_SC_C():
+
+    def upon_IMMEDIATE():
+        Unknown2009()
+        AttackLevel_(5)
+        Damage(1500)
+        AttackP2(80)
+        blockstun(28)
+        MinimumDamagePct(10)
+        AirUntechableTime(32)
+        AirHitstunAnimation(10)
+        GroundedHitstunAnimation(10)
+        PushbackX(30000)
+        AirPushbackX(9000)
+        AirPushbackY(25000)
+        Hitstop(4)
+        Unknown11001(0, 4, 6)
+        callSubroutine('InsulatorSpecialInit')
+        Unknown30065(0)
+        MinimumDamagePct(10)
+        Unknown2053(1)
+        teleportRelativeX(300000)
+        ScreenShake(0, 20000)
+
+        def upon_46():
+            Unknown2003(1)
+        Unknown1096(800)
+    
+    
+    def upon_7():
+        teleportRelativeX(-150000)
+    sprite('Action_117_00', 3)
+    SFX_0('211_down_steal_1')
+    sprite('Action_117_01', 4)
+    sprite('Action_117_02', 5)
+    sprite('Action_117_03', 5)
+    sprite('Action_117_04', 9)
+    sprite('Action_117_05', 3)
+    sprite('Action_117_06', 1)
+    RefreshMultihit()
+    teleportRelativeX(150000)
+    PushbackX(15000)
+    def upon_7():
+        teleportRelativeX(-150000)
+    sprite('Action_117_00', 3)
+    SFX_0('211_down_steal_1')
+    sprite('Action_117_01', 4)
+    sprite('Action_117_02', 5)
+    sprite('Action_117_03', 5)
+    sprite('Action_117_04', 9)
+    sprite('Action_117_05', 3)
+    sprite('Action_117_06', 1)
+    RefreshMultihit()
+    teleportRelativeX(150000)
+    def upon_7():
+        teleportRelativeX(-150000)
+    sprite('Action_117_00', 3)
+    SFX_0('211_down_steal_1')
+    sprite('Action_117_01', 4)
+    sprite('Action_117_02', 5)
+    sprite('Action_117_03', 5)
+    sprite('Action_117_04', 9)
+    sprite('Action_117_05', 3)
+    sprite('Action_117_06', 1)
+    RefreshMultihit()
+    teleportRelativeX(150000)
+    def upon_7():
+        teleportRelativeX(-150000)
+    sprite('Action_117_00', 3)
+    SFX_0('211_down_steal_1')
+    sprite('Action_117_01', 4)
+    sprite('Action_117_02', 5)
+    sprite('Action_117_03', 5)
+    sprite('Action_117_04', 9)
+    sprite('Action_117_05', 3)
+    sprite('Action_117_06', 1)
+    
 @State
 def ShotEx():
 
