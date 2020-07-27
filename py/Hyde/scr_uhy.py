@@ -2123,6 +2123,7 @@ def NmlAtk6C():
     def upon_IMMEDIATE():
         AttackDefaults_StandingNormal()
         AttackLevel_(3)
+        AttackP1(80)
         AirHitstunAnimation(11)
         GroundedHitstunAnimation(2)
         callSubroutine('InsulatorInit')
@@ -3191,6 +3192,7 @@ def Shadow_Scare_A():
         Hitstop(4)
         AirUntechableTime(30)
         callSubroutine('InsulatorSpecialInit')
+        
     sprite('Action_180_00', 3)
     sprite('Action_180_00', 3)
     GFX_0('EffChnageBlade00', 0)
