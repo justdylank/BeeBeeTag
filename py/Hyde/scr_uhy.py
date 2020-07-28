@@ -1854,7 +1854,7 @@ def NmlAtk5B():
         
     sprite('Action_003_00', 2)
     sprite('Action_003_01', 2)
-
+    
     if (not CheckInput(0xa)):
         gotoLabel(1)
     sprite('Action_003_01', 1)
@@ -1945,7 +1945,6 @@ def AN_NmlAtk5B_2nd():
         HitOrBlockCancel('NmlAtk5B')
         HitOrBlockCancel('NmlAtk2B')
         HitOrBlockCancel('NmlAtk2C')
-        HitOrBlockCancel('NmlAtk5C')
         PushbackX(23000)
     sprite('Action_222_17', 3)
     sprite('Action_222_18', 3)
