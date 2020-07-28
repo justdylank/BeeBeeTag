@@ -1739,12 +1739,12 @@ def AN_NmlAtk5A_3rd():
     def upon_IMMEDIATE():
         AttackDefaults_StandingNormal()
         AttackLevel_(3)
-        AttackP2(70)
+        AttackP2(90)
         Unknown11092(1)
         AirHitstunAnimation(10)
         GroundedHitstunAnimation(10)
-        AirPushbackY(18000)
-        AirUntechableTime(22)
+        AirPushbackY(22000)
+        AirUntechableTime(27)
         callSubroutine('InsulatorInit')
         HitJumpCancel(1)
         HitOrBlockCancel('NmlAtk5A')
@@ -1764,6 +1764,7 @@ def AN_NmlAtk5A_3rd():
     sprite('Action_192_04', 2)
     sprite('Action_192_05', 5)
     SFX_3('SE_InsulatorSwingB')
+    AirPushbackY(20000)
     sprite('Action_192_06', 2)
     teleportRelativeX(40000)
     GFX_0('EffNmlAtk5BBlade01', 100)
@@ -1850,8 +1851,56 @@ def NmlAtk5B():
         HitOrBlockCancel('NmlAtk2B')
         HitOrBlockCancel('NmlAtk2C')
         HitOrBlockCancel('NmlAtk5C')
+        
     sprite('Action_003_00', 2)
     sprite('Action_003_01', 2)
+
+    if (not CheckInput(0xa)):
+        gotoLabel(1)
+    sprite('Action_003_01', 1)
+    if (not CheckInput(0xa)):
+        gotoLabel(1)
+    sprite('Action_003_01', 1)
+    if (not CheckInput(0xa)):
+        gotoLabel(1)
+    sprite('Action_003_01', 1)
+    if (not CheckInput(0xa)):
+        gotoLabel(1)
+    sprite('Action_003_01', 1)
+    if (not CheckInput(0xa)):
+        gotoLabel(1)
+    sprite('Action_003_01', 1)
+    if (not CheckInput(0xa)):
+        gotoLabel(1)
+    sprite('Action_003_01', 1)
+    if (not CheckInput(0xa)):
+        gotoLabel(1)
+    sprite('Action_003_01', 1)
+    if (not CheckInput(0xa)):
+        gotoLabel(1)
+    sprite('Action_003_01', 1)
+    if (not CheckInput(0xa)):
+        gotoLabel(1)
+    sprite('Action_003_01', 1)
+    if (not CheckInput(0xa)):
+        gotoLabel(1)
+    sprite('Action_003_01', 1)
+    if (not CheckInput(0xa)):
+        gotoLabel(1)
+    sprite('Action_003_01', 1)
+    if (not CheckInput(0xa)):
+        gotoLabel(1)
+    sprite('Action_003_01', 1)
+    if (not CheckInput(0xa)):
+        gotoLabel(1)
+    sprite('Action_003_01', 1)
+    AttackLevel_(5)
+    Damage(2000)
+    AirUntechableTime(27)
+    blockstun(24)
+    PushbackX(10000)
+    label(1)
+
     teleportRelativeX(25000)
     sprite('Action_003_02', 4)
     teleportRelativeX(50000)
@@ -1903,6 +1952,65 @@ def AN_NmlAtk5B_2nd():
     teleportRelativeX(30000)
     sprite('Action_222_19', 3)
     sprite('Action_222_20', 3)
+
+    if (not CheckInput(0xa)):
+        gotoLabel(1)
+    sprite('Action_222_20', 1)
+    if (not CheckInput(0xa)):
+        gotoLabel(1)
+    sprite('Action_222_20', 1)
+    if (not CheckInput(0xa)):
+        gotoLabel(1)
+    sprite('Action_222_20', 1)
+    if (not CheckInput(0xa)):
+        gotoLabel(1)
+    sprite('Action_222_20', 1)
+    if (not CheckInput(0xa)):
+        gotoLabel(1)
+    sprite('Action_222_20', 1)
+    if (not CheckInput(0xa)):
+        gotoLabel(1)
+    sprite('Action_222_20', 1)
+    if (not CheckInput(0xa)):
+        gotoLabel(1)
+    sprite('Action_222_20', 1)
+    if (not CheckInput(0xa)):
+        gotoLabel(1)
+    sprite('Action_222_20', 1)
+    if (not CheckInput(0xa)):
+        gotoLabel(1)
+    sprite('Action_222_20', 1)
+    if (not CheckInput(0xa)):
+        gotoLabel(1)
+    sprite('Action_222_20', 1)
+    if (not CheckInput(0xa)):
+        gotoLabel(1)
+    sprite('Action_222_20', 1)
+    if (not CheckInput(0xa)):
+        gotoLabel(1)
+    sprite('Action_222_20', 1)
+    if (not CheckInput(0xa)):
+        gotoLabel(1)
+    sprite('Action_222_20', 1)
+    if (not CheckInput(0xa)):
+        gotoLabel(1)
+    sprite('Action_222_20', 1)
+    if (not CheckInput(0xa)):
+        gotoLabel(1)
+    sprite('Action_222_20', 4)
+    Damage(2000)
+    Unknown9178(1)
+    WallbounceReboundTime(25)
+    AirHitstunAnimation(10)
+    GroundedHitstunAnimation(10)
+    AirPushbackX(25000)
+    AirPushbackY(25000)
+    HitOverhead(1)
+    AirUntechableTime(60)
+    ChipDamagePct(60)
+    AttackP1(75)
+
+    label(1)
     teleportRelativeX(20000)
     Unknown12046(50)
     sprite('Action_222_21', 2)
