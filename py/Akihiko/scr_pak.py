@@ -6232,22 +6232,22 @@ def WeavingEX():
         callSubroutine('CycloneLvIcon')
         callSubroutine('WeavingCancel')
         if (not SLOT_59):
-            SLOT_51 = 2
+            SLOT_51 = 1
             Unknown23004(0, 1)
         if (SLOT_59 == 1):
-            SLOT_51 = 3
+            SLOT_51 = 2
             SLOT_52 = 1
         if (SLOT_59 == 2):
-            SLOT_51 = 4
+            SLOT_51 = 3
             SLOT_52 = 2
         if (SLOT_59 == 3):
-            SLOT_51 = 5
+            SLOT_51 = 4
             SLOT_52 = 3
         if (SLOT_59 == 4):
-            SLOT_51 = 6
+            SLOT_51 = 5
             SLOT_52 = 4
         if (SLOT_59 >= 5):
-            SLOT_51 = 7
+            SLOT_51 = 6
             SLOT_52 = 5
         SLOT_51 = 20
     sprite('ak407_00', 3)
