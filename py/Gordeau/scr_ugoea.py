@@ -631,9 +631,9 @@ def UGO_Scratch_AtkCol_Assist():
 
         def upon_12():
             if (not SLOT_2):
-                ConsumeSuperMeter(2000)
+                ConsumeSuperMeter(666)
                 Unknown36(22)
-                ConsumeSuperMeter(-2000)
+                ConsumeSuperMeter(-666)
                 Unknown35()
             else:
                 Unknown2038(1)
