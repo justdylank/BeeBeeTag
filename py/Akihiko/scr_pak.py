@@ -5981,8 +5981,8 @@ def CorkScrewEX():
         AirUntechableTime(70)
         PushbackX(20000)
         AirPushbackX(160000)
-        AirPushbackY(20000)
-        YImpluseBeforeWallbounce(4000)
+        AirPushbackY(25000)
+        YImpluseBeforeWallbounce(1000)
         WallbounceReboundTime(10)
         Unknown11001(0, -4, 5)
         Unknown11056(0)
@@ -6047,11 +6047,11 @@ def CorkScrewEX():
     Unknown8006(100, 1, 1)
     sprite('ak404_08', 3)
     sprite('ak404_09', 3)
-    sprite('ak404_10', 3)
-    sprite('ak404_11', 3)
-    sprite('ak404_12', 3)
+    sprite('ak404_10', 2)
+    sprite('ak404_11', 2)
+    sprite('ak404_12', 2)
     SFX_3('ak002')
-    sprite('ak404_13', 3)
+    sprite('ak404_13', 2)
 
 @Subroutine
 def WeavingCancel():
@@ -6411,19 +6411,6 @@ def AtemiB():
     SFX_0('hit_l_fast')
     sprite('ak403_08', 2)
     sprite('ak403_09', 10)
-    Unknown2068(2500)
-    if (SLOT_52 == 1):
-        Unknown2068(2500)
-    if (SLOT_52 == 2):
-        Unknown2068(2500)
-    if (SLOT_52 == 3):
-        Unknown2068(5000)
-    if (SLOT_52 == 4):
-        Unknown2068(5000)
-    if (SLOT_52 == 5):
-        Unknown2068(7500)
-    SFX_0('gauge_information')
-    GFX_0('SpecialAtemiGood', 0)
     sprite('ak403_10', 4)
     clearUponHandler(24)
     clearUponHandler(17)
