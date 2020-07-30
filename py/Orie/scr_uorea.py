@@ -565,6 +565,58 @@ def Tan_214B():
     sprite('Action_090_08', 3)
     sprite('keep', 2)
     enterState('Tan_Delete')
+    
+@State
+def Tan_214B_Charge():
+
+    def upon_IMMEDIATE():
+        Unknown2010()
+        callSubroutine('Tan_Init')
+        AttackLevel_(4)
+        Damage(2000)
+        hitstun(23)
+        AirUntechableTime(40)
+        Unknown11001(0, -3, -3)
+        AirPushbackX(6000)
+        AirPushbackY(-70000)
+        YImpluseBeforeWallbounce(0)
+        HitOverhead(2)
+        Unknown9190(1)
+        Unknown9118(30)
+        Unknown9016(1)
+        Unknown9310(1)
+        GroundedHitstunAnimation(10)
+        AirHitstunAnimation(10)
+        Unknown3001(0)
+        teleportRelativeX(50000)
+        Unknown23078(1)
+        Unknown2019(1)
+
+        def upon_32():
+            clearUponHandler(32)
+            enterState('Tan_214Add_A')
+
+        def upon_33():
+            clearUponHandler(33)
+            enterState('Tan_214Add_B')
+    sprite('Action_090_00', 1)
+    Unknown3004(64)
+    sprite('Action_090_01', 5)
+    sprite('Action_090_02', 5)
+    sprite('Action_090_03', 6)
+    sprite('Action_090_04', 2)
+    teleportRelativeX(100000)
+    sprite('Action_090_05', 3)
+    GFX_0('214B_Tan_Blade', 100)
+    SFX_3('SE043')
+    ScreenShake(2000, 8000)
+    sprite('Action_090_06', 4)
+    sprite('Action_090_07', 4)
+    sprite('Action_090_06', 4)
+    sprite('Action_090_07', 4)
+    sprite('Action_090_08', 3)
+    sprite('keep', 2)
+    enterState('Tan_Delete')
 
 @State
 def Tan_214Add_A():
@@ -769,6 +821,7 @@ def Tan_Air214B():
         Damage(2000)
         AirPushbackX(5500)
         AirPushbackY(-55000)
+        HitOverhead(2)
         AttackP1(80)
         AirUntechableTime(75)
         Unknown9016(1)
@@ -989,7 +1042,7 @@ def Tan_SealingEX():
     sprite('Action_850_01', 3)
     if CheckInput(0x013):
         sendToLabel(0)
-    sprite('Action_850_02', 10)
+    sprite('Action_850_02', 6)
     sprite('Action_850_03', 3)
     Unknown1084(1)
     Unknown3001(255)
