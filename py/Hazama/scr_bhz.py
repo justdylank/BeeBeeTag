@@ -2187,7 +2187,7 @@ def CmnActChangePartnerAssistAtk_B():
     Unknown26('EffKamaeLand')
     sprite('hz401_01', 3)
     physicsYImpulse(28000)
-    physicsXImpulse(-4000)
+    physicsXImpulse(2000)
     setGravity(2400)
     SFX_0('004_swing_grap_1_1')
     if SLOT_52:
