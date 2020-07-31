@@ -6353,6 +6353,7 @@ def ResCancel():
         AttackDefaults_AirDD()
         Unknown23055('')
         setInvincible(1)
+        Unknown1084(1)
     sprite('ce121_00', 2)
     Unknown2036(18, -1, 0)
     sprite('ce121_01', 2)
