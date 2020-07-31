@@ -648,6 +648,24 @@ def MatchInit():
     Unknown15020(500, 1000, 1, 1000)
     Unknown14015(400000, 750000, 100000, 400000, 500, 0)
     Move_EndRegister()
+    Move_Register('ResCancel', 0x68)
+    Move_AirGround_(0x2000)
+    Move_AirGround_(0x3086)
+    Move_AirGround_(0x3081)
+    Move_Input_(INPUT_PRESS_A)
+    Move_Input_(INPUT_PRESS_B)
+    Move_Input_(INPUT_PRESS_C)
+    Unknown14015(500000, 200000, -600000, -200000, 50, 0)
+    Move_EndRegister()
+    Move_Register('ResCancelAir', 0x68)
+    Move_AirGround_(0x2001)
+    Move_AirGround_(0x3086)
+    Move_AirGround_(0x3081)
+    Move_Input_(INPUT_PRESS_A)
+    Move_Input_(INPUT_PRESS_B)
+    Move_Input_(INPUT_PRESS_C)
+    Unknown14015(500000, 200000, -600000, -200000, 50, 0)
+    Move_EndRegister()
     Move_Register('AstralHeat', 0x69)
     Move_AirGround_(0x2000)
     Move_AirGround_(0x304a)
@@ -2142,6 +2160,7 @@ def CmnActOverDriveBegin():
 
 @State
 def CmnActOverDriveLoop():
+    Unknown2036(40, -1, 0)
     sprite('mk333_04', 3)
     label(0)
     sprite('mk333_05', 3)
@@ -2166,6 +2185,7 @@ def CmnActAirOverDriveBegin():
 
 @State
 def CmnActAirOverDriveLoop():
+    Unknown2036(40, -1, 0)
     sprite('mk333_15', 3)
     label(0)
     sprite('mk333_05ex00', 3)
@@ -2176,11 +2196,8 @@ def CmnActAirOverDriveLoop():
 
 @State
 def CmnActAirOverDriveEnd():
-    label(0)
     sprite('mk020_07', 1)
     sprite('mk020_08', 1)
-    loopRest()
-    gotoLabel(0)
 
 @State
 def CmnActCrossRushBegin():
@@ -2538,47 +2555,17 @@ def CmnActChangePartnerAssistAtk_A():
     GFX_0('DriveRing', 100)
     Unknown38(4, 1)
     Unknown23029(4, 1042, 0)
-    callSubroutine('MakotoDriveSetting')
     sprite('mk406_10', 2)
     Unknown7014('mkse_00')
     sprite('mk407_00', 2)
     sprite('mk407_01', 2)
-    SLOT_55 = 1
     sprite('mk407_02', 4)
     GFX_0('DriveChargeWind', 0)
     GFX_0('DriveChargeAura', 0)
     sprite('mk407_03', 4)
     sprite('mk407_02', 4)
-    sprite('mk407_03', 4)
-    sprite('mk407_02', 4)
-    sprite('mk407_03', 4)
-    sprite('mk407_02', 4)
-    sprite('mk407_03', 4)
-    sprite('mk407_02', 4)
-    SLOT_55 = 0
-    loopRest()
-    label(1)
-    AttackLevel_(4)
-    Damage(700)
-    sprite('mk407_04', 2)
-    callSubroutine('AfterImage_Lv3')
-    Unknown7015()
-    tag_voice(0, 'bmk201_0', 'bmk201_1', 'bmk201_2', '')
-    SFX_3('mkse_03')
-    Unknown21015('DriveChargeWind', 1023, 0)
-    Unknown21015('DriveChargeAura', 1021, 0)
-    ScreenShake(0, 35000)
-    sprite('mk407_05', 1)
-    sprite('mk407_06', 3)
-    GFX_1('mkef_400Lv3airwall', 0)
-    GFX_0('DriveLv3PunchefD', 0)
-    Unknown38(5, 1)
-    Unknown21015('EnergyBallAssist', 1045, 0)
-    sprite('mk407_06', 5)
-    sprite('mk407_07', 3)
-    loopRest()
-    gotoLabel(99)
-    label(2)
+    sprite('mk407_03', 2)
+    sprite('mk407_02', 2)
     AttackLevel_(5)
     Damage(2200)
     AttackP1(70)
@@ -8730,6 +8717,43 @@ def BurstDDAdd():
     sprite('mk024_02ex00', 7)
     sprite('mk024_03ex00', 7)
     sprite('mk024_04ex00', 7)
+
+@State
+def ResCancel():
+
+    def upon_IMMEDIATE():
+        AttackDefaults_AirDD()
+        Unknown1084(1)
+        Unknown23055('')
+        setInvincible(1)
+    sprite('mk333_00', 2)
+    Unknown2036(18, -1, 0)
+    sprite('mk333_01', 2)
+    ConsumeSuperMeter(-5000)
+    sprite('mk333_02', 2)
+    sprite('mk333_03', 2)
+    sprite('mk333_04', 3)
+    sprite('mk333_05', 3)
+    sprite('mk333_06', 3)
+    setInvincible(0)
+    
+@State
+def ResCancelAir():
+
+    def upon_IMMEDIATE():
+        AttackDefaults_AirDD()
+        Unknown23055('')
+        setInvincible(1)
+    sprite('mk333_00', 2)
+    Unknown2036(18, -1, 0)
+    sprite('mk333_01', 2)
+    ConsumeSuperMeter(-5000)
+    sprite('mk333_02', 2)
+    sprite('mk333_03', 2)
+    sprite('mk333_04', 3)
+    sprite('mk020_07', 3)
+    sprite('mk020_08', 3)
+    setInvincible(0)
 
 @State
 def AstralHeat():
