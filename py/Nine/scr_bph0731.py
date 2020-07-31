@@ -546,6 +546,24 @@ def MatchInit():
     Unknown15013(2500)
     Unknown14015(0, 550000, -200000, 600000, 500, 0)
     Move_EndRegister()
+    Move_Register('ResCancel', 0x68)
+    Move_AirGround_(0x2000)
+    Move_AirGround_(0x3086)
+    Move_AirGround_(0x3081)
+    Move_Input_(INPUT_PRESS_A)
+    Move_Input_(INPUT_PRESS_B)
+    Move_Input_(INPUT_PRESS_C)
+    Unknown14015(500000, 200000, -600000, -200000, 50, 0)
+    Move_EndRegister()
+    Move_Register('ResCancelAir', 0x68)
+    Move_AirGround_(0x2001)
+    Move_AirGround_(0x3086)
+    Move_AirGround_(0x3081)
+    Move_Input_(INPUT_PRESS_A)
+    Move_Input_(INPUT_PRESS_B)
+    Move_Input_(INPUT_PRESS_C)
+    Unknown14015(500000, 200000, -600000, -200000, 50, 0)
+    Move_EndRegister()
     Move_Register('AstralHeat', 0x69)
     Move_AirGround_(0x2000)
     Move_AirGround_(0x3089)
@@ -2382,6 +2400,7 @@ def CmnActOverDriveBegin():
 
 @State
 def CmnActOverDriveLoop():
+    Unknown2036(40, -1, 0)
     sprite('ph333_04', 3)
     Unknown23029(4, 3331, 0)
     label(0)
@@ -2393,9 +2412,9 @@ def CmnActOverDriveLoop():
 
 @State
 def CmnActOverDriveEnd():
-    sprite('ph333_08', 6)
+    sprite('ph333_08', 1)
     Unknown23029(4, 3332, 0)
-    sprite('ph333_09', 6)
+    sprite('ph333_09', 1)
 
 @State
 def CmnActAirOverDriveBegin():
@@ -2410,6 +2429,7 @@ def CmnActAirOverDriveBegin():
 
 @State
 def CmnActAirOverDriveLoop():
+    Unknown2036(40, -1, 0)
     sprite('ph333_14', 3)
     Unknown23029(4, 3331, 0)
     label(0)
@@ -2421,16 +2441,9 @@ def CmnActAirOverDriveLoop():
 
 @State
 def CmnActAirOverDriveEnd():
-    sprite('ph333_15', 3)
+    sprite('ph020_07', 1)
     Unknown23029(4, 3332, 0)
-    sprite('ph333_16', 3)
-    sprite('ph020_05', 3)
-    sprite('ph020_06', 3)
-    label(0)
-    sprite('ph020_07', 4)
-    sprite('ph020_08', 4)
-    loopRest()
-    gotoLabel(0)
+    sprite('ph020_08', 1)
 
 @State
 def CmnActCrossRushBegin():
@@ -7254,6 +7267,43 @@ def UltimateLockSP_AddAttack():
     sprite('ph024_02', 3)
     sprite('ph024_03', 3)
     sprite('ph024_04', 3)
+
+@State
+def ResCancel():
+
+    def upon_IMMEDIATE():
+        AttackDefaults_AirDD()
+        Unknown23055('')
+        setInvincible(1)
+        Unknown1084(1)
+    sprite('ph333_00', 2)
+    Unknown2036(18, -1, 0)
+    sprite('ph333_01', 2)
+    ConsumeSuperMeter(-5000)
+    sprite('ph333_02', 2)
+    sprite('ph333_03', 2)
+    sprite('ph333_04', 3)
+    sprite('ph333_05', 3)
+    sprite('ph333_06', 3)
+    setInvincible(0)
+   
+@State
+def ResCancelAir():
+
+    def upon_IMMEDIATE():
+        AttackDefaults_AirDD()
+        Unknown23055('')
+        setInvincible(1)
+    sprite('ph333_00', 2)
+    Unknown2036(18, -1, 0)
+    sprite('ph333_01', 2)
+    ConsumeSuperMeter(-5000)
+    sprite('ph333_02', 2)
+    sprite('ph333_03', 2)
+    sprite('ph333_04', 3)
+    sprite('ph020_07', 3)
+    sprite('ph020_08', 3)
+    setInvincible(0)
 
 @State
 def AstralHeat():
