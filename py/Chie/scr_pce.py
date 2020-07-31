@@ -379,6 +379,24 @@ def MatchInit():
     Unknown14015(300000, 1000000, -400000, 400000, 200, 50)
     Move_AirGround_(0x300e)
     Move_EndRegister()
+    Move_Register('ResCancel', 0x68)
+    Move_AirGround_(0x2000)
+    Move_AirGround_(0x3086)
+    Move_AirGround_(0x3081)
+    Move_Input_(INPUT_PRESS_A)
+    Move_Input_(INPUT_PRESS_B)
+    Move_Input_(INPUT_PRESS_C)
+    Unknown14015(500000, 200000, -600000, -200000, 50, 0)
+    Move_EndRegister()
+    Move_Register('ResCancelAir', 0x68)
+    Move_AirGround_(0x2001)
+    Move_AirGround_(0x3086)
+    Move_AirGround_(0x3081)
+    Move_Input_(INPUT_PRESS_A)
+    Move_Input_(INPUT_PRESS_B)
+    Move_Input_(INPUT_PRESS_C)
+    Unknown14015(500000, 200000, -600000, -200000, 50, 0)
+    Move_EndRegister()
     Move_Register('AstralHeat', 0x69)
     Move_AirGround_(0x304a)
     Move_AirGround_(0x2000)
@@ -1711,6 +1729,7 @@ def CmnActOverDriveBegin():
 
 @State
 def CmnActOverDriveLoop():
+    Unknown2036(40, -1, 0)
     sprite('ce121_03', 3)
     label(0)
     sprite('ce121_04', 2)
@@ -1735,6 +1754,7 @@ def CmnActAirOverDriveBegin():
 
 @State
 def CmnActAirOverDriveLoop():
+    Unknown2036(40, -1, 0)
     sprite('ce121_03', 3)
     label(0)
     sprite('ce121_04', 2)
@@ -6326,6 +6346,42 @@ def UltimateAguneyasutoraOD_Near():
     sprite('ce432_11', 3)
     setGravity(2000)
 
+@State
+def ResCancel():
+
+    def upon_IMMEDIATE():
+        AttackDefaults_AirDD()
+        Unknown23055('')
+        setInvincible(1)
+    sprite('ce121_00', 2)
+    Unknown2036(18, -1, 0)
+    sprite('ce121_01', 2)
+    ConsumeSuperMeter(-5000)
+    sprite('ce121_04', 2)
+    sprite('ce121_05', 2)
+    sprite('ce121_06', 3)
+    sprite('ce121_07', 1)
+    sprite('ce121_08', 1)
+    setInvincible(0)
+    
+@State
+def ResCancelAir():
+
+    def upon_IMMEDIATE():
+        AttackDefaults_AirDD()
+        Unknown23055('')
+        setInvincible(1)
+    sprite('ce121_00', 2)
+    Unknown2036(18, -1, 0)
+    sprite('ce121_02', 2)
+    ConsumeSuperMeter(-5000)
+    sprite('ce121_04', 2)
+    sprite('ce121_05', 2)
+    sprite('ce121_06', 3)
+    sprite('ce121_07', 3)
+    sprite('ce121_08', 3)
+    setInvincible(0)
+    
 @State
 def AstralHeat():
 

@@ -373,6 +373,24 @@ def MatchInit():
     Unknown14015(0, 350000, -600000, -100000, 500, 1)
     Move_AirGround_(0x3072)
     Move_EndRegister()
+    Move_Register('ResCancel', 0x68)
+    Move_AirGround_(0x2000)
+    Move_AirGround_(0x3086)
+    Move_AirGround_(0x3081)
+    Move_Input_(INPUT_PRESS_A)
+    Move_Input_(INPUT_PRESS_B)
+    Move_Input_(INPUT_PRESS_C)
+    Unknown14015(500000, 200000, -600000, -200000, 50, 0)
+    Move_EndRegister()
+    Move_Register('ResCancelAir', 0x68)
+    Move_AirGround_(0x2001)
+    Move_AirGround_(0x3086)
+    Move_AirGround_(0x3081)
+    Move_Input_(INPUT_PRESS_A)
+    Move_Input_(INPUT_PRESS_B)
+    Move_Input_(INPUT_PRESS_C)
+    Unknown14015(500000, 200000, -600000, -200000, 50, 0)
+    Move_EndRegister()
     Move_Register('astral', 0x69)
     Move_AirGround_(0x2000)
     Move_AirGround_(0x304a)
@@ -1531,6 +1549,7 @@ def CmnActOverDriveBegin():
 
 @State
 def CmnActOverDriveLoop():
+    Unknown2036(40, -1, 0)
     sprite('jn333_04', 3)
     label(0)
     sprite('jn333_05', 3)
@@ -1555,6 +1574,7 @@ def CmnActAirOverDriveBegin():
 
 @State
 def CmnActAirOverDriveLoop():
+    Unknown2036(40, -1, 0)
     sprite('jn333_15', 3)
     label(0)
     sprite('jn333_05', 3)
@@ -2776,7 +2796,7 @@ def NmlAtk5A():
         HitOrBlockCancel('NmlAtk5C')
         HitOrBlockCancel('NmlAtkThrow')
         HitOrBlockCancel('NmlAtkBackThrow')
-        HitOrBlockJumpCancel(1)
+        HitJumpCancel(1)
     sprite('jn201_00', 2)
     sprite('jn201_01', 2)
     sprite('jn201_02', 2)
@@ -3418,7 +3438,7 @@ def NmlAtkAIR5A():
         HitOrBlockCancel('NmlAtkAIR5AA')
         HitOrBlockCancel('NmlAtkAIR5B')
         HitOrBlockCancel('NmlAtkAIR5C')
-        HitJumpCancel(1)
+        HitOrBlockJumpCancel(1)
     sprite('jn251_00', 2)
     sprite('jn251_01', 3)
     sprite('jn251_02', 3)
@@ -5830,6 +5850,42 @@ def UltimateAirShot_OD():
     sprite('jn020_12', 2)
     sprite('jn020_13', 2)
     sprite('jn020_14', 3)
+    
+@State
+def ResCancel():
+
+    def upon_IMMEDIATE():
+        AttackDefaults_AirDD()
+        Unknown23055('')
+        setInvincible(1)
+    sprite('jn333_00', 2)
+    Unknown2036(15, -1, 0)
+    sprite('jn333_01', 2)
+    ConsumeSuperMeter(-5000)
+    sprite('jn333_02', 2)
+    sprite('jn333_03', 2)
+    sprite('jn333_05', 3)
+    sprite('jn333_06', 3)
+    sprite('jn333_09', 3)
+    setInvincible(0)
+    
+@State
+def ResCancelAir():
+
+    def upon_IMMEDIATE():
+        AttackDefaults_AirDD()
+        Unknown23055('')
+        setInvincible(1)
+    sprite('jn333_11', 2)
+    Unknown2036(15, -1, 0)
+    sprite('jn333_12', 2)
+    ConsumeSuperMeter(-5000)
+    sprite('jn333_13', 2)
+    sprite('jn333_14', 2)
+    sprite('jn333_15', 3)
+    sprite('jn333_17', 3)
+    sprite('jn333_18', 3)
+    setInvincible(0)
 
 @State
 def UltimateAtemi():

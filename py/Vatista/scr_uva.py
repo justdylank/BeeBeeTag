@@ -429,6 +429,24 @@ def MatchInit():
     Unknown14015(307000, 1466000, -223000, 355000, 100, 50)
     Unknown15022('030000000500000032000000f4010000')
     Move_EndRegister()
+    Move_Register('ResCancel', 0x68)
+    Move_AirGround_(0x2000)
+    Move_AirGround_(0x3086)
+    Move_AirGround_(0x3081)
+    Move_Input_(INPUT_PRESS_A)
+    Move_Input_(INPUT_PRESS_B)
+    Move_Input_(INPUT_PRESS_C)
+    Unknown14015(500000, 200000, -600000, -200000, 50, 0)
+    Move_EndRegister()
+    Move_Register('ResCancelAir', 0x68)
+    Move_AirGround_(0x2001)
+    Move_AirGround_(0x3086)
+    Move_AirGround_(0x3081)
+    Move_Input_(INPUT_PRESS_A)
+    Move_Input_(INPUT_PRESS_B)
+    Move_Input_(INPUT_PRESS_C)
+    Unknown14015(500000, 200000, -600000, -200000, 50, 0)
+    Move_EndRegister()
     Move_Register('AstralHeat', 0x69)
     Move_AirGround_(0x2000)
     Move_AirGround_(0x304a)
@@ -1656,6 +1674,7 @@ def CmnActOverDriveBegin():
 
 @State
 def CmnActOverDriveLoop():
+    Unknown2036(40, -1, 0)
     sprite('Action_262_02', 4)
     label(0)
     sprite('Action_262_03', 5)
@@ -1676,6 +1695,7 @@ def CmnActAirOverDriveBegin():
 
 @State
 def CmnActAirOverDriveLoop():
+    Unknown2036(40, -1, 0)
     sprite('Action_262_02', 4)
     label(0)
     sprite('Action_262_03', 5)
@@ -2977,6 +2997,8 @@ def NmlAtk5C():
         AttackDefaults_StandingSpecial()
         HitOverhead(2)
         AttackLevel_(5)
+        Damage(1700)
+        AttackP1(85)
         PushbackX(5000)
         AttackAttributes(1, 0, 0, 0, 0)
     sprite('Action_068_00', 4)
@@ -5019,6 +5041,42 @@ def AirUltimateShot_OD():
     Unknown1084(1)
     Unknown8000(100, 1, 1)
     sprite('Action_037_13', 3)
+
+@State
+def ResCancel():
+
+    def upon_IMMEDIATE():
+        AttackDefaults_AirDD()
+        Unknown23055('')
+        setInvincible(1)
+    sprite('Action_262_00', 2)
+    Unknown2036(18, -1, 0)
+    sprite('Action_262_01', 2)
+    ConsumeSuperMeter(-5000)
+    sprite('Action_262_02', 2)
+    sprite('Action_262_03', 2)
+    sprite('Action_262_04', 3)
+    sprite('Action_262_05', 3)
+    sprite('Action_262_06', 3)
+    setInvincible(0)
+    
+@State
+def ResCancelAir():
+
+    def upon_IMMEDIATE():
+        AttackDefaults_AirDD()
+        Unknown23055('')
+        setInvincible(1)
+    sprite('Action_262_00', 2)
+    Unknown2036(18, -1, 0)
+    sprite('Action_262_01', 2)
+    ConsumeSuperMeter(-5000)
+    sprite('Action_262_02', 2)
+    sprite('Action_262_03', 2)
+    sprite('Action_262_04', 3)
+    sprite('Action_262_07', 3)
+    sprite('Action_262_08', 3)
+    setInvincible(0)
 
 @State
 def AstralHeat():

@@ -311,6 +311,24 @@ def MatchInit():
     Unknown15012(1)
     Unknown14015(50000, 300000, -200000, 300000, 150, 0)
     Move_EndRegister()
+    Move_Register('ResCancel', 0x68)
+    Move_AirGround_(0x2000)
+    Move_AirGround_(0x3086)
+    Move_AirGround_(0x3081)
+    Move_Input_(INPUT_PRESS_A)
+    Move_Input_(INPUT_PRESS_B)
+    Move_Input_(INPUT_PRESS_C)
+    Unknown14015(500000, 200000, -600000, -200000, 50, 0)
+    Move_EndRegister()
+    Move_Register('ResCancelAir', 0x68)
+    Move_AirGround_(0x2001)
+    Move_AirGround_(0x3086)
+    Move_AirGround_(0x3081)
+    Move_Input_(INPUT_PRESS_A)
+    Move_Input_(INPUT_PRESS_B)
+    Move_Input_(INPUT_PRESS_C)
+    Unknown14015(500000, 200000, -600000, -200000, 50, 0)
+    Move_EndRegister()
     Move_Register('AstralHeat', 0x69)
     Move_AirGround_(0x2000)
     Move_AirGround_(0x304a)
@@ -1336,6 +1354,7 @@ def CmnActOverDriveBegin():
 
 @State
 def CmnActOverDriveLoop():
+    Unknown2036(40, -1, 0)
     sprite('rrb333_02', 3)
     label(0)
     sprite('rrb333_03', 3)
@@ -1357,6 +1376,7 @@ def CmnActAirOverDriveBegin():
 
 @State
 def CmnActAirOverDriveLoop():
+    Unknown2036(40, -1, 0)
     sprite('rrb333_02', 4)
     label(0)
     sprite('rrb333_03', 3)
@@ -4173,6 +4193,42 @@ def UltimateDanceOD():
     sprite('rrb404_19', 4)
 
 @State
+def ResCancel():
+
+    def upon_IMMEDIATE():
+        AttackDefaults_AirDD()
+        Unknown23055('')
+        setInvincible(1)
+    sprite('rrb333_00', 2)
+    Unknown2036(18, -1, 0)
+    sprite('rrb333_01', 2)
+    ConsumeSuperMeter(-5000)
+    sprite('rrb333_03', 2)
+    sprite('rrb333_04', 2)
+    sprite('rrb333_05', 3)
+    sprite('rrb333_06', 3)
+    sprite('rrb333_07', 3)
+    setInvincible(0)
+    
+@State
+def ResCancelAir():
+
+    def upon_IMMEDIATE():
+        AttackDefaults_AirDD()
+        Unknown23055('')
+        setInvincible(1)
+    sprite('rrb333_08', 2)
+    Unknown2036(18, -1, 0)
+    sprite('rrb333_01', 2)
+    ConsumeSuperMeter(-5000)
+    sprite('rrb333_03', 2)
+    sprite('rrb333_04', 2)
+    sprite('rrb333_05', 3)
+    sprite('rrb333_09', 3)
+    sprite('rrb333_10', 3)
+    setInvincible(0)
+    
+@State
 def AstralHeat():
 
     def upon_IMMEDIATE():
@@ -5305,6 +5361,8 @@ def NmlAtk5C():
         AttackDefaults_StandingSpecial()
         HitOverhead(2)
         AttackLevel_(5)
+        Damage(1700)
+        AttackP1(85)
         PushbackX(5000)
         AttackAttributes(1, 0, 0, 0, 0)
     sprite('rrb010_00', 2)
