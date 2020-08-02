@@ -72,7 +72,7 @@ def MatchInit():
     Unknown15009()
     Unknown14015(0, 500000, -200000, 650000, 1500, 50)
     Move_EndRegister()
-    Move_Register('NmlAtk3B', 0x17)
+    Move_Register('NmlAtk4B', 0x18)
     MoveMaxChainRepeat(1)
     Unknown14015(50000, 300000, -120000, 200000, 2000, 0)
     Move_EndRegister()
@@ -1495,7 +1495,7 @@ def ChainRoot():
     HitOrBlockCancel('NmlAtk6A')
     HitOrBlockCancel('NmlAtk2A')
     HitOrBlockCancel('NmlAtk5B')
-    HitOrBlockCancel('NmlAtk3B')
+    HitOrBlockCancel('NmlAtk4B')
     HitOrBlockCancel('NmlAtk2B')
     HitOrBlockCancel('NmlAtk2C')
     HitOrBlockCancel('CmnActCrushAttackNew')
@@ -2029,7 +2029,7 @@ def NmlAtk5B_3rd_Exe():
     sprite('Action_198_07', 5)
 
 @State
-def NmlAtk3B():
+def NmlAtk4B():
 
     def upon_IMMEDIATE():
         AttackDefaults_StandingSpecial()
@@ -2193,7 +2193,7 @@ def NmlAtk2C():
         HitOrBlockCancel('NmlAtk6A')
         HitOrBlockCancel('NmlAtk2A')
         HitOrBlockCancel('NmlAtk5B')
-        HitOrBlockCancel('NmlAtk3B')
+        HitOrBlockCancel('NmlAtk4B')
         HitOrBlockCancel('NmlAtk2B')
         HitJumpCancel(1)
 
