@@ -6829,6 +6829,38 @@ def PowerDunk3():
     sprite('mk402_14', 3)
 
 @State
+def CreateEnergyBallEX():
+
+    def upon_IMMEDIATE():
+        AttackDefaults_StandingSpecial()
+        DisableAttackRestOfMove()
+    sprite('mk400_00', 2)
+    sprite('mk400_01', 3)
+    tag_voice(1, 'bmk200_0', 'bmk200_1', 'bmk200_2', '')
+    Unknown23125('')
+    ConsumeSuperMeter(-5000)
+    sprite('mk400_02', 3)
+    sprite('mk400_03', 2)
+    sprite('mk400_04', 4)
+    sprite('mk400_05', 2)
+    GFX_0('mkef_hibana', 0)
+    SFX_3('mkse_20')
+    SFX_0('014_electric_sl')
+    Unknown14070('PunchShot')
+    sprite('mk400_06', 2)
+    GFX_0('EnergyBallEX', 103)
+    sprite('mk400_07', 3)
+    sprite('mk400_07', 3)
+    Unknown14072('PunchShot')
+    sprite('mk400_08', 4)
+    sprite('mk400_09', 3)
+    sprite('mk400_10', 3)
+    Unknown14074('PunchShot')
+    sprite('mk400_11', 3)
+    sprite('mk400_12', 3)
+    Recovery()
+
+@State
 def SiriusJolt():
 
     def upon_IMMEDIATE():
@@ -6854,17 +6886,6 @@ def SiriusJolt():
         HitLow(4)
         HitAirUnblockable(4)
         HitOverhead(4)
-
-        def upon_43():
-            if (SLOT_48 == 1041):
-                Unknown2003(1)
-
-        def upon_3():
-            Unknown48(25, 2, 51, 22, 2, 23)
-            if (SLOT_51 == 0):
-                RefreshMultihit()
-            else:
-                DisableAttackRestOfMove()
 
         def upon_12():
             ScreenShake(0, 50000)
