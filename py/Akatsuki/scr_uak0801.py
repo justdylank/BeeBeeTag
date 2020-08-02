@@ -148,17 +148,17 @@ def MatchInit():
     Unknown14015(-100000, 350000, -350000, 150000, 1000, 50)
     Move_EndRegister()
     Move_Register('NmlAtkAIR5C', 0x34)
+    MoveMaxChainRepeat(1)
+    Unknown15015(100, 100)
+    Unknown15013(1500)
+    Unknown14015(-100000, 350000, -350000, 150000, 1000, 50)
+    Move_EndRegister()
+    Move_Register('NmlAtkAIR6C', 0x35)
     Move_AirGround_(0x2001)
     Unknown14004(1)
     Unknown15010()
     Unknown14015(0, 500000, -200000, 350000, 1000, 0)
     Unknown15021(6000)
-    Move_EndRegister()
-    Move_Register('NmlAtkAIR6C', 0x35)
-    MoveMaxChainRepeat(1)
-    Unknown15015(100, 100)
-    Unknown15013(1500)
-    Unknown14015(-100000, 350000, -350000, 150000, 1000, 50)
     Move_EndRegister()
     Move_Register('NmlAtkAIR2C', 0x31)
     MoveMaxChainRepeat(1)
@@ -391,6 +391,24 @@ def MatchInit():
     Unknown15020(500, 1000, 1, 1000)
     Unknown14015(0, 450000, -200000, 250000, 500, 0)
     Move_EndRegister()
+    Move_Register('ResCancel', 0x68)
+    Move_AirGround_(0x2000)
+    Move_AirGround_(0x3086)
+    Move_AirGround_(0x3081)
+    Move_Input_(INPUT_PRESS_A)
+    Move_Input_(INPUT_PRESS_B)
+    Move_Input_(INPUT_PRESS_C)
+    Unknown14015(500000, 200000, -600000, -200000, 50, 0)
+    Move_EndRegister()
+    Move_Register('ResCancelAir', 0x68)
+    Move_AirGround_(0x2001)
+    Move_AirGround_(0x3086)
+    Move_AirGround_(0x3081)
+    Move_Input_(INPUT_PRESS_A)
+    Move_Input_(INPUT_PRESS_B)
+    Move_Input_(INPUT_PRESS_C)
+    Unknown14015(500000, 200000, -600000, -200000, 50, 0)
+    Move_EndRegister()
     Move_Register('AstralHeat', 0x69)
     Move_AirGround_(0x2000)
     Move_AirGround_(0x304a)
@@ -543,6 +561,8 @@ def MatchInit():
     Unknown12059(6, 'CmnActBDash')
     Unknown12059(7, 'NmlAtkThrow')
     Unknown12059(8, 'CmnActChangePartnerQuickOut')
+    Unknown23003(0, 0, 4, 1, 1, 0, -6908226, -65536)
+    Unknown23004(0, 1)
 
 @Subroutine
 def MatchInit2():
@@ -1511,6 +1531,7 @@ def CmnActOverDriveBegin():
 
 @State
 def CmnActOverDriveLoop():
+    Unknown2036(40, -1, 0)
     sprite('Action_262_02', 4)
     label(0)
     sprite('Action_262_03', 5)
@@ -1531,6 +1552,7 @@ def CmnActAirOverDriveBegin():
 
 @State
 def CmnActAirOverDriveLoop():
+    Unknown2036(40, -1, 0)
     sprite('Action_262_02', 4)
     label(0)
     sprite('Action_262_03', 5)
@@ -1754,6 +1776,7 @@ def NmlAtk5A():
     def upon_IMMEDIATE():
         AttackDefaults_StandingNormal()
         AttackLevel_(3)
+        AttackP1(90)
         Unknown1112('')
         AirPushbackX(7500)
         AirPushbackY(15000)
@@ -1851,6 +1874,7 @@ def NmlAtk4A():
     def upon_IMMEDIATE():
         AttackDefaults_StandingNormal()
         AttackLevel_(2)
+        AttackP1(80)
         AirPushbackY(8000)
         callSubroutine('ChainRoot')
         HitOrBlockCancel('NmlAtk2C')
@@ -2009,6 +2033,7 @@ def NmlAtk5B():
     def upon_IMMEDIATE():
         AttackDefaults_StandingNormal()
         AttackLevel_(4)
+        AttackP1(90)
         AirUntechableTime(22)
         callSubroutine('ChainRoot')
         HitOrBlockCancel('NmlAtk2C')
@@ -2038,16 +2063,17 @@ def NmlAtk5B():
 def NmlAtk6B():
 
     def upon_IMMEDIATE():
-        AttackDefaults_StandingNormal()
+        AttackDefaults_StandingSpecial()
         AttackLevel_(4)
         AttackP1(70)
-        AttackP2(90)
+        AttackP2(80)
         AirPushbackX(15000)
-        PushbackX(0)
+        PushbackX(5000)
         GroundedHitstunAnimation(1)
         AirHitstunAnimation(1)
         AirPushbackY(-35000)
         Unknown9310(20)
+        HitOverhead(1)
         callSubroutine('AtkEffLightning')
         callSubroutine('AtkEffLightningHitmark')
         callSubroutine('CheckAtemiMuteki')
@@ -2243,6 +2269,7 @@ def NmlAtk2A():
     def upon_IMMEDIATE():
         AttackDefaults_CrouchingNormal()
         AttackLevel_(1)
+        AttackP1(70)
         HitLow(1)
         callSubroutine('ChainRoot')
         HitOrBlockCancel('NmlAtk2C')
@@ -2349,7 +2376,6 @@ def NmlAtk2C():
         HitOrBlockCancel('NmlAtk5B')
         HitOrBlockCancel('NmlAtk6B')
         HitOrBlockCancel('NmlAtk2B')
-        HitOrBlockCancel('CmnActCrushAttackNew')
         HitOrBlockCancel('NmlAtk6C')
         callSubroutine('CheckAtemiMuteki')
     sprite('Action_006_00', 3)
@@ -2451,12 +2477,60 @@ def NmlAtkAIR5B():
     sprite('Action_009_07', 6)
     sprite('Action_009_08', 6)
     sprite('Action_009_09', 6)
-    
+
 @State
 def NmlAtkAIR5C():
 
     def upon_IMMEDIATE():
-        Unknown17011('NmlAtkAIR5C_Exe', 2, 1, 0)
+        AttackDefaults_AirNormal()
+        AttackLevel_(4)
+        AirPushbackX(7500)
+        AirPushbackY(-35000)
+        AirHitstunAnimation(1)
+        GroundedHitstunAnimation(1)
+        HitOrBlockCancel('NmlAtkAIR5A')
+        HitOrBlockCancel('NmlAtkAIR2C')
+        callSubroutine('CheckAtemiMuteki')
+        DisableAttackRestOfMove()
+    sprite('Action_191_04', 2)
+    sprite('Action_191_05', 3)
+    sprite('Action_191_06', 3)
+    sprite('Action_191_07', 2)
+    sprite('Action_191_08', 3)
+    sprite('Action_191_09', 3)
+    sprite('Action_191_10', 3)
+    Unknown1021(-10000)
+    sprite('Action_191_11', 4)
+    SFX_3('SE043')
+    tag_voice(0, 'uak210_0', 'uak210_1', '', '')
+    RefreshMultihit()
+    AttackLevel_(5)
+    PushbackX(15000)
+    AirPushbackX(18000)
+    AirPushbackY(-55000)
+    YImpluseBeforeWallbounce(1500)
+    blockstun(25)
+    AirUntechableTime(80)
+    HitOverhead(1)
+    Unknown9190(1)
+    Unknown9118(20)
+    GFX_0('EffAssault3rd', 100)
+    sprite('Action_191_12', 3)
+    Recovery()
+    sprite('Action_191_13', 100)
+    Unknown8004(100, 0, 1)
+    sendToLabelUpon(2, 1)
+    label(1)
+    sprite('Action_191_14', 14)
+    Unknown1084(1)
+    sprite('Action_191_15', 5)
+    sprite('Action_191_16', 3)
+
+@State
+def NmlAtkAIR6C():
+
+    def upon_IMMEDIATE():
+        Unknown17011('NmlAtkAIR6C_Exe', 2, 1, 0)
         Unknown2018(0, 80)
         Unknown11032(-1, -1, -1, -1)
         Unknown11054(-1)
@@ -2471,7 +2545,6 @@ def NmlAtkAIR5C():
         Unknown2004(1, 0)
         sendToLabelUpon(2, 1)
     sprite('Action_058_00', 6)
-    sprite('Action_058_01', 1)
     sprite('Action_058_02', 1)
     sprite('Action_058_03', 1)
     Unknown22004(8, 1)
@@ -2487,7 +2560,7 @@ def NmlAtkAIR5C():
     sprite('keep', 1)
 
 @State
-def NmlAtkAIR5C_Exe():
+def NmlAtkAIR6C_Exe():
 
     def upon_IMMEDIATE():
         Unknown17012(1, 0, 0)
@@ -2542,53 +2615,6 @@ def NmlAtkAIR5C_Exe():
     Unknown8000(-1, 1, 1)
     sprite('Action_021_00', 3)
     sprite('Action_021_01', 3)
-
-@State
-def NmlAtkAIR6C():
-
-    def upon_IMMEDIATE():
-        AttackDefaults_AirNormal()
-        AttackLevel_(4)
-        AirPushbackX(7500)
-        AirPushbackY(-35000)
-        AirHitstunAnimation(1)
-        GroundedHitstunAnimation(1)
-        HitOrBlockCancel('NmlAtkAIR5A')
-        HitOrBlockCancel('NmlAtkAIR2C')
-        callSubroutine('CheckAtemiMuteki')
-        DisableAttackRestOfMove()
-    sprite('Action_191_04', 2)
-    sprite('Action_191_05', 3)
-    sprite('Action_191_06', 3)
-    sprite('Action_191_07', 2)
-    sprite('Action_191_08', 3)
-    sprite('Action_191_09', 3)
-    sprite('Action_191_10', 3)
-    Unknown1021(-10000)
-    sprite('Action_191_11', 4)
-    SFX_3('SE043')
-    tag_voice(0, 'uak210_0', 'uak210_1', '', '')
-    RefreshMultihit()
-    AttackLevel_(5)
-    AirPushbackX(18000)
-    AirPushbackY(-55000)
-    YImpluseBeforeWallbounce(1500)
-    blockstun(25)
-    AirUntechableTime(80)
-    HitOverhead(1)
-    Unknown9190(1)
-    Unknown9118(20)
-    GFX_0('EffAssault3rd', 100)
-    sprite('Action_191_12', 3)
-    Recovery()
-    sprite('Action_191_13', 100)
-    Unknown8004(100, 0, 1)
-    sendToLabelUpon(2, 1)
-    label(1)
-    sprite('Action_191_14', 14)
-    Unknown1084(1)
-    sprite('Action_191_15', 5)
-    sprite('Action_191_16', 3)
 
 @State
 def NmlAtkAIR2C():
@@ -2655,10 +2681,15 @@ def CmnActCrushAttackNew():
     def upon_IMMEDIATE():
         AttackDefaults_StandingSpecial()
         AttackLevel_(5)
+        Damage(2000)
+        Unknown9310(10)
+        AttackP1(75)
+        AttackP2(75)
+        AirPushbackX(1500)
+        AirPushbackY(-80000)
         blockstun(13)
-        PushbackX(5000)
-        AirPushbackY(-35000)
-        HitOverhead(1)
+        HitOverhead(2)
+        AttackAttributes(1, 0, 0, 0, 0)
         AttackAttributes(1, 0, 0, 0, 0)
     sprite('Action_036_00', 4)
     sprite('Action_068_01', 3)
@@ -2703,7 +2734,6 @@ def NmlAtk6C():
         AttackDefaults_StandingNormal()
         AttackLevel_(4)
         Unknown1112('')
-        AttackP1(90)
         AirPushbackX(8000)
         AirPushbackY(30000)
         AirUntechableTime(37)
@@ -3393,7 +3423,7 @@ def KoseiInit():
 def CmnActInvincibleAttack():
 
     def upon_IMMEDIATE():
-        AttackDefaults_StandingSpecial()
+        Unknown17024()
         AttackLevel_(4)
         Damage(1500)
         AttackP1(70)
@@ -3408,6 +3438,8 @@ def CmnActInvincibleAttack():
         callSubroutine('AtkEffLightning')
         Unknown11050(2, 'EffAtk_LightningL')
         HitAirUnblockable(0)
+        Unknown11056(2)
+        Unknown11110(85)
         setInvincible(1)
     sprite('Action_182_00', 4)
     sprite('Action_182_00', 2)
@@ -3691,10 +3723,10 @@ def ShotB():
     sprite('Action_160_04', 5)
     sprite('Action_160_05', 5)
     sprite('Action_160_06', 6)
-    sprite('Action_160_07', 6)
-    sprite('Action_160_08', 5)
+    sprite('Action_160_07', 5)
+    sprite('Action_160_08', 3)
     Recovery()
-    sprite('Action_160_09', 5)
+    sprite('Action_160_09', 3)
 
 @State
 def ShotEx():
@@ -3864,6 +3896,7 @@ def AssaultA():
         AirPushbackY(18000)
         PushbackX(30400)
         hitstun(20)
+        blockstun(12)
         AirUntechableTime(30)
         AttackAttributes(1, 0, 0, 0, 0)
         callSubroutine('AtkEffLightning')
@@ -3946,7 +3979,7 @@ def AssaultB():
     AirPushbackX(18000)
     AirPushbackY(-55000)
     YImpluseBeforeWallbounce(1500)
-    blockstun(25)
+    blockstun(20)
     AirUntechableTime(80)
     HitOverhead(0)
     Unknown9190(1)
@@ -4419,6 +4452,7 @@ def UltimateKamikaze():
         Damage(1000)
         MinimumDamagePct(10)
         Hitstop(1)
+        blockstun(10)
         Unknown11032(3600000, 1, -1, -1)
         Unknown11072(1, 18000, 0)
         PushbackX(9800)
@@ -4758,6 +4792,7 @@ def UltimateKamikazeOD():
         Damage(1000)
         MinimumDamagePct(10)
         Hitstop(1)
+        blockstun(10)
         Unknown11032(3600000, 1, -1, -1)
         Unknown11072(1, 18000, 0)
         PushbackX(9800)
@@ -5165,7 +5200,7 @@ def UltimateKick():
         GroundedHitstunAnimation(10)
         AirHitstunAnimation(10)
         Hitstop(5)
-        blockstun(18)
+        blockstun(10)
         Unknown11001(0, 15, 15)
         Unknown9118(28)
         Unknown9190(1)
@@ -5274,7 +5309,7 @@ def UltimateKickOD():
         GroundedHitstunAnimation(11)
         AirHitstunAnimation(11)
         Hitstop(5)
-        blockstun(18)
+        blockstun(10)
         Unknown11001(0, 15, 15)
         Unknown9118(28)
         Unknown9190(1)
@@ -5365,6 +5400,43 @@ def UltimateKickOD():
         Unknown13024(1)
     sprite('Action_191_15', 5)
     sprite('Action_191_16', 3)
+
+@State
+def ResCancel():
+
+    def upon_IMMEDIATE():
+        AttackDefaults_AirDD()
+        Unknown23055('')
+        setInvincible(1)
+        Unknown1084(1)
+    sprite('Action_262_00', 2)
+    Unknown2036(18, -1, 0)
+    sprite('Action_262_01', 2)
+    ConsumeSuperMeter(-5000)
+    sprite('Action_262_02', 2)
+    sprite('Action_262_03', 2)
+    sprite('Action_262_04', 3)
+    sprite('Action_262_05', 3)
+    sprite('Action_262_06', 3)
+    setInvincible(0)
+ 
+@State
+def ResCancelAir():
+
+    def upon_IMMEDIATE():
+        AttackDefaults_AirDD()
+        Unknown23055('')
+        setInvincible(1)
+    sprite('Action_262_00', 2)
+    Unknown2036(18, -1, 0)
+    sprite('Action_262_01', 2)
+    ConsumeSuperMeter(-5000)
+    sprite('Action_262_02', 2)
+    sprite('Action_262_03', 2)
+    sprite('Action_262_04', 3)
+    sprite('Action_262_09', 3)
+    sprite('Action_262_10', 3)
+    setInvincible(0)
 
 @State
 def AstralHeat():
