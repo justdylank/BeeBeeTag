@@ -300,26 +300,26 @@ def BoosterDamageUp():
     if (SLOT_60 == 1):
         Unknown10000(115)
     if (SLOT_60 == 2):
-        Unknown10000(125)
+        Unknown10000(130)
     if (SLOT_60 == 3):
-        Unknown10000(135)
+        Unknown10000(145)
     if (SLOT_60 == 4):
         Unknown10000(150)
     if (SLOT_60 == 5):
-        Unknown10000(160)
+        Unknown10000(165)
         ChipDamagePct(6)
     if (SLOT_60 == 6):
-        Unknown10000(180)
-        ChipDamagePct(7)
-    if (SLOT_60 == 7):
-        Unknown10000(190)
+        Unknown10000(185)
         ChipDamagePct(8)
-    if (SLOT_60 == 8):
-        Unknown10000(210)
-        ChipDamagePct(9)
-    if (SLOT_60 == 9):
-        Unknown10000(230)
+    if (SLOT_60 == 7):
+        Unknown10000(205)
         ChipDamagePct(10)
+    if (SLOT_60 == 8):
+        Unknown10000(225)
+        ChipDamagePct(12)
+    if (SLOT_60 == 9):
+        Unknown10000(250)
+        ChipDamagePct(15)
 
 @Subroutine
 def Init_CantCancelPersonaAction():
@@ -426,7 +426,7 @@ def PYU_Persona5C():
         Unknown23184(3, 100, 0, 0, 0, 2000000, -300000, 500000)
         callSubroutine('PYU_AttackInit')
         AttackLevel_(3)
-        Damage(275)
+        Damage(225)
         AttackP1(90)
         Hitstop(1)
         AirUntechableTime(17)
@@ -541,7 +541,7 @@ def PYU_Persona2B():
         Unknown23184(3, 100, -100000, 0, -200000, 2000000, 0, 100000)
         callSubroutine('PYU_AttackInit')
         AttackLevel_(3)
-        Damage(250)
+        Damage(225)
         AttackP1(90)
         AirPushbackY(10000)
         AirUntechableTime(30)
@@ -1153,7 +1153,7 @@ def PYU_PersonaAirFirePitA():
         Unknown23184(3, 100, -100000, 0, -2000000, 2000000, -2000000, 0)
         callSubroutine('PYU_SPAttackInit')
         AttackLevel_(3)
-        Damage(1000)
+        Damage(500)
         AttackP1(90)
         AttackP2(100)
         GroundedHitstunAnimation(9)
@@ -1213,7 +1213,7 @@ def PYU_PersonaAirFirePitB():
         Unknown23184(3, 100, -100000, 0, -2000000, 2000000, -2000000, 0)
         callSubroutine('PYU_SPAttackInit')
         AttackLevel_(3)
-        Damage(1000)
+        Damage(500)
         AttackP1(90)
         AttackP2(100)
         AirHitstunAnimation(9)
@@ -1274,7 +1274,7 @@ def PYU_PersonaAirFirePitC():
         Unknown23184(3, 100, -100000, 0, 0, 2000000, -2000000, 0)
         callSubroutine('PYU_SPAttackInit')
         AttackLevel_(3)
-        Damage(1000)
+        Damage(500)
         AttackP1(90)
         AttackP2(100)
         Unknown30065(0)
@@ -1696,7 +1696,7 @@ def FlameDanceA():
         Unknown23184(3, 100, 50000, 0, 0, 2000000, 0, 0)
         callSubroutine('PYU_AttackInit')
         AttackLevel_(3)
-        Damage(900)
+        Damage(500)
         AttackP1(90)
         AirPushbackY(22000)
         Hitstop(1)
@@ -1797,7 +1797,7 @@ def FlameDanceB():
         Unknown23184(3, 100, 50000, 0, 0, 2000000, 0, 0)
         callSubroutine('PYU_AttackInit')
         AttackLevel_(4)
-        Damage(1100)
+        Damage(900)
         AttackP1(90)
         AirPushbackY(22000)
         Hitstop(1)
@@ -4938,7 +4938,7 @@ def FirePitC():
     loopRest()
     gotoLabel(5)
     label(0)
-    sprite('null', 10)
+    sprite('null', 20)
     Unknown1019(0)
     clearUponHandler(3)
     clearUponHandler(11)

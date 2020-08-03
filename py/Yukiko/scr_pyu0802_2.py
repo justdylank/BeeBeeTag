@@ -2554,14 +2554,14 @@ def NmlAtk5A():
     sprite('yu203_08', 3)
     Recovery()
     Unknown2063()
-    sprite('yu203_09', 5)
-    sprite('yu203_10', 7)
+    sprite('yu203_09', 3)
+    sprite('yu203_10', 5)
+    sprite('yu203_11', 3)
     Unknown14074('NmlAtk5A2nd')
     Unknown14074('NmlAtk5A2nd_Front')
     Unknown14074('NmlAtk5A2nd_Back')
-    sprite('yu203_11', 5)
     SFX_3('yu000')
-    sprite('yu203_12', 5)
+    sprite('yu203_12', 3)
 
 @State
 def NmlAtk6A():
@@ -2674,8 +2674,8 @@ def NmlAtk5A2nd():
     sprite('yu203_10', 1)
     sprite('yu203_11', 2)
     SFX_3('yu000')
-    sprite('yu203_11', 3)
-    sprite('yu203_12', 4)
+    sprite('yu203_11', 2)
+    sprite('yu203_12', 3)
 
 @State
 def NmlAtk5A2nd_Front():
@@ -2705,8 +2705,8 @@ def NmlAtk5A2nd_Front():
     sprite('yu203_10', 1)
     sprite('yu203_11', 2)
     SFX_3('yu000')
-    sprite('yu203_11', 3)
-    sprite('yu203_12', 5)
+    sprite('yu203_11', 2)
+    sprite('yu203_12', 3)
 
 @State
 def NmlAtk5A2nd_Back():
@@ -2736,8 +2736,8 @@ def NmlAtk5A2nd_Back():
     sprite('yu203_10', 2)
     sprite('yu203_11', 2)
     SFX_3('yu000')
-    sprite('yu203_11', 4)
-    sprite('yu203_12', 6)
+    sprite('yu203_11', 3)
+    sprite('yu203_12', 4)
 
 @State
 def NmlAtk4A():
@@ -2745,7 +2745,7 @@ def NmlAtk4A():
     def upon_IMMEDIATE():
         AttackDefaults_StandingNormal()
         AttackLevel_(3)
-        Damage(1500)
+        Damage(1300)
         PushbackX(9000)
         AirPushbackY(10000)
         Unknown9016(1)
@@ -2787,7 +2787,7 @@ def NmlAtk4A2nd():
     def upon_IMMEDIATE():
         AttackDefaults_StandingNormal()
         AttackLevel_(3)
-        Damage(1200)
+        Damage(1500)
         AirPushbackY(15000)
         Unknown9016(1)
         HitOrBlockCancel('NmlAtk4A3rd')
@@ -5282,7 +5282,7 @@ def CmnActInvincibleAttack():
         YImpluseBeforeWallbounce(2000)
         AirUntechableTime(60)
         HitAirUnblockable(0)
-        Damage(1200)
+        Damage(2000)
         Unknown9021(1)
         GuardPoint_(1)
     sprite('yu400_01', 3)
@@ -5318,25 +5318,23 @@ def CmnActInvincibleAttack():
     physicsYImpulse(-600)
     sprite('yu400_07', 3)
     sprite('yu400_08', 3)
+    SLOT_51 = 0
     sprite('yu400_09', 3)
     label(2)
+    if (SLOT_51 >= 120):
+        clearUponHandler(3)
+        sendToLabel(0)
     sprite('yu400_07', 3)
     Unknown11063(1)
 
     def upon_3():
         if (not CheckInput(0x1)):
-            if (not CheckInput(0x1c)):
-                clearUponHandler(3)
-                sendToLabel(0)
-        Unknown47('090000000200000033000000000000003c0000000200000034000000')
-        if SLOT_52:
-            SFX_3('yu004')
-            SLOT_51 = 0
-            Unknown21000(30)
-            SLOT_51 = (SLOT_51 + 1)
-        else:
             clearUponHandler(3)
             sendToLabel(0)
+        else:
+            SFX_3('yu004')
+            Unknown21000(30)
+            SLOT_51 = (SLOT_51 + 1)
     SFX_3('yu002')
     YAccel(-100)
     sprite('yu400_08', 3)
