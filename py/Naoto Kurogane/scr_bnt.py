@@ -2309,7 +2309,7 @@ def NmlAtk5AAA():
     sprite('nt340_07', 3)
     Unknown2016(250)
     sprite('nt340_08', 3)
-    physicsXImpulse(18000)
+    physicsXImpulse(24000)
     Unknown8003(100, 1, 1)
     Unknown7009(2)
     sprite('nt340_09', 2)
@@ -7603,7 +7603,6 @@ def CmnActChangePartnerAssistAtk_D():
         Unknown11056(0)
         Unknown11042(1)
         Unknown2006()
-        SLOT_51 = 0
 
         def upon_STATE_END():
             EnableCollision(1)
@@ -7611,7 +7610,7 @@ def CmnActChangePartnerAssistAtk_D():
             Unknown2053(1)
 
         def upon_12():
-            SLOT_51 = 1
+            sendToLabel(10)
     sprite('nt404_00', 4)
     physicsXImpulse(4000)
     GFX_1('ntef_D_aura', 0)
@@ -7657,8 +7656,6 @@ def CmnActChangePartnerAssistAtk_D():
     Unknown2005()
     Unknown1019(80)
     sprite('nt404_11', 3)
-    if SLOT_51:
-        sendToLabel(10)
     Unknown3029(0)
     Unknown8000(100, 1, 0)
     Unknown1019(60)
@@ -7686,12 +7683,11 @@ def CmnActChangePartnerAssistAtk_D():
     Unknown1019(30)
     sprite('nt402_10', 4)
     Unknown1019(30)
-    if SLOT_51:
-        sendToLabel(10)
     sprite('nt402_11', 4)
     Unknown1019(0)
     ExitState()
     label(10)
+    clearUponHandler(12)
     AttackLevel_(4)
     Damage(1500)
     AttackP1(70)
