@@ -393,6 +393,24 @@ def MatchInit():
     Unknown14004(1)
     Unknown15000(0)
     Move_EndRegister()
+    Move_Register('ResCancel', 0x68)
+    Move_AirGround_(0x2000)
+    Move_AirGround_(0x3086)
+    Move_AirGround_(0x3081)
+    Move_Input_(INPUT_PRESS_A)
+    Move_Input_(INPUT_PRESS_B)
+    Move_Input_(INPUT_PRESS_C)
+    Unknown14015(500000, 200000, -600000, -200000, 50, 0)
+    Move_EndRegister()
+    Move_Register('ResCancelAir', 0x68)
+    Move_AirGround_(0x2001)
+    Move_AirGround_(0x3086)
+    Move_AirGround_(0x3081)
+    Move_Input_(INPUT_PRESS_A)
+    Move_Input_(INPUT_PRESS_B)
+    Move_Input_(INPUT_PRESS_C)
+    Unknown14015(500000, 200000, -600000, -200000, 50, 0)
+    Move_EndRegister()
     Move_Register('AstralHeat', 0x69)
     Move_AirGround_(0x304a)
     Move_AirGround_(0x2000)
@@ -1532,6 +1550,7 @@ def CmnActOverDriveBegin():
 
 @State
 def CmnActOverDriveLoop():
+    Unknown2036(40, -1, 0)
     sprite('tg333_04', 3)
     GFX_0('tgef_overdrive_eye_keep', 2)
     GFX_0('tgef_overdrive_eye_keep', 3)
@@ -1587,6 +1606,7 @@ def CmnActAirOverDriveBegin():
 
 @State
 def CmnActAirOverDriveLoop():
+    Unknown2036(40, -1, 0)
     sprite('tg333_14', 3)
     GFX_0('tgef_overdrive_eye_keep', 2)
     GFX_0('tgef_overdrive_eye_keep', 3)
@@ -8828,6 +8848,43 @@ def Air_GETBExe3OD():
     ScreenShake(0, 12500)
     loopRest()
     enterState('GETBJump_OD')
+
+@State
+def ResCancel():
+
+    def upon_IMMEDIATE():
+        AttackDefaults_AirDD()
+        Unknown23055('')
+        setInvincible(1)
+        Unknown1084(1)
+    sprite('tg333_00', 2)
+    Unknown2036(18, -1, 0)
+    sprite('tg333_03', 2)
+    ConsumeSuperMeter(-5000)
+    sprite('tg333_04', 2)
+    sprite('tg333_05', 2)
+    sprite('tg333_06', 3)
+    sprite('tg333_07', 3)
+    sprite('tg333_09', 3)
+    setInvincible(0)
+    
+@State
+def ResCancelAir():
+
+    def upon_IMMEDIATE():
+        AttackDefaults_AirDD()
+        Unknown23055('')
+        setInvincible(1)
+    sprite('tg333_10', 2)
+    Unknown2036(18, -1, 0)
+    sprite('tg333_13', 2)
+    ConsumeSuperMeter(-5000)
+    sprite('tg333_14', 2)
+    sprite('tg333_05', 2)
+    sprite('tg333_06', 3)
+    sprite('tg333_15', 3)
+    sprite('tg333_17', 3)
+    setInvincible(0)
 
 @State
 def AstralHeat():

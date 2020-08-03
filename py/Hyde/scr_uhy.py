@@ -343,6 +343,24 @@ def MatchInit():
     Unknown15020(500, 1000, 10, 1000)
     Unknown14015(300000, 1000000, -200000, 100000, 250, 50)
     Move_EndRegister()
+    Move_Register('ResCancel', 0x68)
+    Move_AirGround_(0x2000)
+    Move_AirGround_(0x3086)
+    Move_AirGround_(0x3081)
+    Move_Input_(INPUT_PRESS_A)
+    Move_Input_(INPUT_PRESS_B)
+    Move_Input_(INPUT_PRESS_C)
+    Unknown14015(500000, 200000, -600000, -200000, 50, 0)
+    Move_EndRegister()
+    Move_Register('ResCancelAir', 0x68)
+    Move_AirGround_(0x2001)
+    Move_AirGround_(0x3086)
+    Move_AirGround_(0x3081)
+    Move_Input_(INPUT_PRESS_A)
+    Move_Input_(INPUT_PRESS_B)
+    Move_Input_(INPUT_PRESS_C)
+    Unknown14015(500000, 200000, -600000, -200000, 50, 0)
+    Move_EndRegister()
     Move_Register('AstralHeat', 0x69)
     Move_AirGround_(0x2000)
     Move_AirGround_(0x304a)
@@ -1469,6 +1487,7 @@ def CmnActOverDriveBegin():
 
 @State
 def CmnActOverDriveLoop():
+    Unknown2036(40, -1, 0)
     sprite('Action_262_02', 4)
     label(0)
     sprite('Action_262_03', 5)
@@ -1478,8 +1497,8 @@ def CmnActOverDriveLoop():
 
 @State
 def CmnActOverDriveEnd():
-    sprite('Action_262_05', 6)
-    sprite('Action_262_06', 6)
+    sprite('Action_262_05', 1)
+    sprite('Action_262_06', 1)
 
 @State
 def CmnActAirOverDriveBegin():
@@ -1489,6 +1508,7 @@ def CmnActAirOverDriveBegin():
 
 @State
 def CmnActAirOverDriveLoop():
+    Unknown2036(40, -1, 0)
     sprite('Action_262_02', 4)
     label(0)
     sprite('Action_262_03', 5)
@@ -1498,13 +1518,8 @@ def CmnActAirOverDriveLoop():
 
 @State
 def CmnActAirOverDriveEnd():
-    sprite('Action_262_07', 3)
-    sprite('Action_262_08', 3)
-    label(0)
-    sprite('Action_022_00', 4)
-    sprite('Action_022_01', 4)
-    loopRest()
-    gotoLabel(0)
+    sprite('Action_262_07', 1)
+    sprite('Action_262_08', 1)
 
 @State
 def CmnActCrossRushBegin():
@@ -2407,7 +2422,8 @@ def NmlAtk5C():
     def upon_IMMEDIATE():
         AttackDefaults_StandingSpecial()
         AttackLevel_(5)
-        Damage(2000)
+        Damage(1700)
+        AttackP1(85)
         AttackP2(75)
         PushbackX(5000)
         AttackAttributes(1, 0, 0, 0, 0)
@@ -4883,6 +4899,43 @@ def UltimateBaleBringerOD():
     sprite('Action_138_02', 4)
     sprite('Action_138_03', 3)
     sprite('Action_138_04', 3)
+
+@State
+def ResCancel():
+
+    def upon_IMMEDIATE():
+        AttackDefaults_AirDD()
+        Unknown23055('')
+        setInvincible(1)
+        Unknown1084(1)
+    sprite('Action_262_00', 2)
+    Unknown2036(18, -1, 0)
+    sprite('Action_262_01', 2)
+    ConsumeSuperMeter(-5000)
+    sprite('Action_262_02', 2)
+    sprite('Action_262_03', 2)
+    sprite('Action_262_04', 3)
+    sprite('Action_262_05', 3)
+    sprite('Action_262_06', 3)
+    setInvincible(0)
+    
+@State
+def ResCancelAir():
+
+    def upon_IMMEDIATE():
+        AttackDefaults_AirDD()
+        Unknown23055('')
+        setInvincible(1)
+    sprite('Action_262_00', 2)
+    Unknown2036(18, -1, 0)
+    sprite('Action_262_01', 2)
+    ConsumeSuperMeter(-5000)
+    sprite('Action_262_02', 2)
+    sprite('Action_262_03', 2)
+    sprite('Action_262_04', 3)
+    sprite('Action_262_07', 3)
+    sprite('Action_262_08', 3)
+    setInvincible(0)
 
 @State
 def AstralHeat():
