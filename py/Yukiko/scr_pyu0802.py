@@ -4,7 +4,7 @@ def PreInit():
 
 @Subroutine
 def MatchInit():
-    Health(27000)
+    Health(23000)
     DashFInitialVelocity(16000)
     JumpYVelocity(34000)
     SuperJumpYVelocity(38000)
@@ -133,24 +133,24 @@ def MatchInit():
     Move_EndRegister()
     Move_Register('CmnActChangePartnerQuickOut', 0x63)
     Move_EndRegister()
-    Move_Register('NmlAtkAIR5A', 0x10)
+    Move_Register('NmlAtkAIR5B', 0x22)
     Unknown14015(-100000, 300000, -300000, 150000, 1000, 50)
     Move_EndRegister()
-    Move_Register('NmlAtkAIR5A2nd', 0x10)
+    Move_Register('NmlAtkAIR5B2nd', 0x22)
     Unknown14005(1)
     MoveMaxChainRepeat(2)
     Unknown14015(-100000, 300000, -300000, 150000, 1000, 50)
     Move_EndRegister()
-    Move_Register('NmlAtkAIR5B', 0x22)
+    Move_Register('NmlAtkAIR5A', 0x10)
     MoveMaxChainRepeat(1)
     Unknown14015(0, 1000000, -500000, 0, 1000, 50)
     Move_EndRegister()
-    Move_Register('NmlAtkAIR6B', 0x23)
-    Unknown14027('NmlAtkAIR5B')
+    Move_Register('NmlAtkAIR6A', 0x11)
+    Unknown14027('NmlAtkAIR5A')
     Unknown14015(0, 1000000, -500000, 0, 1000, 50)
     Move_EndRegister()
-    Move_Register('NmlAtkAIR4B', 0x21)
-    Unknown14027('NmlAtkAIR5B')
+    Move_Register('NmlAtkAIR4A', 0x0F)
+    Unknown14027('NmlAtkAIR5A')
     Unknown14015(0, 1000000, -500000, 0, 1000, 50)
     Move_EndRegister()
     Move_Register('NmlAtkAIR5C', 0x34)
@@ -3383,61 +3383,6 @@ def NmlAtkAIR5A():
 
     def upon_IMMEDIATE():
         AttackDefaults_AirNormal()
-        AttackLevel_(3)
-        Damage(1000)
-        AirUntechableTime(21)
-        Unknown9016(1)
-        HitOrBlockJumpCancel(1)
-        HitOrBlockCancel('NmlAtkAIR5A2nd')
-        HitOrBlockCancel('NmlAtkAIR5B')
-        HitOrBlockCancel('NmlAtkAIR6B')
-        HitOrBlockCancel('NmlAtkAIR4B')
-        HitOrBlockCancel('NmlAtkAIR5C')
-    sprite('yu250_00', 3)
-    sprite('yu250_01', 3)
-    sprite('yu250_02', 3)
-    SFX_3('slash_rapier_fast')
-    sprite('yu250_03', 3)
-    RefreshMultihit()
-    Unknown7007('pyu100_0', 100, 'pyu100_1', 100, 'pyu100_2', 100, '', 0)
-    sprite('yu250_04', 3)
-    Recovery()
-    Unknown2063()
-    sprite('yu250_05', 5)
-    sprite('yu250_06', 5)
-
-@State
-def NmlAtkAIR5A2nd():
-
-    def upon_IMMEDIATE():
-        AttackDefaults_AirNormal()
-        AttackLevel_(3)
-        Damage(1000)
-        AirUntechableTime(21)
-        Unknown9016(1)
-        HitOrBlockJumpCancel(1)
-        HitOrBlockCancel('NmlAtkAIR5A2nd')
-        HitOrBlockCancel('NmlAtkAIR5B')
-        HitOrBlockCancel('NmlAtkAIR6B')
-        HitOrBlockCancel('NmlAtkAIR4B')
-        HitOrBlockCancel('NmlAtkAIR5C')
-    sprite('yu250_01', 3)
-    sprite('yu250_02', 3)
-    SFX_3('slash_rapier_fast')
-    sprite('yu250_03', 3)
-    RefreshMultihit()
-    Unknown7009(0)
-    sprite('yu250_04', 3)
-    Recovery()
-    Unknown2063()
-    sprite('yu250_05', 5)
-    sprite('yu250_06', 5)
-
-@State
-def NmlAtkAIR5B():
-
-    def upon_IMMEDIATE():
-        AttackDefaults_AirNormal()
         HitJumpCancel(1)
     sprite('yu251_00', 4)
     sprite('yu251_01', 3)
@@ -3464,7 +3409,7 @@ def NmlAtkAIR5B():
     sprite('yu251_12', 3)
 
 @State
-def NmlAtkAIR6B():
+def NmlAtkAIR6A():
 
     def upon_IMMEDIATE():
         AttackDefaults_AirNormal()
@@ -3496,7 +3441,7 @@ def NmlAtkAIR6B():
     sprite('yu251_12', 3)
 
 @State
-def NmlAtkAIR4B():
+def NmlAtkAIR4A():
 
     def upon_IMMEDIATE():
         AttackDefaults_AirNormal()
@@ -3525,6 +3470,61 @@ def NmlAtkAIR4B():
     sprite('yu251_11', 3)
     SFX_3('yu000')
     sprite('yu251_12', 3)
+
+@State
+def NmlAtkAIR5B():
+
+    def upon_IMMEDIATE():
+        AttackDefaults_AirNormal()
+        AttackLevel_(3)
+        Damage(1500)
+        AirUntechableTime(21)
+        Unknown9016(1)
+        HitOrBlockJumpCancel(1)
+        HitOrBlockCancel('NmlAtkAIR5B2nd')
+        HitOrBlockCancel('NmlAtkAIR5A')
+        HitOrBlockCancel('NmlAtkAIR6A')
+        HitOrBlockCancel('NmlAtkAIR4A')
+        HitOrBlockCancel('NmlAtkAIR5C')
+    sprite('yu250_00', 3)
+    sprite('yu250_01', 3)
+    sprite('yu250_02', 3)
+    SFX_3('slash_rapier_fast')
+    sprite('yu250_03', 3)
+    RefreshMultihit()
+    Unknown7007('pyu100_0', 100, 'pyu100_1', 100, 'pyu100_2', 100, '', 0)
+    sprite('yu250_04', 3)
+    Recovery()
+    Unknown2063()
+    sprite('yu250_05', 5)
+    sprite('yu250_06', 5)
+
+@State
+def NmlAtkAIR5B2nd():
+
+    def upon_IMMEDIATE():
+        AttackDefaults_AirNormal()
+        AttackLevel_(3)
+        Damage(1000)
+        AirUntechableTime(21)
+        Unknown9016(1)
+        HitOrBlockJumpCancel(1)
+        HitOrBlockCancel('NmlAtkAIR5B2nd')
+        HitOrBlockCancel('NmlAtkAIR5A')
+        HitOrBlockCancel('NmlAtkAIR6A')
+        HitOrBlockCancel('NmlAtkAIR4A')
+        HitOrBlockCancel('NmlAtkAIR5C')
+    sprite('yu250_01', 3)
+    sprite('yu250_02', 3)
+    SFX_3('slash_rapier_fast')
+    sprite('yu250_03', 3)
+    RefreshMultihit()
+    Unknown7009(0)
+    sprite('yu250_04', 3)
+    Recovery()
+    Unknown2063()
+    sprite('yu250_05', 5)
+    sprite('yu250_06', 5)
 
 @State
 def NmlAtkAIR5C():
@@ -5117,9 +5117,9 @@ def FirePitA():
 
     def upon_IMMEDIATE():
         Unknown17003()
-        HitCancel('NmlAtkAIR4B')
-        HitCancel('NmlAtkAIR5B')
-        HitCancel('NmlAtkAIR6B')
+        HitCancel('NmlAtkAIR4A')
+        HitCancel('NmlAtkAIR5A')
+        HitCancel('NmlAtkAIR6A')
         
         def upon_LANDING():
             sendToLabel(1)
@@ -5169,9 +5169,9 @@ def FirePitB():
 
     def upon_IMMEDIATE():
         Unknown17003()
-        HitCancel('NmlAtkAIR4B')
-        HitCancel('NmlAtkAIR5B')
-        HitCancel('NmlAtkAIR6B')
+        HitCancel('NmlAtkAIR4A')
+        HitCancel('NmlAtkAIR5A')
+        HitCancel('NmlAtkAIR6A')
         
         def upon_LANDING():
             sendToLabel(1)
@@ -5218,9 +5218,9 @@ def FirePitEX():
 
     def upon_IMMEDIATE():
         Unknown17003()
-        HitCancel('NmlAtkAIR4B')
-        HitCancel('NmlAtkAIR5B')
-        HitCancel('NmlAtkAIR6B')
+        HitCancel('NmlAtkAIR4A')
+        HitCancel('NmlAtkAIR5A')
+        HitCancel('NmlAtkAIR6A')
         HitOrBlockJumpCancel(1)
 
         def upon_43():
