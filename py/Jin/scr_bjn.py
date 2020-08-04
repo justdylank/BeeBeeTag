@@ -3217,7 +3217,7 @@ def NmlAtk6B():
     def upon_IMMEDIATE():
         AttackDefaults_StandingNormal()
         AttackLevel_(4)
-        AttackP1(80)
+        AttackP1(70)
         AirHitstunAnimation(10)
         AirPushbackY(16000)
         AirPushbackX(10000)
@@ -4925,7 +4925,7 @@ def Assault_D():
     def upon_IMMEDIATE():
         AttackDefaults_StandingSpecial()
         AttackLevel_(4)
-        AttackP1(80)
+        AttackP1(70)
         AttackP2(70)
         AirHitstunAnimation(10)
         GroundedHitstunAnimation(10)
@@ -5204,7 +5204,7 @@ def AirAssault_D():
         Unknown17003()
         AttackLevel_(4)
         Damage(1000)
-        AttackP1(80)
+        AttackP1(70)
         Unknown11092(1)
         AirPushbackY(10000)
         AirPushbackX(-3000)
