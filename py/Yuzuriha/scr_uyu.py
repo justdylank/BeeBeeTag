@@ -3094,17 +3094,23 @@ def NmlAtkAIR2C():
         HitOrBlockCancel('NmlAtkAIR5B')
         HitOrBlockCancel('NmlAtkAIR5C')
         HitOrBlockJumpCancel(1)
-        
-        def upon_3():
-            if (not CheckInput(0x13)):
-                clearUponHandler(3)
-                Unknown2037(1)
     sprite('Action_137_11', 6)
     SLOT_4 = 0
-    sprite('Action_137_12', 6)
-    loopRest()
-    Unknown19(100, 2, 2)
+    sprite('Action_137_12', 16)
+    
+    def upon_3():
+            if (CheckInput(0x17)):
+                clearUponHandler(3)
+                sendToLabel(100)
     sprite('Action_137_13', 6)
+    clearUponHandler(3)
+    Damage(2000)
+    AirUntechableTime(60)
+    hitstun(18)
+    blockstun(24)
+    GroundedHitstunAnimation(9)
+    AirHitstunAnimation(9)
+    Unknown9202(20)
     GFX_0('AIR2C_Blade', 100)
     SFX_3('SE043')
     SFX_3('SE_DrawnSword')
@@ -3120,15 +3126,8 @@ def NmlAtkAIR2C():
     sprite('Action_137_19', 6)
     ExitState()
     label(100)
-    Damage(2000)
-    AirUntechableTime(60)
-    hitstun(18)
-    blockstun(24)
-    GroundedHitstunAnimation(9)
-    AirHitstunAnimation(9)
-    Unknown9202(20)
-    sprite('Action_137_12', 8)
-    sprite('Action_137_13', 8)
+    sprite('Action_137_12', 6)
+    sprite('Action_137_13', 6)
     GFX_0('AIR2C_Blade', 100)
     SFX_3('SE043')
     SFX_3('SE_DrawnSword')
@@ -3142,6 +3141,7 @@ def NmlAtkAIR2C():
     sprite('Action_137_17', 4)
     sprite('Action_137_18', 4)
     sprite('Action_137_19', 6)
+    ExitState()
 
 @State
 def NmlAtkThrow():

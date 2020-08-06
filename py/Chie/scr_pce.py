@@ -4907,33 +4907,11 @@ def TomoeAttackEX():
     sprite('ce205_02', 6)
     sprite('ce205_03', 6)
     GFX_1('persona_enter_ply', 0)
-    sprite('ce205_04', 4)
-    sprite('ce205_05', 4)
-    
-    def upon_45():
-        if CheckInput(0x17):
-            SLOT_51 = 1
-    sprite('ce205_06', 4)
-    if SLOT_51:
-        sendToLabel(0)
-    sprite('ce205_04', 4)
-    sprite('ce205_05', 4)
-    sprite('ce205_06', 4)
-    sprite('ce205_04', 4)
-    sprite('ce205_05', 4)
-    sprite('ce205_06', 4)
-    sprite('ce205_04', 4)
-    sprite('ce205_05', 4)
-    sprite('ce205_06', 4)
-    sprite('ce205_04', 4)
-    sprite('ce205_05', 4)
-    sprite('ce205_07', 4)
-    sprite('ce205_08', 4)
-    ExitState()
-    label(0)
-    sprite('ce205_07', 2)
-    sprite('ce205_08', 2)
-    ExitState()
+    sprite('ce205_04', 2)
+    sprite('ce205_05', 2)
+    sprite('ce205_06', 2)
+    sprite('ce205_07', 3)
+    sprite('ce205_08', 3)
 
 @State
 def __100inchPunchA():
