@@ -474,7 +474,7 @@ def IcicleAttack():
         else:
             Unknown1002(550000)
         AttackLevel_(4)
-        AttackP2(90)
+        AttackP2(80)
         AirPushbackY(20000)
         AirPushbackX(-6000)
         PushbackX(-12000)

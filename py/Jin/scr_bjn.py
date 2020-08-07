@@ -2904,7 +2904,7 @@ def NmlAtk5AAA():
         AttackDefaults_StandingNormal()
         AttackLevel_(3)
         Damage(650)
-        AttackP2(85)
+        AttackP2(80)
         Unknown11092(1)
         GroundedHitstunAnimation(4)
         Unknown11001(9, 0, 2)
