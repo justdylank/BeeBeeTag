@@ -207,8 +207,6 @@ def MatchInit():
     Move_EndRegister()
     Move_Register('GunShotA', 0x2)
     Move_AirGround_(0x2000)
-    Move_AirGround_(0x3083)
-    Move_AirGround_(0x300e)
     Move_Input_(INPUT_214)
     Move_Input_(INPUT_PRESS_A)
     Unknown15014(1)
@@ -218,8 +216,6 @@ def MatchInit():
     Move_EndRegister()
     Move_Register('GunShotB', 0x2)
     Move_AirGround_(0x2000)
-    Move_AirGround_(0x3083)
-    Move_AirGround_(0x300e)
     Move_Input_(INPUT_214)
     Move_Input_(INPUT_PRESS_B)
     Unknown15014(1)
@@ -2356,7 +2352,8 @@ def NmlAtk5AAA():
         AirHitstunAnimation(11)
         AirPushbackX(16000)
         AirPushbackY(-20000)
-        Unknown9310(10)
+        AirUntechableTime(30)
+        Unknown9202(5)
         Unknown2004(1, 0)
 
         def upon_LANDING():
@@ -2395,6 +2392,104 @@ def NmlAtk5AAA():
 
 @State
 def NmlAtk5AAAA():
+
+    def upon_IMMEDIATE():
+        AttackDefaults_StandingNormal()
+        AttackLevel_(4)
+        Damage(2000)
+        AirUntechableTime(60)
+        AirPushbackX(30000)
+        AirPushbackY(28000)
+        GroundedHitstunAnimation(1)
+        Unknown2004(1, 0)
+        Unknown14083(0)
+
+        def upon_11():
+            clearUponHandler(11)
+            sendToLabel(1)
+        Unknown3029(1)
+        Unknown3069(2)
+        Unknown30088(1)
+    sprite('ad401_00', 3)
+    sprite('ad401_01', 3)
+    sprite('ad401_02', 3)
+    SFX_3('airdash_l')
+    physicsXImpulse(50000)
+    RefreshMultihit()
+    GFX_0('adef_401_dash', 100)
+    sprite('ad401_03', 3)
+    sprite('ad401_02', 3)
+    SFX_3('airdash_l')
+    label(1)
+    sprite('keep', 3)
+    StartMultihit()
+    sprite('ad401_04', 6)
+    SFX_3('airdash_l')
+    Unknown1019(75)
+    sprite('ad401_05', 6)
+    Unknown1019(50)
+    sprite('ad401_06', 6)
+    Unknown1019(50)
+    sprite('ad401_07', 6)
+    Unknown1019(50)
+    sprite('ad401_08', 6)
+    Unknown1019(50)
+    sprite('ad401_09', 6)
+    Unknown1019(50)
+    
+@State
+def NmlAtk4AAA():
+
+    def upon_IMMEDIATE():
+        AttackDefaults_StandingNormal()
+        AttackLevel_(4)
+        AttackP1(90)
+        HitLow(2)
+        AttackAttributes(0, 0, 1, 0, 0)
+        GroundedHitstunAnimation(11)
+        AirHitstunAnimation(11)
+        AirPushbackX(16000)
+        AirPushbackY(-20000)
+        AirUntechableTime(30)
+        Unknown9202(5)
+        Unknown2004(1, 0)
+
+        def upon_LANDING():
+            clearUponHandler(2)
+            sendToLabel(1)
+        HitOrBlockCancel('NmlAtk4AAAA')
+        HitOrBlockCancel('NmlAtk5B')
+        HitOrBlockCancel('NmlAtk2B')
+        HitOrBlockCancel('NmlAtk5C')
+        HitOrBlockCancel('NmlAtk2C')
+    sprite('ad202_00', 3)
+    sprite('ad202_01', 3)
+    Unknown8001(1, 0)
+    physicsXImpulse(25000)
+    Unknown1028(-500)
+    physicsYImpulse(9000)
+    setGravity(3000)
+    sprite('ad202_02', 3)
+    sprite('ad202_03', 30)
+    label(1)
+    sprite('ad202_04', 3)
+    SFX_3('hit_m_middle')
+    Unknown7009(4)
+    sprite('ad202_04ex', 2)
+    Unknown8010(0, 1, 1)
+    Recovery()
+    Unknown2063()
+    sprite('ad202_05', 2)
+    Unknown1019(40)
+    sprite('ad202_06', 4)
+    Unknown8010(0, 1, 1)
+    Unknown1084(1)
+    sprite('ad202_07', 4)
+    sprite('ad202_08', 4)
+    sprite('ad202_09', 4)
+
+@State
+def NmlAtk4AAAA():
 
     def upon_IMMEDIATE():
         AttackDefaults_StandingNormal()
@@ -2837,103 +2932,6 @@ def NmlAtk4AA():
     sprite('ad201_09', 4)
     Unknown8010(0, 1, 1)
     Unknown1019(0)
-
-@State
-def NmlAtk4AAA():
-
-    def upon_IMMEDIATE():
-        AttackDefaults_StandingNormal()
-        AttackLevel_(4)
-        AttackP1(90)
-        HitLow(2)
-        AttackAttributes(0, 0, 1, 0, 0)
-        GroundedHitstunAnimation(11)
-        AirHitstunAnimation(11)
-        AirPushbackX(16000)
-        AirPushbackY(-20000)
-        Unknown9310(10)
-        Unknown2004(1, 0)
-
-        def upon_LANDING():
-            clearUponHandler(2)
-            sendToLabel(1)
-        HitOrBlockCancel('NmlAtk4AAAA')
-        HitOrBlockCancel('NmlAtk5B')
-        HitOrBlockCancel('NmlAtk2B')
-        HitOrBlockCancel('NmlAtk5C')
-        HitOrBlockCancel('NmlAtk2C')
-    sprite('ad202_00', 3)
-    sprite('ad202_01', 3)
-    Unknown8001(1, 0)
-    physicsXImpulse(25000)
-    Unknown1028(-500)
-    physicsYImpulse(9000)
-    setGravity(3000)
-    sprite('ad202_02', 3)
-    sprite('ad202_03', 30)
-    label(1)
-    sprite('ad202_04', 3)
-    SFX_3('hit_m_middle')
-    Unknown7009(4)
-    sprite('ad202_04ex', 2)
-    Unknown8010(0, 1, 1)
-    Recovery()
-    Unknown2063()
-    sprite('ad202_05', 2)
-    Unknown1019(40)
-    sprite('ad202_06', 4)
-    Unknown8010(0, 1, 1)
-    Unknown1084(1)
-    sprite('ad202_07', 4)
-    sprite('ad202_08', 4)
-    sprite('ad202_09', 4)
-
-@State
-def NmlAtk4AAAA():
-
-    def upon_IMMEDIATE():
-        AttackDefaults_StandingNormal()
-        AttackLevel_(4)
-        Damage(2000)
-        AirUntechableTime(60)
-        AirPushbackX(30000)
-        AirPushbackY(28000)
-        GroundedHitstunAnimation(1)
-        Unknown2004(1, 0)
-        Unknown14083(0)
-
-        def upon_11():
-            clearUponHandler(11)
-            sendToLabel(1)
-        Unknown3029(1)
-        Unknown3069(2)
-        Unknown30088(1)
-    sprite('ad401_00', 3)
-    sprite('ad401_01', 3)
-    sprite('ad401_02', 3)
-    SFX_3('airdash_l')
-    physicsXImpulse(50000)
-    RefreshMultihit()
-    GFX_0('adef_401_dash', 100)
-    sprite('ad401_03', 3)
-    sprite('ad401_02', 3)
-    SFX_3('airdash_l')
-    label(1)
-    sprite('keep', 3)
-    StartMultihit()
-    sprite('ad401_04', 6)
-    SFX_3('airdash_l')
-    Unknown1019(75)
-    sprite('ad401_05', 6)
-    Unknown1019(50)
-    sprite('ad401_06', 6)
-    Unknown1019(50)
-    sprite('ad401_07', 6)
-    Unknown1019(50)
-    sprite('ad401_08', 6)
-    Unknown1019(50)
-    sprite('ad401_09', 6)
-    Unknown1019(50)
 
 @State
 def NmlAtk5C():
@@ -3636,7 +3634,7 @@ def NmlAtkAIR5C():
 
         def upon_43():
             if (SLOT_48 == 2017):
-                loopRelated(17, 30)
+                loopRelated(17, 40)
 
                 def upon_17():
                     clearUponHandler(17)
@@ -4370,7 +4368,7 @@ def GunShotA():
     SFX_3('ad006')
     sprite('ad405_02', 3)
     GFX_0('adef_405_muzzle_a', 2)
-    GFX_0('dmy_LowShotA_Atk', 0)
+    GFX_0('dmy_LowShotA_Atk', 1)
     sprite('ad405_03', 4)
     sprite('ad405_04', 4)
     sprite('ad405_05', 4)
@@ -4393,8 +4391,8 @@ def GunShotB():
     sprite('ad405_03', 4)
     sprite('ad405_04', 4)
     sprite('ad405_05', 4)
-    sprite('ad405_06', 4)
-    sprite('ad405_00', 4)
+    sprite('ad405_06', 2)
+    sprite('ad405_00', 2)
     
 @State
 def Megidola():

@@ -72,7 +72,7 @@ def PAD_ReceptionSignal():
         if (SLOT_48 == 2008):
             Unknown23185('PAD_PersonaCA', 50)
         if (SLOT_48 == 2009):
-            Unknown23185('PAD_Persona5AAA', 50)
+            Unknown23185('PAD_PersonaJCEX', 50)
         if (SLOT_48 == 2010):
             Unknown23185('PAD_Persona5AAAA', 50)
         if (SLOT_48 == 2501):
@@ -1138,6 +1138,56 @@ def PAD_PersonaJ2CExe():
     sprite('keep', 32767)
     enterState('PersonaDeleteAndIdling')
 
+@State
+def PAD_PersonaJCEX():
+
+    def upon_IMMEDIATE():
+        Unknown23023()
+        callSubroutine('PAD_AttackInit')
+        AttackLevel_(4)
+        AirPushbackY(-32000)
+        AirPushbackX(26000)
+        AirUntechableTime(29)
+        Unknown11034(1)
+        ProjectileDurabilityLvl(0)
+        AttackAttributes(1, 0, 0, 0, 0)
+        Unknown9016(1)
+        DisableAttackRestOfMove()
+        Unknown23078(1)
+        callSubroutine('PAD_CheckWarp')
+        EnableCollision(0)
+        Unknown2053(1)
+        Unknown4007(3)
+        Unknown23059(1)
+
+        def upon_43():
+            if (SLOT_48 == 9001):
+                sendToLabel(580)
+            if (SLOT_48 == 9002):
+                sendToLabel(580)
+    sprite('mg253_00', 2)
+    sprite('mg253_01', 2)
+    sprite('mg253_02', 2)
+    sprite('mg253_03', 3)
+    SFX_3('slash_rapier_middle')
+    SFX_3('slash_rapier_middle')
+    GFX_0('mgef_253', 100)
+    sprite('mg253_04', 1)
+    RefreshMultihit()
+    sprite('mg253_04', 2)
+    Unknown23022(0)
+    sprite('mg253_05', 6)
+    sprite('mg253_06', 6)
+    sprite('mg253_07', 6)
+    if SLOT_2:
+        _gotolabel(0)
+    sprite('mg253_05', 6)
+    sprite('mg253_06', 6)
+    sprite('mg253_07', 6)
+    label(580)
+    sprite('keep', 32767)
+    enterState('PersonaDeleteAndIdling')
+    
 @State
 def mgef_232():
 
@@ -2322,6 +2372,7 @@ def PAD_PersonaSpecialAntiAirSlow():
 
         def upon_12():
             clearUponHandler(12)
+            SLOT_31 = 1
             Unknown23029(3, 3014, 0)
             sendToLabel(1)
 
