@@ -43,9 +43,12 @@ def MatchInit():
     Unknown15013(2000)
     Unknown14015(29000, 422000, -225000, 316000, 1000, 50)
     Move_EndRegister()
-    Move_Register('NmlAtk5A4th', 0x8)
+    Move_Register('NmlAtk5A4th', 0x7)
     Move_AirGround_(0x3083)
     Move_AirGround_(0x300e)
+    Unknown14005(1)
+    Unknown15012(2000)
+    Unknown15013(2000)
     Unknown14015(29000, 422000, -225000, 316000, 1000, 50)
     Move_EndRegister()
     Move_Register('NmlAtk4A', 0x6)
@@ -110,6 +113,13 @@ def MatchInit():
     Unknown15009()
     Unknown14015(29000, 481000, -205000, -7000, 1000, 50)
     Move_EndRegister()
+    Move_Register('DashCancel', 0x2)
+    Move_AirGround_(0x2000)
+    Move_Input_(0xe5)
+    Unknown14005(1)
+    Unknown15012(2000)
+    Unknown14015(0, 600000, -200000, 250000, 800, 50)
+    Move_EndRegister()
     Move_Register('CmnActChangePartnerQuickOut', 0x63)
     Move_EndRegister()
     Move_Register('NmlAtkAIR5A', 0x10)
@@ -144,6 +154,8 @@ def MatchInit():
     Move_Input_(0xba)
     Move_Input_(INPUT_22)
     Move_Input_(INPUT_PRESS_A)
+    Move_AirGround_(0x3083)
+    Move_AirGround_(0x300e)
     Unknown14015(0, 600000, 150000, 600000, 100, 0)
     Unknown15021(4000)
     Move_EndRegister()
@@ -152,6 +164,8 @@ def MatchInit():
     Move_Input_(0xba)
     Move_Input_(INPUT_22)
     Move_Input_(INPUT_PRESS_B)
+    Move_AirGround_(0x3083)
+    Move_AirGround_(0x300e)
     Unknown14015(0, 600000, 150000, 600000, 100, 0)
     Unknown15021(4000)
     Move_EndRegister()
@@ -160,6 +174,8 @@ def MatchInit():
     Move_Input_(0xba)
     Move_Input_(INPUT_22)
     Move_Input_(INPUT_PRESS_C)
+    Move_AirGround_(0x3083)
+    Move_AirGround_(0x300e)
     Unknown14015(0, 600000, 150000, 600000, 100, 0)
     Unknown15021(4000)
     Move_EndRegister()
@@ -168,6 +184,8 @@ def MatchInit():
     Move_Input_(0xba)
     Move_Input_(INPUT_22)
     Move_Input_(INPUT_PRESS_A)
+    Move_AirGround_(0x3083)
+    Move_AirGround_(0x300e)
     Unknown14015(0, 600000, 150000, 600000, 100, 0)
     Unknown15021(4000)
     Move_EndRegister()
@@ -176,6 +194,8 @@ def MatchInit():
     Move_Input_(0xba)
     Move_Input_(INPUT_22)
     Move_Input_(INPUT_PRESS_B)
+    Move_AirGround_(0x3083)
+    Move_AirGround_(0x300e)
     Unknown14015(0, 600000, 150000, 600000, 100, 0)
     Unknown15021(4000)
     Move_EndRegister()
@@ -184,6 +204,8 @@ def MatchInit():
     Move_Input_(0xba)
     Move_Input_(INPUT_22)
     Move_Input_(INPUT_PRESS_C)
+    Move_AirGround_(0x3083)
+    Move_AirGround_(0x300e)
     Unknown14015(0, 600000, 150000, 600000, 100, 0)
     Unknown15021(4000)
     Move_EndRegister()
@@ -192,6 +214,8 @@ def MatchInit():
     Move_Input_(0xae)
     Move_Input_(INPUT_214)
     Move_Input_(INPUT_PRESS_C)
+    Move_AirGround_(0x3083)
+    Move_AirGround_(0x300e)
     Unknown14015(0, 600000, 150000, 600000, 100, 0)
     Unknown15021(4000)
     Move_EndRegister()
@@ -257,18 +281,18 @@ def MatchInit():
     Unknown15021(2000)
     Unknown14015(65000, 608000, 117000, 704000, 500, 50)
     Move_EndRegister()
-    Move_Register('KushizashiEX', 0x2)
-    Move_AirGround_(0x2000)
-    Move_AirGround_(0x300a)
-    Move_AirGround_(0x3083)
-    Move_AirGround_(0x300e)
-    Move_Input_(INPUT_214)
-    Move_Input_(INPUT_PRESS_A)
-    Move_AirGround_(0x3086)
-    Unknown15010()
-    Unknown15013(1)
-    Unknown14015(0, 400000, -200000, 150000, 500, 0)
-    Move_EndRegister()
+    # Move_Register('KushizashiEX', 0x2)
+    # Move_AirGround_(0x2000)
+    # Move_AirGround_(0x300a)
+    # Move_AirGround_(0x3083)
+    # Move_AirGround_(0x300e)
+    # Move_Input_(INPUT_214)
+    # Move_Input_(INPUT_PRESS_A)
+    # Move_AirGround_(0x3086)
+    # Unknown15010()
+    # Unknown15013(1)
+    # Unknown14015(0, 400000, -200000, 150000, 500, 0)
+    # Move_EndRegister()
     Move_Register('TaetemiyagareA', 0x2)
     Move_AirGround_(0x2001)
     Move_Input_(INPUT_214)
@@ -2668,7 +2692,7 @@ def NmlAtk5A():
 
     def upon_IMMEDIATE():
         AttackDefaults_StandingNormal()
-        AttackP1(85)
+        AttackP1(80)
         AttackP2(80)
         HitOrBlockCancel('NmlAtk5A2nd')
         HitOrBlockCancel('NmlAtk5B')
@@ -2735,6 +2759,7 @@ def NmlAtk5A3rd():
     def upon_IMMEDIATE():
         AttackDefaults_StandingNormal()
         AttackLevel_(5)
+        AttackP2(80)
         AirHitstunAnimation(9)
         AirPushbackX(10000)
         AirPushbackY(-30000)
@@ -2770,6 +2795,11 @@ def NmlAtk5A4th():
     def upon_IMMEDIATE():
         AttackDefaults_StandingNormal()
         JumpCancel_(0)
+
+        def upon_STATE_END():
+            SLOT_4 = 0
+        if Unknown23145('NmlAtk5A3rd'):
+            SLOT_4 = 1
     sprite('ka408_00', 2)
     sprite('ka408_01', 2)
     sprite('ka408_02', 3)
@@ -2789,7 +2819,7 @@ def NmlAtk5A4th():
     Unknown2063()
     sprite('ka408_08', 6)
     sprite('ka408_09', 6)
-
+    
 @State
 def NmlAtk4A():
 
@@ -3071,6 +3101,7 @@ def NmlAtk5B():
         HitOrBlockCancel('NmlAtk2B')
         HitOrBlockCancel('NmlAtk5C')
         HitOrBlockCancel('NmlAtk2C')
+        HitOrBlockCancel('DashCancel')
 
         def upon_24():
             SLOT_52 = 1
@@ -3159,6 +3190,7 @@ def NmlAtk5B2nd():
         HitOrBlockCancel('NmlAtk2B')
         HitOrBlockCancel('NmlAtk5C')
         HitOrBlockCancel('NmlAtk2C')
+        HitOrBlockCancel('DashCancel')
 
         def upon_24():
             SLOT_52 = 1
@@ -3257,7 +3289,7 @@ def NmlAtk2B():
         AttackP2(70)
         AirHitstunAnimation(10)
         GroundedHitstunAnimation(10)
-        AirUntechableTime(35)
+        AirUntechableTime(45)
         AirPushbackX(3000)
         AirPushbackY(40000)
         AttackAttributes(0, 1, 0, 0, 0)
@@ -3265,6 +3297,7 @@ def NmlAtk2B():
         HitOrBlockCancel('NmlAtk5B')
         HitOrBlockCancel('NmlAtk5C')
         HitOrBlockCancel('NmlAtk2C')
+        HitOrBlockCancel('DashCancel')
     sprite('ka231_00', 3)
     sprite('ka231_01', 3)
     setInvincible(1)
@@ -3278,13 +3311,13 @@ def NmlAtk2B():
     setInvincible(0)
     Recovery()
     Unknown2063()
-    sprite('ka231_06', 4)
-    sprite('ka231_05', 5)
-    sprite('ka231_06', 5)
-    sprite('ka231_07', 5)
+    sprite('ka231_06', 6)
+    sprite('ka231_05', 7)
+    sprite('ka231_06', 7)
+    sprite('ka231_07', 7)
     SFX_3('ka003')
-    sprite('ka231_08', 5)
-    sprite('ka231_09', 3)
+    sprite('ka231_08', 7)
+    sprite('ka231_09', 4)
 
 @State
 def NmlAtk2C():
@@ -3529,7 +3562,6 @@ def LightningAirA():
     Unknown7007('pka122_0', 100, 'pka124_0', 100, '', 0, '', 0)
     SFX_3('ka002')
     Recovery()
-    setGravity(800)
     sprite('ka254_04', 7)
     sprite('ka254_05', 7)
     sprite('ka254_01', 6)
@@ -3558,7 +3590,6 @@ def LightningAirB():
     Unknown7007('pka122_0', 100, 'pka124_0', 100, '', 0, '', 0)
     SFX_3('ka002')
     Recovery()
-    setGravity(800)
     sprite('ka254_04', 7)
     sprite('ka254_05', 7)
     sprite('ka254_01', 6)
@@ -3592,21 +3623,19 @@ def LightingAirEX():
     SFX_3('ka002')
     SFX_3('ka002')
     Recovery()
-    setGravity(800)
     sprite('ka254_04', 6)
     sprite('ka254_05', 6)
     sprite('ka254_01', 5)
     sprite('ka254_01', 5)
     
 @State
-def NmlAtkAIR5A():
+def NmlAtkAIR5A2nd():
 
     def upon_IMMEDIATE():
         AttackDefaults_AirNormal()
         AttackLevel_(3)
         AirPushbackY(20000)
         HitOrBlockJumpCancel(1)
-        WhiffCancel('NmlAtkAIR5A')
         HitOrBlockCancel('NmlAtkAIR5A2nd')
         HitOrBlockCancel('NmlAtkAIR5B')
         HitOrBlockCancel('NmlAtkAIR5C')
@@ -3622,11 +3651,10 @@ def NmlAtkAIR5A():
     Unknown2063()
     sprite('ka250_04', 3)
     sprite('ka250_05', 3)
-    WhiffCancelEnable(1)
     sprite('ka250_06', 3)
 
 @State
-def NmlAtkAIR5A2nd():
+def NmlAtkAIR5A():
 
     def upon_IMMEDIATE():
         AttackDefaults_AirNormal()
@@ -3634,6 +3662,7 @@ def NmlAtkAIR5A2nd():
         AirPushbackY(18000)
         AirUntechableTime(22)
         HitOrBlockJumpCancel(1)
+        HitOrBlockCancel('NmlAtkAIR5A2nd')
         HitOrBlockCancel('NmlAtkAIR5B')
         HitOrBlockCancel('NmlAtkAIR5C')
     sprite('ka321_02', 2)
@@ -4560,7 +4589,6 @@ def BusterAttackB():
         Damage(1500)
         AttackP1(70)
         AttackP2(70)
-        AttackP2(100)
         Unknown11092(1)
         AirPushbackY(-20000)
         PushbackX(15000)
@@ -6370,6 +6398,30 @@ def KenkaSappou_OD():
     sprite('ka432_12', 7)
     loopRest()
 
+@State
+def DashCancel():
+
+    def upon_IMMEDIATE():
+        AttackDefaults_StandingNormal()
+        Unknown11063(1)
+    sprite('ka032_00', 4)
+    physicsXImpulse(8000)
+    sprite('ka032_01', 6)
+    physicsXImpulse(20440)
+    Unknown1045(40880)
+
+    def upon_3():
+        Unknown1015(440)
+        Unknown1047(440)
+    sprite('ka032_02', 4)
+    Unknown8006(100, 1, 1)
+    sprite('ka032_03', 4)
+    sprite('ka032_09', 3)
+    physicsXImpulse(0)
+    clearUponHandler(3)
+    Unknown8010(100, 1, 1)
+    sprite('ka032_10', 3)
+    
 @State
 def Kurokoge():
 

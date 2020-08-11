@@ -254,6 +254,8 @@ def PKA_PersonaA_Finish():
         AirPushbackY(20000)
         GroundedHitstunAnimation(18)
         AirHitstunAnimation(18)
+        Unknown11044(1)
+        Unknown30088(1)
         AttackAttributes(0, 1, 0, 0, 0)
         EnableCollision(1)
         Unknown2053(1)
@@ -262,8 +264,11 @@ def PKA_PersonaA_Finish():
 
         def upon_STATE_END():
             SLOT_6 = 0
+            Unknown11044(1)
+            Unknown30088(1)
         if SLOT_4:
             Unknown11044(1)
+            Unknown30088(1)
 
         def upon_11():
             sendToLabel(0)
@@ -293,9 +298,11 @@ def PKA_PersonaA_Finish():
     Unknown1019(105)
     sprite('ta408_03', 3)
     Unknown1019(80)
+    Unknown30088(1)
     label(0)
     sprite('keep', 8)
     clearUponHandler(11)
+    Unknown30088(1)
     DisableAttackRestOfMove()
     sprite('ta408_04', 2)
     SFX_3('brake_normal_heavy')
@@ -310,6 +317,7 @@ def PKA_PersonaA_Finish():
     Unknown1019(20)
     sprite('ta408_06', 30)
     SLOT_6 = 0
+    Unknown30088(1)
     Unknown1019(0)
     sprite('ta408_06', 3)
     sprite('keep', 32767)
@@ -771,22 +779,25 @@ def PKA_LightningA():
 
     def upon_IMMEDIATE():
         Unknown23023()
-        Unknown23184(3, 100, 0, 0, 0, 0, 0, 0)
+        Unknown23184(3, 100, -50000, 0, 0, 2000000, 0, 0)
         callSubroutine('PKA_AttackInit')
         Unknown23022(1)
+        AttackAttributes(0, 1, 0, 0, 0)
         callSubroutine('PKA_CheckWarp')
-        EnableCollision(0)
+        EnableCollision(1)
         Unknown4007(3)
         Unknown2053(1)
 
         def upon_STATE_END():
             SLOT_4 = 0
             SLOT_6 = 0
+            SLOT_10 = 0
             callSubroutine('PKA_CheckWarp')
             Unknown23059(1)
     sprite('ta205_00', 6)
     SLOT_4 = 1
     SLOT_6 = 1
+    SLOT_10 = 1
     GFX_0('ta_5DThunder', 100)
     GFX_1('taef_thunderbolt', 0)
     GFX_1('taef_thunderbolt', 1)
@@ -854,22 +865,25 @@ def PKA_LightningB():
 
     def upon_IMMEDIATE():
         Unknown23023()
-        Unknown23184(3, 100, 0, 0, 0, 0, 0, 0)
+        Unknown23184(3, 100, -50000, 0, 0, 2000000, 0, 0)
         callSubroutine('PKA_AttackInit')
         Unknown23022(1)
         callSubroutine('PKA_CheckWarp')
         EnableCollision(1)
         Unknown4007(3)
         Unknown2053(1)
+        SLOT_10 = 1
 
         def upon_STATE_END():
             SLOT_4 = 0
             SLOT_6 = 0
+            SLOT_10 = 0
             callSubroutine('PKA_CheckWarp')
             Unknown23059(1)
     sprite('ta205_00', 6)
     SLOT_4 = 1
     SLOT_6 = 1
+    SLOT_10 = 1
     GFX_0('ta_BThunder', 100)
     GFX_1('taef_thunderbolt', 0)
     GFX_1('taef_thunderbolt', 1)
@@ -937,7 +951,7 @@ def PKA_LightningEX():
 
     def upon_IMMEDIATE():
         Unknown23023()
-        Unknown23184(3, 100, 0, 0, 0, 0, 0, 0)
+        Unknown23184(3, 100, -50000, 0, 0, 2000000, 0, 0)
         callSubroutine('PKA_AttackInit')
         Unknown23022(1)
         callSubroutine('PKA_CheckWarp')
@@ -948,6 +962,7 @@ def PKA_LightningEX():
         def upon_STATE_END():
             SLOT_4 = 0
             SLOT_6 = 0
+            SLOT_10 = 0
             callSubroutine('PKA_CheckWarp')
             Unknown23059(1)
     sprite('ta205_00', 6)
@@ -986,7 +1001,7 @@ def PKA_LightningEX():
     sprite('ta205_07', 2)
     ScreenShake(10000, 0)
     SLOT_51 = (SLOT_51 + 1)
-    if (SLOT_51 == 3):
+    if (SLOT_51 == 4):
         sendToLabel(0)
     loopRest()
     gotoLabel(819)
@@ -1008,7 +1023,7 @@ def PKA_LightningAirA():
 
     def upon_IMMEDIATE():
         Unknown23023()
-        Unknown23184(3, 100, 0, -1000000, 0, 0, 0, 0)
+        Unknown23184(3, 100, -50000, -1000000, 0, 2000000, 0, 0)
         callSubroutine('PKA_AttackInit')
         Unknown23022(1)
         callSubroutine('PKA_CheckWarp')
@@ -1019,11 +1034,13 @@ def PKA_LightningAirA():
         def upon_STATE_END():
             SLOT_4 = 0
             SLOT_6 = 0
+            SLOT_10 = 0
             callSubroutine('PKA_CheckWarp')
             Unknown23059(1)
     sprite('ta205_00', 6)
     SLOT_4 = 1
     SLOT_6 = 1
+    SLOT_10 = 1
     GFX_0('ta_5DThunder', 100)
     GFX_1('taef_thunderbolt', 0)
     GFX_1('taef_thunderbolt', 1)
@@ -1091,24 +1108,25 @@ def PKA_LightningAirB():
 
     def upon_IMMEDIATE():
         Unknown23023()
-        Unknown23184(3, 100, 0, -1000000, 0, 0, 0, 0)
+        Unknown23184(3, 100, -50000, -1000000, 0, 2000000, 0, 0)
         callSubroutine('PKA_AttackInit')
         Unknown23022(1)
         callSubroutine('PKA_CheckWarp')
         EnableCollision(1)
         Unknown4007(3)
         Unknown2053(1)
+        SLOT_10 = 1
 
         def upon_STATE_END():
             SLOT_4 = 0
             SLOT_6 = 0
+            SLOT_10 = 0
             callSubroutine('PKA_CheckWarp')
             Unknown23059(1)
-            Unknown11044(1)
-            Unknown30088(1)
     sprite('ta205_00', 6)
     SLOT_4 = 1
     SLOT_6 = 1
+    SLOT_10 = 1
     GFX_0('ta_AirBThunder', 100)
     GFX_1('taef_thunderbolt', 0)
     GFX_1('taef_thunderbolt', 1)
@@ -1167,6 +1185,7 @@ def PKA_LightningAirB():
     sprite('ta205_03', 5)
     sprite('ta205_02', 5)
     sprite('ta205_01', 5)
+    SLOT_10 = 0
     sprite('ta205_00', 25)
     sprite('keep', 32767)
     enterState('PersonaDeleteAndIdling')
@@ -1176,7 +1195,7 @@ def PKA_LightningAirEX():
 
     def upon_IMMEDIATE():
         Unknown23023()
-        Unknown23184(3, 100, 0, -1000000, 0, 0, 0, 0)
+        Unknown23184(3, 100, -50000, -1000000, 0, 2000000, 0, 0)
         callSubroutine('PKA_AttackInit')
         Unknown23022(1)
         callSubroutine('PKA_CheckWarp')
@@ -1189,8 +1208,6 @@ def PKA_LightningAirEX():
             SLOT_6 = 0
             callSubroutine('PKA_CheckWarp')
             Unknown23059(1)
-            Unknown11044(1)
-            Unknown30088(1)
     sprite('ta205_00', 6)
     SLOT_4 = 1
     SLOT_6 = 1
@@ -1227,7 +1244,7 @@ def PKA_LightningAirEX():
     sprite('ta205_07', 2)
     ScreenShake(10000, 0)
     SLOT_51 = (SLOT_51 + 1)
-    if (SLOT_51 == 3):
+    if (SLOT_51 == 4):
         sendToLabel(0)
     loopRest()
     gotoLabel(819)
@@ -1462,10 +1479,7 @@ def PKA_PrimalForceEX():
 
         def upon_STATE_END():
             SLOT_6 = 0
-            if SLOT_4:
-                Unknown11044(1)
-                Unknown30088(1)
-
+            
         def upon_11():
             sendToLabel(0)
             Unknown23059(1)
@@ -2907,9 +2921,10 @@ def ta_5DThunder():
     def upon_IMMEDIATE():
         Unknown2010()
         AttackLevel_(3)
-        Damage(900)
-        AttackP1(70)
-        AttackP2(95)
+        Damage(1500)
+        AttackP1(80)
+        AttackP2(80)
+        blockstun(12)
         PushbackX(5000)
         AirPushbackX(2000)
         AirPushbackY(35000)
@@ -2948,9 +2963,10 @@ def ta_BThunder():
     def upon_IMMEDIATE():
         Unknown2010()
         AttackLevel_(3)
-        Damage(900)
-        AttackP1(70)
-        AttackP2(95)
+        Damage(1500)
+        AttackP1(80)
+        AttackP2(80)
+        blockstun(12)
         PushbackX(5000)
         AirPushbackX(2000)
         AirPushbackY(35000)
@@ -2989,9 +3005,10 @@ def ta_AirBThunder():
     def upon_IMMEDIATE():
         Unknown2010()
         AttackLevel_(3)
-        Damage(900)
-        AttackP1(70)
-        AttackP2(95)
+        Damage(1500)
+        AttackP1(80)
+        AttackP2(80)
+        blockstun(12)
         PushbackX(5000)
         AirPushbackX(2000)
         AirPushbackY(35000)
@@ -3030,9 +3047,10 @@ def ta_5DThunderTuika():
     def upon_IMMEDIATE():
         Unknown2010()
         AttackLevel_(3)
-        Damage(900)
-        AttackP1(70)
-        AttackP2(95)
+        Damage(1500)
+        AttackP1(80)
+        AttackP2(80)
+        blockstun(12)
         PushbackX(5000)
         AirPushbackX(2000)
         AirPushbackY(35000)
@@ -3534,6 +3552,11 @@ def ka_isuyoko():
     Unknown2053(1)
     DisableAttackRestOfMove()
     Unknown26('kaef_conbo_chair')
+    AirHitstunAnimation(2)
+    GroundedHitstunAnimation(2)
+    Unknown9130(50)
+    Unknown9142(50)
+    physicsXImpulse(10000)
     physicsYImpulse(40000)
     setGravity(2500)
     Unknown1074(35000)
@@ -3553,6 +3576,11 @@ def ka_isuyoko():
     Unknown2053(1)
     DisableAttackRestOfMove()
     Unknown26('kaef_conbo_chair')
+    AirHitstunAnimation(2)
+    GroundedHitstunAnimation(2)
+    Unknown9130(50)
+    Unknown9142(50)
+    physicsXImpulse(10000)
     physicsYImpulse(40000)
     setGravity(2500)
     Unknown1074(35000)
