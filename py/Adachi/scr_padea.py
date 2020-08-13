@@ -559,6 +559,12 @@ def PAD_PersonaThrowShot():
         Unknown23022(1)
         Unknown3032()
         sendToLabelUpon(33, 1)
+        
+        if SLOT_31:
+            Unknown9310(10)
+            
+        def upon_STATE_END():
+            SLOT_31 = 0
     sprite('mg406_00', 4)
     Unknown3001(0)
     Unknown3004(9)
@@ -2064,6 +2070,11 @@ def PAD_PersonaSpecialSearchShot():
         EnableCollision(0)
         Unknown2053(1)
         Unknown23022(1)
+        if SLOT_31:
+            Unknown9118(20)
+            
+        def upon_STATE_END():
+            SLOT_31 = 0
 
         def upon_14():
             Unknown21012('jumonjiBigslashTate', 32)

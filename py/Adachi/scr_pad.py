@@ -4108,6 +4108,8 @@ def SpecialShotSlowLand():
     sprite('ad205_02', 1)
     Unknown23029(11, 3002, 0)
     sprite('ad205_03', 3)
+    if SLOT_31:
+        gotoLabel(1)
     sprite('ad205_04', 3)
     sprite('ad205_05', 3)
     sprite('ad205_06', 3)
@@ -4117,7 +4119,9 @@ def SpecialShotSlowLand():
     sprite('ad205_04', 4)
     sprite('ad205_05', 4)
     sprite('ad205_06', 4)
+    label(1)
     sprite('ad205_04', 5)
+    SLOT_31 = 0
     sprite('ad205_05', 5)
     sprite('ad205_06', 5)
     sprite('ad205_01', 6)
