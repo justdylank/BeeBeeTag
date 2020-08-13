@@ -4368,7 +4368,7 @@ def GunShotA():
     SFX_3('ad006')
     sprite('ad405_02', 3)
     GFX_0('adef_405_muzzle_a', 2)
-    GFX_0('dmy_LowShotA_Atk', 1)
+    GFX_0('dmy_LowShotA_Atk', 0)
     sprite('ad405_03', 4)
     sprite('ad405_04', 4)
     sprite('ad405_05', 4)
