@@ -72,7 +72,7 @@ def PAD_ReceptionSignal():
         if (SLOT_48 == 2008):
             Unknown23185('PAD_PersonaCA', 50)
         if (SLOT_48 == 2009):
-            Unknown23185('PAD_Persona5AAA', 50)
+            Unknown23185('PAD_PersonaJCEX', 50)
         if (SLOT_48 == 2010):
             Unknown23185('PAD_Persona5AAAA', 50)
         if (SLOT_48 == 2501):
@@ -559,6 +559,12 @@ def PAD_PersonaThrowShot():
         Unknown23022(1)
         Unknown3032()
         sendToLabelUpon(33, 1)
+        
+        if SLOT_31:
+            Unknown9310(10)
+            
+        def upon_STATE_END():
+            SLOT_31 = 0
     sprite('mg406_00', 4)
     Unknown3001(0)
     Unknown3004(9)
@@ -1125,7 +1131,6 @@ def PAD_PersonaJ2CExe():
     SFX_3('damage_hit_mh')
     Unknown5000(27, 0)
     Unknown5001(0, 1, 1, 0, 0)
-    ScreenShake(10000, 30000)
     Unknown1084(1)
     Unknown2034(0)
     RefreshMultihit()
@@ -1139,6 +1144,56 @@ def PAD_PersonaJ2CExe():
     sprite('keep', 32767)
     enterState('PersonaDeleteAndIdling')
 
+@State
+def PAD_PersonaJCEX():
+
+    def upon_IMMEDIATE():
+        Unknown23023()
+        callSubroutine('PAD_AttackInit')
+        AttackLevel_(4)
+        AirPushbackY(-32000)
+        AirPushbackX(26000)
+        AirUntechableTime(29)
+        Unknown11034(1)
+        ProjectileDurabilityLvl(0)
+        AttackAttributes(1, 0, 0, 0, 0)
+        Unknown9016(1)
+        DisableAttackRestOfMove()
+        Unknown23078(1)
+        callSubroutine('PAD_CheckWarp')
+        EnableCollision(0)
+        Unknown2053(1)
+        Unknown4007(3)
+        Unknown23059(1)
+
+        def upon_43():
+            if (SLOT_48 == 9001):
+                sendToLabel(580)
+            if (SLOT_48 == 9002):
+                sendToLabel(580)
+    sprite('mg253_00', 2)
+    sprite('mg253_01', 2)
+    sprite('mg253_02', 2)
+    sprite('mg253_03', 3)
+    SFX_3('slash_rapier_middle')
+    SFX_3('slash_rapier_middle')
+    GFX_0('mgef_253', 100)
+    sprite('mg253_04', 1)
+    RefreshMultihit()
+    sprite('mg253_04', 2)
+    Unknown23022(0)
+    sprite('mg253_05', 6)
+    sprite('mg253_06', 6)
+    sprite('mg253_07', 6)
+    if SLOT_2:
+        _gotolabel(0)
+    sprite('mg253_05', 6)
+    sprite('mg253_06', 6)
+    sprite('mg253_07', 6)
+    label(580)
+    sprite('keep', 32767)
+    enterState('PersonaDeleteAndIdling')
+    
 @State
 def mgef_232():
 
@@ -2004,7 +2059,7 @@ def PAD_PersonaSpecialSearchShot():
         PushbackX(6000)
         Unknown9190(1)
         Unknown9118(5)
-        Unknown9120(15)
+        Unknown9120(20)
         Unknown9016(1)
         Unknown9266(3)
         Unknown11034(1)
@@ -2015,6 +2070,11 @@ def PAD_PersonaSpecialSearchShot():
         EnableCollision(0)
         Unknown2053(1)
         Unknown23022(1)
+        if SLOT_31:
+            Unknown9118(20)
+            
+        def upon_STATE_END():
+            SLOT_31 = 0
 
         def upon_14():
             Unknown21012('jumonjiBigslashTate', 32)
@@ -2154,7 +2214,8 @@ def PAD_PersonaSpecialAntiAirFast():
         callSubroutine('PAD_SPAttackInit')
         Unknown2006()
         AttackLevel_(4)
-        Damage(1200)
+        Damage(1350)
+        callSubroutine('ExSkillInit')
         Hitstop(10)
         AttackP2(80)
         Unknown11092(1)
@@ -2197,14 +2258,14 @@ def PAD_PersonaSpecialAntiAirFast():
     sprite('mg432_10', 3)
     RefreshMultihit()
     AttackLevel_(5)
-    Damage(1800)
+    Damage(1950)
     Hitstop(0)
     Unknown11001(13, 13, 13)
-    AirUntechableTime(55)
+    AirUntechableTime(60)
     GroundedHitstunAnimation(10)
     AirHitstunAnimation(10)
-    AirPushbackX(15000)
-    AirPushbackY(50000)
+    AirPushbackX(10000)
+    AirPushbackY(55000)
     AttackAttributes(0, 0, 0, 1, 0)
     Unknown11034(0)
     ProjectileDurabilityLvl(1)
@@ -2322,6 +2383,7 @@ def PAD_PersonaSpecialAntiAirSlow():
 
         def upon_12():
             clearUponHandler(12)
+            SLOT_31 = 1
             Unknown23029(3, 3014, 0)
             sendToLabel(1)
 
