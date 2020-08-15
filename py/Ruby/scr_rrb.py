@@ -318,6 +318,7 @@ def MatchInit():
     Move_Input_(INPUT_PRESS_A)
     Move_Input_(INPUT_PRESS_B)
     Move_Input_(INPUT_PRESS_C)
+    Unknown14005(1)
     Unknown14015(500000, 200000, -600000, -200000, 50, 0)
     Move_EndRegister()
     Move_Register('ResCancelAir', 0x68)
@@ -327,6 +328,7 @@ def MatchInit():
     Move_Input_(INPUT_PRESS_A)
     Move_Input_(INPUT_PRESS_B)
     Move_Input_(INPUT_PRESS_C)
+    Unknown14005(1)
     Unknown14015(500000, 200000, -600000, -200000, 50, 0)
     Move_EndRegister()
     Move_Register('AstralHeat', 0x69)
@@ -508,6 +510,8 @@ def MatchInit():
 def OnActionBegin():
     if SLOT_37:
         SLOT_4 = 1
+    HitOrBlockCancel('ResCancel')
+    HitOrBlockCancel('ResCancelAir')
 
 @State
 def CmnActStand():
@@ -3173,7 +3177,7 @@ def AirRolling_Ex():
     def upon_IMMEDIATE():
         Unknown17003()
         AttackLevel_(3)
-        Damage(800)
+        Damage(500)
         AttackP1(80)
         Unknown11092(1)
         AirPushbackY(-20000)
@@ -3216,6 +3220,48 @@ def AirRolling_Ex():
     loopRest()
     gotoLabel(0)
     label(9)
+    sprite('rrb409_00', 4)
+    RefreshMultihit()
+    AttackLevel_(4)
+    Damage(1000)
+    AttackP2(80)
+    GroundedHitstunAnimation(9)
+    Hitstop(12)
+    AirUntechableTime(60)
+    AirPushbackX(60000)
+    AirPushbackY(20000)
+    Unknown9178(1)
+    Unknown1084(1)
+    Unknown2006()
+    Unknown8004(0, 1, 1)
+    GFX_0('rrb409Eff', 0)
+    Unknown26('rrb408PetalEff')
+    Unknown26('rrb408Eff')
+    Unknown30068(1)
+    callSubroutine('SpDash_Hasei')
+    callSubroutine('SpDash_ShotHIT')
+    sprite('rrb409_01', 4)
+    sprite('rrb409_02', 4)
+    sprite('rrb409_03', 4)
+    Unknown7007('rrb215_1', 100, 'rrb215_2', 100, 'rrb215_0', 100, '', 0)
+    sprite('rrb409_04', 6)
+    GFX_0('rrb404MuzzleEff', 0)
+    GFX_0('AirRollingShotEx', 0)
+    GFX_0('rrbCaseEff', 1)
+    SFX_3('rrbse_01')
+    ScreenShake(9000, 3000)
+    physicsXImpulse(-10000)
+    physicsYImpulse(12000)
+    Unknown1043()
+    sendToLabelUpon(2, 99)
+    sprite('rrb409_05', 6)
+    sprite('rrb409_06', 6)
+    sprite('rrb409_07', 32767)
+    label(99)
+    sprite('rrb409_08', 3)
+    Unknown1084(1)
+    Unknown8000(100, 1, 1)
+    sprite('rrb409_09', 3)
 
 @State
 def Shot():
@@ -5357,6 +5403,41 @@ def CmnActChangePartnerBurst():
 
 @State
 def NmlAtk5C():
+
+    def upon_IMMEDIATE():
+        AttackDefaults_StandingNormal()
+        AttackLevel_(4)
+        HitOverhead(2)
+        GroundedHitstunAnimation(9)
+        AirHitstunAnimation(9)
+        AirPushbackY(-30000)
+        PushbackX(19800)
+        Unknown9310(5)
+        Unknown9015(1)
+        Unknown11050(2, 'rrbHitEff')
+        JumpCancel_(0)
+        
+        def upon_12():
+            JumpCancel_(1)
+    sprite('rrb201_00', 1)
+    sprite('rrb271_00', 7)
+    sprite('rrb271_01', 7)
+    SFX_3('rrbse_13')
+    sprite('rrb271_02', 7)
+    GFX_0('rrb271Eff', 0)
+    Unknown7009(2)
+    sprite('rrb271_03', 3)
+    Recovery()
+    Unknown2063()
+    sprite('rrb271_04', 2)
+    sprite('rrb271_05', 3)
+    sprite('rrb271_06', 3)
+    sprite('rrb271_07', 3)
+    sprite('rrb271_08', 3)
+    sprite('rrb271_09', 3)
+    
+@State
+def NmlAtk5Cold():
 
     def upon_IMMEDIATE():
         AttackDefaults_StandingSpecial()

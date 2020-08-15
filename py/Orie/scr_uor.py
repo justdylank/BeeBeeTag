@@ -324,6 +324,7 @@ def MatchInit():
     Move_Input_(INPUT_PRESS_A)
     Move_Input_(INPUT_PRESS_B)
     Move_Input_(INPUT_PRESS_C)
+    Unknown14005(1)
     Unknown14015(500000, 200000, -600000, -200000, 50, 0)
     Move_EndRegister()
     Move_Register('ResCancelAir', 0x68)
@@ -333,6 +334,7 @@ def MatchInit():
     Move_Input_(INPUT_PRESS_A)
     Move_Input_(INPUT_PRESS_B)
     Move_Input_(INPUT_PRESS_C)
+    Unknown14005(1)
     Unknown14015(500000, 200000, -600000, -200000, 50, 0)
     Move_EndRegister()
     Move_Register('AstralHeat', 0x69)
@@ -519,6 +521,11 @@ def CheckTan():
     SLOT_47 = 0
     if (SLOT_4 == 0):
         SLOT_47 = 1
+
+@Subroutine
+def OnActionBegin():
+    HitOrBlockCancel('ResCancel')
+    HitOrBlockCancel('ResCancelAir')
         
 @State
 def CmnActStand():
@@ -2052,11 +2059,7 @@ def NmlAtk2C():
         AirPushbackY(16000)
         AirUntechableTime(26)
         AttackAttributes(0, 0, 1, 0, 0)
-        HitJumpCancel(1)
-        HitOrBlockCancel('NmlAtk5A')
-        HitOrBlockCancel('NmlAtk2A')
-        HitOrBlockCancel('NmlAtk5B')
-        HitOrBlockCancel('NmlAtk2B')
+        callSubroutine('ChainRoot')
     sprite('Action_006_00', 3)
     sprite('Action_006_01', 4)
     sprite('Action_006_02', 3)
@@ -2188,9 +2191,59 @@ def NmlAtkAIR5C():
     sprite('Action_245_07', 5)
     sprite('Action_245_08', 4)
     sprite('Action_245_09', 4)
-
+    
 @State
 def NmlAtk5C():
+
+    def upon_IMMEDIATE():
+        AttackDefaults_StandingNormal()
+        AttackLevel_(4)
+        AirPushbackX(9000)
+        AirPushbackY(-80000)
+        YImpluseBeforeWallbounce(0)
+        HitOverhead(1)
+        hitstun(19)
+        AirUntechableTime(30)
+        Unknown9310(1)
+        callSubroutine('ChainRoot')
+        JumpCancel_(0)
+        
+        def upon_12():
+            JumpCancel_(1)
+    sprite('Action_242_00', 5)
+    sprite('Action_242_01', 4)
+    sprite('Action_242_02', 3)
+    teleportRelativeX(50000)
+    sprite('Action_242_03', 3)
+    teleportRelativeX(50000)
+    sprite('Action_242_04', 2)
+    teleportRelativeX(50000)
+    physicsXImpulse(15000)
+    sprite('Action_242_05', 2)
+    Unknown1084(1)
+    Unknown8000(100, 1, 1)
+    sprite('Action_242_06', 2)
+    teleportRelativeX(50000)
+    SFX_3('SE040_Landing')
+    sprite('Action_242_07', 2)
+    sprite('Action_242_08', 2)
+    Unknown7006('uor108_1', 100, 'uor108_2', 100, '', 0, '', 0)
+    sprite('Action_242_09ex01', 1)
+    GFX_0('EffNmlAtk6BZanzo', 100)
+    SFX_3('SE043')
+    sprite('Action_242_10ex01', 3)
+    sprite('Action_242_11', 4)
+    DisableAttackRestOfMove()
+    Recovery()
+    Unknown2063()
+    sprite('Action_242_12', 5)
+    sprite('Action_242_13', 4)
+    sprite('Action_242_14', 4)
+    sprite('Action_242_15', 4)
+    sprite('Action_242_16', 4)
+    
+@State
+def NmlAtk5Cold():
 
     def upon_IMMEDIATE():
         AttackDefaults_StandingSpecial()
@@ -3278,6 +3331,7 @@ def AssaultB():
                 sendToLabel(100)
     sprite('Action_100_02', 5)
     clearUponHandler(3)
+    SystemGFX('ClashAssaultEff', 0)
     Damage(2500)
     AirUntechableTime(45)
     AttackP1(90)
@@ -3388,6 +3442,7 @@ def CommandOrderB():
                 sendToLabel(100)
     sprite('Action_148_01', 1)
     clearUponHandler(3)
+    SystemGFX('ClashAssaultEff', 0)
     Unknown23029(11, 0, 0)
     GFX_0('Tan_214B_Charge', 100)
     Unknown38(11, 1)

@@ -85,7 +85,7 @@ def MatchInit():
     Unknown15009()
     Unknown14015(6000, 213000, -172000, -24000, 1000, 50)
     Move_EndRegister()
-    Move_Register('CmnActCrushAttackNew', 0x66)
+    Move_Register('NmlAtk5C', 0x66)
     Unknown14020(1)
     Unknown14015(300000, 600000, -200000, 100000, 1500, 0)
     Move_EndRegister()
@@ -285,6 +285,7 @@ def MatchInit():
     Move_Input_(INPUT_PRESS_A)
     Move_Input_(INPUT_PRESS_B)
     Move_Input_(INPUT_PRESS_C)
+    Unknown14005(1)
     Unknown14015(500000, 200000, -600000, -200000, 50, 0)
     Move_EndRegister()
     Move_Register('ResCancelAir', 0x68)
@@ -294,6 +295,7 @@ def MatchInit():
     Move_Input_(INPUT_PRESS_A)
     Move_Input_(INPUT_PRESS_B)
     Move_Input_(INPUT_PRESS_C)
+    Unknown14005(1)
     Unknown14015(500000, 200000, -600000, -200000, 50, 0)
     Move_EndRegister()
     Move_Register('AstralHeat', 0x69)
@@ -448,6 +450,11 @@ def OnFrameStep():
         SLOT_4 = 0
         SLOT_5 = 0
 
+@Subroutine
+def OnActionBegin():
+    HitOrBlockCancel('ResCancel')
+    HitOrBlockCancel('ResCancelAir')
+    
 @State
 def CmnActStand():
     label(0)
@@ -1981,7 +1988,7 @@ def ChainRoot():
     HitOrBlockCancel('NmlAtk5B')
     HitOrBlockCancel('NmlAtk2B')
     HitOrBlockCancel('NmlAtk2C')
-    HitOrBlockCancel('CmnActCrushAttackNew')
+    HitOrBlockCancel('NmlAtk5C')
     HitJumpCancel(1)
 
 @State
@@ -2282,7 +2289,6 @@ def AN_NmlAtk5B_2nd():
         PushbackX(15300)
         AirPushbackX(12000)
         AirPushbackY(16000)
-        HitOrBlockCancel('AN_NmlAtk5B_3rd')
         callSubroutine('ChainRoot')
     sprite('Action_003_00', 2)
     sprite('Action_003_01', 2)
@@ -2318,6 +2324,70 @@ def AN_NmlAtk5B_3rd():
     sprite('Action_131_01', 2)
     Unknown7007('ume106_0', 100, 'ume106_1', 100, 'ume106_2', 100, '', 0)
     sprite('Action_131_02', 3)
+    sprite('Action_131_03', 2)
+    sprite('Action_131_06', 3)
+    sprite('Action_131_07', 3)
+    sprite('Action_131_08', 2)
+    SystemGFX('effect_380', 0)
+    GFX_0('Mer_083', -1)
+    SFX_3('016_explode_0')
+    sprite('Action_131_09', 7)
+    Recovery()
+    Unknown2063()
+    sprite('Action_131_10', 5)
+    sprite('Action_131_11', 5)
+    sprite('Action_131_12', 4)
+    sprite('Action_131_13', 4)
+    sprite('Action_131_14', 4)
+
+@State
+def NmlAtk5C():
+
+    def upon_IMMEDIATE():
+        AttackDefaults_StandingNormal()
+        AttackLevel_(4)
+        AirHitstunAnimation(9)
+        PushbackX(15300)
+        AirPushbackX(9000)
+        AirPushbackY(-50000)
+        Unknown9310(1)
+        callSubroutine('ChainRoot')
+    sprite('Action_131_00', 3)
+    sprite('Action_131_01', 2)
+    Unknown7007('ume106_0', 100, 'ume106_1', 100, 'ume106_2', 100, '', 0)
+    sprite('Action_131_02', 16)
+    
+    def upon_3():
+            if (CheckInput(0x17)):
+                clearUponHandler(3)
+                sendToLabel(100)
+    sprite('Action_131_03', 2)
+    clearUponHandler(3)
+    SystemGFX('ClashAssaultEff', 0)
+    AttackLevel_(5)
+    HitOverhead(2)
+    AirUntechableTime(35)
+    GroundedHitstunAnimation(9)
+    AirHitstunAnimation(9)
+    AttackP1(90)
+    Unknown9202(5)
+    sprite('Action_131_06', 3)
+    sprite('Action_131_07', 3)
+    sprite('Action_131_08', 2)
+    SystemGFX('effect_380', 0)
+    GFX_0('Mer_083', -1)
+    SFX_3('016_explode_0')
+    sprite('Action_131_09', 7)
+    Recovery()
+    Unknown2063()
+    sprite('Action_131_10', 5)
+    sprite('Action_131_11', 5)
+    sprite('Action_131_12', 4)
+    sprite('Action_131_13', 4)
+    sprite('Action_131_14', 4)
+    ExitState()
+    label(100)
+    sprite('Action_131_02', 1)
     sprite('Action_131_03', 2)
     sprite('Action_131_06', 3)
     sprite('Action_131_07', 3)
@@ -2451,11 +2521,7 @@ def NmlAtk2C():
         PushbackX(12000)
         HitLow(2)
         Unknown9016(1)
-        HitJumpCancel(1)
-        HitOrBlockCancel('NmlAtk5A')
-        HitOrBlockCancel('NmlAtk2A')
-        HitOrBlockCancel('NmlAtk5B')
-        HitOrBlockCancel('NmlAtk2B')
+        callSubroutine('ChainRoot')
 
         def upon_ON_HIT_OR_BLOCK():
             clearUponHandler(10)
@@ -2662,9 +2728,9 @@ def NmlAtkAIR5C():
     sprite('Action_098_06', 9)
     sprite('Action_098_07', 9)
     Unknown1084(1)
-
+    
 @State
-def CmnActCrushAttackNew():
+def NmlAtk5C2():
 
     def upon_IMMEDIATE():
         AttackDefaults_StandingSpecial()
@@ -2693,53 +2759,6 @@ def CmnActCrushAttackNew():
     sprite('Action_007_00', 2)
     sprite('Action_007_01', 3)
     Unknown7007('ume100_0', 100, 'ume100_1', 100, 'ume100_2', 100, '', 0)
-    sprite('Action_007_02', 2)
-    sprite('Action_007_03ex', 3)
-    SFX_3('SE041')
-    GFX_0('Mer_082', -1)
-    sprite('Action_007_04', 4)
-    sprite('Action_007_05', 5)
-    sprite('Action_007_06', 4)
-    sprite('Action_007_07', 4)
-    label(0)
-    sprite('Action_236_15', 3)
-    sprite('Action_236_16', 3)
-    sprite('Action_236_17', 3)
-    sprite('Action_236_18', 3)
-    gotoLabel(0)
-    label(1)
-    sprite('Action_021_00', 2)
-    Unknown1084(1)
-    clearUponHandler(2)
-    sprite('Action_021_01', 3)
-    sprite('Action_021_02', 3)
-    sprite('Action_021_03', 2)
-    sprite('Action_021_04', 3)
-    
-@State
-def CmnActCrushAttack():
-
-    def upon_IMMEDIATE():
-        Unknown30072('')
-        AttackAttributes(1, 0, 0, 0, 0)
-    sprite('Action_068_00', 4)
-    sprite('Action_068_02', 3)
-    Unknown1084(1)
-    SLOT_12 = SLOT_19
-    Unknown1019(4)
-    physicsYImpulse(23000)
-    if (SLOT_12 >= 20000):
-        SLOT_12 = 20000
-    setGravity(1800)
-    clearUponHandler(2)
-    sendToLabelUpon(2, 1)
-    sprite('Action_068_03', 3)
-    tag_voice(1, 'ume156_0', 'ume156_1', '', '')
-    sprite('Action_068_04', 3)
-    sprite('Action_068_05', 3)
-    sprite('Action_068_06', 2)
-    sprite('Action_007_00', 2)
-    sprite('Action_007_01', 3)
     sprite('Action_007_02', 2)
     sprite('Action_007_03ex', 3)
     SFX_3('SE041')
@@ -3658,7 +3677,7 @@ def RushB():
         def upon_STATE_END():
             Unknown12046(0)
     sprite('Action_110_00', 6)
-    sprite('Action_110_01', 10)
+    sprite('Action_110_01', 8)
     
     def upon_3():
             if (CheckInput(0x0E)):
@@ -3666,6 +3685,7 @@ def RushB():
                 sendToLabel(100)
     sprite('Action_110_01', 2)
     clearUponHandler(3)
+    SystemGFX('ClashAssaultEff', 0)
     AttackP1(90)
     AttackP2(90)
     sprite('Action_110_02', 8)
@@ -4465,6 +4485,7 @@ def AirShotA():
                 sendToLabel(100)
     sprite('Action_174_04', 5)
     clearUponHandler(3)
+    SystemGFX('ClashAssaultEff', 0)
     sprite('Action_174_05', 5)
     physicsXImpulse(-1250)
     physicsYImpulse(16000)
@@ -4480,7 +4501,7 @@ def AirShotA():
     sprite('Action_174_11', 3)
     ExitState()
     label(100)
-    sprite('Action_174_03', 3)
+    sprite('Action_174_03', 1)
     sprite('Action_174_04', 5)
     sprite('Action_174_05', 5)
     physicsXImpulse(-1250)
@@ -4503,9 +4524,9 @@ def AirShotB():
     def upon_IMMEDIATE():
         Unknown17003()
         Unknown22004(4, 1)
-    sprite('Action_175_00', 2)
+    sprite('Action_175_00', 4)
     Unknown1084(1)
-    sprite('Action_175_01', 2)
+    sprite('Action_175_01', 4)
     sprite('Action_175_02', 3)
     Unknown7007('ume206_0', 100, 'ume206_1', 100, 'ume206_2', 100, '', 0)
     Unknown1007(50000)
@@ -4517,6 +4538,7 @@ def AirShotB():
                 sendToLabel(100)
     sprite('Action_175_04', 5)
     clearUponHandler(3)
+    SystemGFX('ClashAssaultEff', 0)
     sprite('Action_175_05', 5)
     physicsXImpulse(-1600)
     physicsYImpulse(18000)
@@ -4532,7 +4554,7 @@ def AirShotB():
     sprite('Action_175_11', 3)
     ExitState()
     label(100)
-    sprite('Action_175_03', 3)
+    sprite('Action_175_03', 1)
     sprite('Action_175_04', 5)
     sprite('Action_175_05', 5)
     physicsXImpulse(-1600)
