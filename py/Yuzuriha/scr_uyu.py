@@ -2583,7 +2583,6 @@ def NmlAtk5B():
         Unknown1112('')
         callSubroutine('ChainRoot')
         HitOrBlockCancel('AtkB_2nd')
-        HitOrBlockCancel('AtkB_Finish')
         HitOrBlockJumpCancel(1)
         if Unknown23145('NmlAtk2B'):
             SLOT_51 = 1
@@ -2669,7 +2668,6 @@ def NmlAtk2B():
         Hitstop(8)
         Unknown11001(0, 5, 7)
         callSubroutine('ChainRoot')
-        HitOrBlockCancel('AtkB_2nd')
         HitOrBlockCancel('AtkB_Finish')
         AttackAttributes(0, 0, 1, 0, 0)
         if Unknown23145('NmlAtk5B'):
@@ -2823,6 +2821,7 @@ def NmlAtk5Cfollowup():
         AttackDefaults_StandingNormal()
         AttackLevel_(4)
         Unknown11092(1)
+        blockstun(24)
         AirHitstunAnimation(10)
         GroundedHitstunAnimation(10)
         AirPushbackY(30000)
@@ -2854,8 +2853,6 @@ def NmlAtk5Cfollowup():
     EnableCollision(1)
     sprite('Action_215_21', 6)
     Unknown2006()
-    Recovery()
-    Unknown2063()
     sprite('Action_215_22', 4)
     Unknown1084(1)
     physicsXImpulse(10000)
@@ -2864,6 +2861,8 @@ def NmlAtk5Cfollowup():
     sprite('Action_215_24', 2)
     GFX_0('IW_Ralease', 100)
     sprite('Action_215_25', 5)
+    Recovery()
+    Unknown2063()
     Unknown1084(1)
     sprite('Action_215_26', 5)
     sprite('Action_215_27', 6)
