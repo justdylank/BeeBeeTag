@@ -386,6 +386,7 @@ def MatchInit():
     Move_Input_(INPUT_PRESS_A)
     Move_Input_(INPUT_PRESS_B)
     Move_Input_(INPUT_PRESS_C)
+    Unknown14005(1)
     Unknown14015(500000, 200000, -600000, -200000, 50, 0)
     Move_EndRegister()
     Move_Register('ResCancelAir', 0x68)
@@ -395,6 +396,7 @@ def MatchInit():
     Move_Input_(INPUT_PRESS_A)
     Move_Input_(INPUT_PRESS_B)
     Move_Input_(INPUT_PRESS_C)
+    Unknown14005(1)
     Unknown14015(500000, 200000, -600000, -200000, 50, 0)
     Move_EndRegister()
     Move_Register('AstralHeat', 0x69)
@@ -659,6 +661,11 @@ def ChargeDamageUp_Kick():
     if (SLOT_67 == 3):
         Unknown10000(400)
 
+@Subroutine
+def OnActionBegin():
+    HitOrBlockCancel('ResCancel')
+    HitOrBlockCancel('ResCancelAir')
+    
 @Subroutine
 def Charge_Count():
     if SLOT_31:
@@ -3506,49 +3513,29 @@ def NmlAtkAIR5C():
     sprite('ce255_05', 2)
     Recovery()
     sprite('ce255_06', 4)
-
-@Subroutine
-def SpecialCancel():
-    HitCancel('CmnActInvincibleAttack')
-    HitCancel('CmnActInvincibleAttackAir')
-    HitCancel('AbaremakuriLandA')
-    HitCancel('DragonKickLandB')
-    HitCancel('TomoeAttackEX')
-    HitCancel('100inchPunchA')
-    HitCancel('100inchPunchB')
-    HitCancel('KokutengekiEX')
-    HitCancel('AbaremakuriAirA')
-    HitCancel('DragonKickAirB')
-    HitCancel('DragonKickAirEX')
-    HitCancel('UltimateGodHand')
-    HitCancel('UltimateGodHandOD')
-    HitCancel('UltimateCharge')
-    HitCancel('UltimateChargeOD')
-    HitCancel('UltimateAguneyasutora_Far')
-    HitCancel('UltimateAguneyasutoraOD_Far')
-    HitCancel('UltimateAguneyasutora_Near')
-    HitCancel('UltimateAguneyasutoraOD_Near')
-
+    
 @State
 def CmnActCrushAttackNew():
 
     def upon_IMMEDIATE():
-        AttackDefaults_StandingSpecial()
+        AttackDefaults_StandingNormal()
         AttackLevel_(5)
         Damage(1500)
-        blockstun(12)
-        Unknown9310(10)
+        Unknown9310(15)
         AttackP1(75)
         AttackP2(75)
         AirPushbackX(1500)
         AirPushbackY(-80000)
         PushbackX(10000)
-        AirUntechableTime(35)
+        AirUntechableTime(40)
         blockstun(13)
         HitOverhead(2)
         GroundedHitstunAnimation(9)
         sendToLabelUpon(2, 0)
-        callSubroutine('SpecialCancel')
+        JumpCancel_(0)
+        
+        def upon_12():
+            JumpCancel_(1)
     sprite('ce210_00', 2)
     sprite('ce210_01', 2)
     sprite('ce210_02', 2)
@@ -3572,9 +3559,9 @@ def CmnActCrushAttackNew():
     Unknown8000(100, 1, 1)
     sprite('ce210_08', 3)
     sprite('ce210_09', 3)
-    sprite('ce210_10', 3)
-    sprite('ce210_11', 3)
-    sprite('ce210_12', 3)
+    sprite('ce210_10', 4)
+    sprite('ce210_11', 4)
+    sprite('ce210_12', 4)
     
 @State
 def CmnActCrushAttackOld():

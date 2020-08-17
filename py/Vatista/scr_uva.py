@@ -436,6 +436,7 @@ def MatchInit():
     Move_Input_(INPUT_PRESS_A)
     Move_Input_(INPUT_PRESS_B)
     Move_Input_(INPUT_PRESS_C)
+    Unknown14005(1)
     Unknown14015(500000, 200000, -600000, -200000, 50, 0)
     Move_EndRegister()
     Move_Register('ResCancelAir', 0x68)
@@ -445,6 +446,7 @@ def MatchInit():
     Move_Input_(INPUT_PRESS_A)
     Move_Input_(INPUT_PRESS_B)
     Move_Input_(INPUT_PRESS_C)
+    Unknown14005(1)
     Unknown14015(500000, 200000, -600000, -200000, 50, 0)
     Move_EndRegister()
     Move_Register('AstralHeat', 0x69)
@@ -598,11 +600,26 @@ def OnFrameStep():
         SLOT_5 = 0
         
 @Subroutine
+def OnActionBegin():
+    HitOrBlockCancel('ResCancel')
+    HitOrBlockCancel('ResCancelAir')
+    
+@Subroutine
 def CheckBitDetonate():
     SLOT_47 = 0
     if (SLOT_31 >= 3):
         SLOT_47 = 1
-        
+
+@Subroutine
+def AddChainarumaLand():
+    WhiffCancelEnable(1)
+    WhiffCancel('aruma1')
+    WhiffCancel('aruma3')
+    WhiffCancel('aruma4')
+    WhiffCancel('aruma6')
+    WhiffCancel('aruma7')
+    WhiffCancel('aruma9')
+
 @Subroutine
 def AddChainarumaAir():
     WhiffCancelEnable(1)
@@ -2575,6 +2592,7 @@ def NmlAtk2C():
         HitOrBlockCancel('NmlAtk2A')
         HitOrBlockCancel('NmlAtk5B')
         HitOrBlockCancel('NmlAtk2B')
+        HitOrBlockCancel('NmlAtk5C')
         HitJumpCancel(1)
     sprite('Action_006_00', 3)
     sprite('Action_006_01', 3)
@@ -2992,6 +3010,97 @@ def NmlAtkAIR2C():
 
 @State
 def NmlAtk5C():
+
+    def upon_IMMEDIATE():
+        AttackDefaults_StandingNormal()
+        ProjectileDurabilityLvl(1)
+        AttackLevel_(3)
+        Damage(500)
+        PushbackX(15000)
+        AirPushbackY(15000)
+        AttackP2(70)
+        Unknown11092(1)
+        Hitstop(1)
+        Unknown11001(0, 9, 9)
+        GroundedHitstunAnimation(5)
+        JumpCancel_(0)
+        Unknown11068(1)
+        Unknown9266(14)
+        Unknown11056(0)
+        callSubroutine('AddChainarumaLand')
+
+        def upon_12():
+            ScreenShake(7000, 7000)
+    sprite('Action_237_00', 3)
+    physicsXImpulse(5000)
+    sprite('Action_237_01', 3)
+    sprite('Action_237_02', 3)
+    tag_voice(1, 'uva109_0', 'uva109_1', 'uva109_2', '')
+    sprite('Action_237_03', 5)
+    GFX_0('Vat_238', -1)
+    RefreshMultihit()
+    sprite('Action_237_19', 3)
+    sprite('Action_237_20', 4)
+    GFX_0('Vat_238', -1)
+    RefreshMultihit()
+
+    def upon_ON_HIT_OR_BLOCK():
+        clearUponHandler(10)
+        if CheckInput(0x13):
+            sendToLabel(0)
+    sprite('Action_237_21', 3)
+    sprite('Action_237_22', 2)
+    sprite('Action_237_23', 3)
+    GFX_0('Vat_238_2', -1)
+    JumpCancel_(1)
+    WhiffCancelEnable(0)
+    RefreshMultihit()
+    GroundedHitstunAnimation(13)
+    AirHitstunAnimation(13)
+    AirPushbackX(20000)
+    sprite('Action_237_23', 5)
+    Unknown2063()
+    physicsXImpulse(-5000)
+    sprite('Action_237_24', 6)
+    Unknown1019(5)
+    sprite('Action_237_25', 4)
+    sprite('Action_237_26', 4)
+    ExitState()
+    label(0)
+    sprite('Action_237_05', 2)
+    sprite('Action_237_06', 4)
+    sprite('Action_237_07', 5)
+    sprite('Action_237_08', 2)
+    sprite('Action_237_09', 2)
+    sprite('Action_237_10', 4)
+    GFX_0('Vat_250', -1)
+    GFX_0('Vat_251', -1)
+    RefreshMultihit()
+    sprite('Action_237_11', 2)
+    sprite('Action_237_12', 5)
+    GFX_0('Vat_250', -1)
+    GFX_0('Vat_251', -1)
+    RefreshMultihit()
+    sprite('Action_237_13', 2)
+    sprite('Action_237_14', 9)
+    GFX_0('Vat_240', -1)
+    Hitstop(8)
+    WhiffCancelEnable(0)
+    JumpCancel_(1)
+    RefreshMultihit()
+    physicsXImpulse(-5000)
+    AirPushbackX(20000)
+    AirUntechableTime(17)
+    GroundedHitstunAnimation(13)
+    AirHitstunAnimation(13)
+    sprite('Action_237_15', 7)
+    Unknown1019(5)
+    Unknown2063()
+    sprite('Action_237_16', 5)
+    sprite('Action_237_17', 5)
+
+@State
+def NmlAtk5C_old():
 
     def upon_IMMEDIATE():
         AttackDefaults_StandingSpecial()

@@ -51,10 +51,6 @@ def MatchInit():
     Unknown14005(1)
     Unknown14015(0, 500000, -200000, 200000, 1000, 50)
     Move_EndRegister()
-    Move_Register('NmlAtk6B', 0x1A)
-    MoveMaxChainRepeat(2)
-    Unknown14015(200000, 450000, -150000, 150000, 1500, 50)
-    Move_EndRegister()
     Move_Register('NmlAtk2B', 0x16)
     Unknown14027('NmlAtk5B')
     Unknown15021(4000)
@@ -76,7 +72,6 @@ def MatchInit():
     Unknown14015(0, 600000, -200000, 250000, 800, 50)
     Move_EndRegister()
     Move_Register('NmlAtk5C', 0x2b)
-    Unknown15009()
     Unknown14015(200000, 450000, -150000, 150000, 1500, 50)
     Move_EndRegister()
     Move_Register('NmlAtk2C', 0x28)
@@ -380,6 +375,7 @@ def MatchInit():
     Move_Input_(INPUT_PRESS_A)
     Move_Input_(INPUT_PRESS_B)
     Move_Input_(INPUT_PRESS_C)
+    Unknown14005(1)
     Unknown14015(500000, 200000, -600000, -200000, 50, 0)
     Move_EndRegister()
     Move_Register('ResCancelAir', 0x68)
@@ -389,6 +385,7 @@ def MatchInit():
     Move_Input_(INPUT_PRESS_A)
     Move_Input_(INPUT_PRESS_B)
     Move_Input_(INPUT_PRESS_C)
+    Unknown14005(1)
     Unknown14015(500000, 200000, -600000, -200000, 50, 0)
     Move_EndRegister()
     Move_Register('astral', 0x69)
@@ -599,6 +596,11 @@ def OnFrameStep():
             if SLOT_115:
                 SLOT_78 = 110
                 ConsumeSuperMeter(3)
+
+@Subroutine
+def OnActionBegin():
+    HitOrBlockCancel('ResCancel')
+    HitOrBlockCancel('ResCancelAir')
 
 @State
 def CmnActStand():
@@ -2790,7 +2792,6 @@ def NmlAtk5A():
         HitOrBlockCancel('NmlAtk5AA')
         HitOrBlockCancel('NmlAtk2A')
         HitOrBlockCancel('NmlAtk5B')
-        HitOrBlockCancel('NmlAtk6B')
         HitOrBlockCancel('NmlAtk2B')
         HitOrBlockCancel('NmlAtk2C')
         HitOrBlockCancel('NmlAtk5C')
@@ -2830,7 +2831,6 @@ def NmlAtk4A():
         HitOrBlockCancel('NmlAtk5A')
         HitOrBlockCancel('NmlAtk2A')
         HitOrBlockCancel('NmlAtk5B')
-        HitOrBlockCancel('NmlAtk6B')
         HitOrBlockCancel('NmlAtk2B')
         HitOrBlockCancel('NmlAtk2C')
         HitOrBlockCancel('NmlAtk5C')
@@ -2859,7 +2859,6 @@ def NmlAtk5AA():
         AttackDefaults_StandingNormal()
         Unknown2003(1)
         Unknown2004(1, 0)
-        HitOrBlockCancel('NmlAtk6B')
         HitOrBlockCancel('NmlAtk5AAA')
         HitOrBlockCancel('NmlAtk5B')
         HitOrBlockCancel('NmlAtk2B')
@@ -3100,7 +3099,6 @@ def NmlAtk5B():
         AirPushbackY(20000)
         Unknown9016(1)
         Unknown1112('')
-        HitOrBlockCancel('NmlAtk6B')
         HitOrBlockCancel('NmlAtk5BB')
         HitOrBlockCancel('NmlAtk2B')
         HitOrBlockCancel('NmlAtk2C')
@@ -3144,7 +3142,6 @@ def NmlAtk5BB():
         Unknown9016(1)
         HitOrBlockJumpCancel(1)
         HitCancel('NmlAtk5BBB')
-        HitOrBlockCancel('NmlAtk6B')
         HitOrBlockCancel('NmlAtk2B')
         HitOrBlockCancel('NmlAtk2C')
         HitOrBlockCancel('NmlAtk5C')
@@ -3323,7 +3320,6 @@ def NmlAtk2A():
         HitLow(2)
         HitOrBlockCancel('NmlAtk5A')
         HitOrBlockCancel('NmlAtk5B')
-        HitOrBlockCancel('NmlAtk6B')
         HitOrBlockCancel('NmlAtk2B')
         HitOrBlockCancel('NmlAtk2C')
         HitOrBlockCancel('NmlAtk5C')
@@ -3360,7 +3356,6 @@ def NmlAtk2B():
         AirUntechableTime(24)
         AttackAttributes(0, 1, 0, 0, 0)
         HitOrBlockCancel('NmlAtk5B')
-        HitOrBlockCancel('NmlAtk6B')
         HitOrBlockCancel('NmlAtk2C')
         HitOrBlockCancel('NmlAtk5C')
         HitOrBlockJumpCancel(1)
@@ -3599,6 +3594,53 @@ def NmlAtkAIR5C():
 
 @State
 def NmlAtk5C():
+
+    def upon_IMMEDIATE():
+        AttackDefaults_StandingNormal()
+        AttackLevel_(4)
+        AttackP1(70)
+        AirHitstunAnimation(10)
+        AirPushbackY(16000)
+        AirPushbackX(10000)
+        AirUntechableTime(20)
+        FreezeCount(1)
+        FreezeDuration(60)
+        PushbackX(19800)
+        Unknown9016(1)
+        Unknown9019(1)
+        HitOrBlockCancel('NmlAtk5B')
+        HitOrBlockCancel('NmlAtk2B')
+        HitOrBlockCancel('NmlAtk2C')
+        HitOrBlockCancel('NmlAtkThrow')
+        HitOrBlockCancel('NmlAtkBackThrow')
+        HitOrBlockCancel('DashCancel')
+
+        def upon_ON_HIT_OR_BLOCK():
+            Unknown21015('EffAtk5D', 6001, 0)
+    sprite('jn203_00', 2)
+    sprite('jn203_01', 2)
+    sprite('jn203_02', 2)
+    Unknown7007('bjn108_0', 100, 'bjn108_1', 100, 'bjn108_2', 100, '', 0)
+    GFX_0('ModelMagicCircle1', 0)
+    Unknown23030('jn_drive_flash', 0, 0, 0, 0, 0, 0, 0, 0)
+    sprite('jn203_03', 2)
+    sprite('jn203_04', 2)
+    sprite('jn203_05', 2)
+    sprite('jn203_06', 2)
+    sprite('jn203_07', 2)
+    GFX_0('EffAtk5D', 0)
+    ScreenShake(0, 5000)
+    sprite('jn203_08', 8)
+    sprite('jn203_09', 3)
+    Recovery()
+    Unknown2063()
+    sprite('jn203_10', 6)
+    sprite('jn203_11', 6)
+    sprite('jn203_12', 6)
+    sprite('jn203_13', 3)
+    
+@State
+def NmlAtk5Cold():
 
     def upon_IMMEDIATE():
         AttackDefaults_StandingSpecial()
