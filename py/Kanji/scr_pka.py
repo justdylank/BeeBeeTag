@@ -2692,7 +2692,7 @@ def NmlAtk5A():
 
     def upon_IMMEDIATE():
         AttackDefaults_StandingNormal()
-        AttackP1(80)
+        AttackP1(90)
         AttackP2(80)
         HitOrBlockCancel('NmlAtk5A2nd')
         HitOrBlockCancel('NmlAtk5B')
@@ -3286,12 +3286,12 @@ def NmlAtk2B():
         AttackDefaults_CrouchingNormal()
         AttackLevel_(4)
         AttackP1(90)
-        AttackP2(70)
+        AttackP2(85)
         AirHitstunAnimation(10)
         GroundedHitstunAnimation(10)
-        AirUntechableTime(45)
+        AirUntechableTime(40)
         AirPushbackX(3000)
-        AirPushbackY(40000)
+        AirPushbackY(25000)
         AttackAttributes(0, 1, 0, 0, 0)
         HitOrBlockCancel('NmlAtk5A')
         HitOrBlockCancel('NmlAtk5B')
@@ -3694,9 +3694,9 @@ def NmlAtkAIR5B():
         HitOrBlockJumpCancel(1)
         PushbackX(20000)
         HitOrBlockCancel('NmlAtkAIR5C')
-    sprite('ka251_00', 4)
-    sprite('ka251_01', 5)
-    sprite('ka251_02', 3)
+    sprite('ka251_00', 5)
+    sprite('ka251_01', 6)
+    sprite('ka251_02', 4)
     SFX_3('slash_blade_slow')
     sprite('ka251_04', 3)
     Unknown23054('ka251_03', 3)
@@ -6773,6 +6773,11 @@ def Kurokoge_Exe():
     sprite('ka432_11', 6)
     sprite('ka432_12', 6)
 
+@Subroutine
+def OnActionBegin():
+    HitOrBlockCancel('ResCancel')
+    HitOrBlockCancel('ResCancelAir')
+    
 @State
 def ResCancel():
 
@@ -6780,6 +6785,7 @@ def ResCancel():
         AttackDefaults_AirDD()
         Unknown23055('')
         setInvincible(1)
+        Unknown14005(1)
         Unknown1084(1)
     sprite('ka121_00', 2)
     Unknown2036(18, -1, 0)
@@ -6798,6 +6804,7 @@ def ResCancelAir():
     def upon_IMMEDIATE():
         AttackDefaults_AirDD()
         Unknown23055('')
+        Unknown14005(1)
         setInvincible(1)
     sprite('ka121_00', 2)
     Unknown2036(18, -1, 0)

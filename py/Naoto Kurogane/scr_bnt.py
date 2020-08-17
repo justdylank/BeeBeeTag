@@ -444,6 +444,7 @@ def MatchInit():
     Move_Input_(INPUT_PRESS_A)
     Move_Input_(INPUT_PRESS_B)
     Move_Input_(INPUT_PRESS_C)
+    Unknown14005(1)
     Unknown14015(500000, 200000, -600000, -200000, 50, 0)
     Move_EndRegister()
     Move_Register('ResCancelAir', 0x68)
@@ -453,6 +454,7 @@ def MatchInit():
     Move_Input_(INPUT_PRESS_A)
     Move_Input_(INPUT_PRESS_B)
     Move_Input_(INPUT_PRESS_C)
+    Unknown14005(1)
     Unknown14015(500000, 200000, -600000, -200000, 50, 0)
     Move_EndRegister()
     Move_Register('AstralHeat', 0x69)
@@ -642,6 +644,11 @@ def OnFrameStep():
         if (not SLOT_109):
             SLOT_66 = 0
 
+@Subroutine
+def OnActionBegin():
+    HitOrBlockCancel('ResCancel')
+    HitOrBlockCancel('ResCancelAir')
+    
 @Subroutine
 def OnPreDraw():
     Unknown23030('NT_RagnaSwitch', 0, 0, 0, 0, 0, 0, 0, 0)
@@ -3005,7 +3012,7 @@ def NmlAtkAIR5C():
 def NmlAtk5C():
 
     def upon_IMMEDIATE():
-        AttackDefaults_StandingSpecial()
+        AttackDefaults_StandingNormal()
         AttackLevel_(5)
         AttackP1(70)
         AttackP2(85)
@@ -3021,21 +3028,15 @@ def NmlAtk5C():
         HitOverhead(2)
         Unknown9310(1)
         Unknown9190(1)
-        Unknown9118(30)
+        Unknown9118(20)
         PushbackX(8000)
         Unknown11028(24)
         Unknown23086(1)
         Unknown12051(2)
-        HitCancel('Assault_cancel_A')
-        HitCancel('Assault_cancel_B')
-        HitCancel('Assault_cancel_EX')
-        HitCancel('Dodge_cancel')
-        HitCancel('EdgeAssault_cancel')
-        HitCancel('EdgeAssault_cancel_EX')
-        HitCancel('UltimateAssault_cancel')
-        HitCancel('UltimateAssaultOD_cancel')
-        HitCancel('UltimateEdgeAssault_cancel')
-        HitCancel('UltimateEdgeAssaultOD_cancel')
+        JumpCancel_(0)
+        
+        def upon_12():
+            JumpCancel_(1)
     sprite('nt210_00', 3)
     SLOT_31 = 0
     sprite('nt210_01', 3)
@@ -3052,13 +3053,13 @@ def NmlAtk5C():
     Unknown8000(100, 1, 1)
     Unknown1019(40)
     sprite('nt210_07', 3)
-    sprite('nt210_08', 4)
+    sprite('nt210_08', 3)
     Unknown1084(1)
     sprite('nt210_09', 5)
     sprite('nt210_10', 5)
-    sprite('nt210_11', 6)
-    sprite('nt210_12', 6)
-    sprite('nt210_13', 6)
+    sprite('nt210_11', 4)
+    sprite('nt210_12', 4)
+    sprite('nt210_13', 4)
 
 @State
 def CmnActCrushAttackChase1st():

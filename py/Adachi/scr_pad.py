@@ -327,6 +327,7 @@ def MatchInit():
     Move_Input_(INPUT_PRESS_A)
     Move_Input_(INPUT_PRESS_B)
     Move_Input_(INPUT_PRESS_C)
+    Unknown14005(1)
     Unknown14015(500000, 200000, -600000, -200000, 50, 0)
     Move_EndRegister()
     Move_Register('ResCancelAir', 0x68)
@@ -336,6 +337,7 @@ def MatchInit():
     Move_Input_(INPUT_PRESS_A)
     Move_Input_(INPUT_PRESS_B)
     Move_Input_(INPUT_PRESS_C)
+    Unknown14005(1)
     Unknown14015(500000, 200000, -600000, -200000, 50, 0)
     Move_EndRegister()
     Move_Register('AstralHeat', 0x69)
@@ -553,6 +555,8 @@ def OnActionBegin():
             Unknown38(5, 1)
             if Unknown23148('CmnActTagBattleWait'):
                 Unknown13(5)
+    HitOrBlockCancel('ResCancel')
+    HitOrBlockCancel('ResCancelAir')
 
 @State
 def CmnActStand():
@@ -2937,7 +2941,7 @@ def NmlAtk4AA():
 def NmlAtk5C():
 
     def upon_IMMEDIATE():
-        AttackDefaults_StandingSpecial()
+        AttackDefaults_StandingNormal()
         AttackLevel_(5)
         Damage(1500)
         blockstun(12)
@@ -2952,18 +2956,10 @@ def NmlAtk5C():
         HitOverhead(2)
         GroundedHitstunAnimation(9)
         sendToLabelUpon(2, 0)
-        HitCancel('SpecialAntiAirFast')
-        HitCancel('SpecialSearchShotLand')
-        HitCancel('SpecialShotSlowLand')
-        HitCancel('GunShotA')
-        HitCancel('GunShotB')
-        HitCancel('Megidola')
-        HitCancel('UltimateAsasultLand')
-        HitCancel('UltimateAsasultLandSP')
-        HitCancel('UltimateAsasultAir')
-        HitCancel('UltimateAsasultAirSP')
-        HitCancel('UltimateThrow')
-        HitCancel('UltimateThrowSP')
+        JumpCancel_(0)
+        
+        def upon_12():
+            JumpCancel_(1)
     sprite('ad210_00', 2)
     sprite('ad210_01', 2)
     sprite('ad210_02', 1)

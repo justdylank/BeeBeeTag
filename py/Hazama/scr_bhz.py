@@ -361,6 +361,7 @@ def MatchInit():
     Move_Input_(INPUT_PRESS_A)
     Move_Input_(INPUT_PRESS_B)
     Move_Input_(INPUT_PRESS_C)
+    Unknown14005(1)
     Unknown14015(500000, 200000, -600000, -200000, 50, 0)
     Move_EndRegister()
     Move_Register('ResCancelAir', 0x68)
@@ -370,6 +371,7 @@ def MatchInit():
     Move_Input_(INPUT_PRESS_A)
     Move_Input_(INPUT_PRESS_B)
     Move_Input_(INPUT_PRESS_C)
+    Unknown14005(1)
     Unknown14015(500000, 200000, -600000, -200000, 50, 0)
     Move_EndRegister()
     Move_Register('AstralHeat', 0x69)
@@ -522,6 +524,8 @@ def OnActionBegin():
         Unknown21015('ExBodyAura', 301, 0)
     if (not Unknown23148('DriveJump4')):
         Unknown21015('ExBodyAura', 301, 0)
+    HitOrBlockCancel('ResCancel')
+    HitOrBlockCancel('ResCancelAir')
 
 @Subroutine
 def CheckUroboros():
@@ -4638,7 +4642,7 @@ def NmlAtkAIR5ANew():
 def NmlAtk5C():
 
     def upon_IMMEDIATE():
-        AttackDefaults_StandingSpecial()
+        AttackDefaults_StandingNormal()
         AttackLevel_(5)
         Unknown9016(1)
         blockstun(12)
@@ -4657,16 +4661,10 @@ def NmlAtk5C():
         Unknown11028(24)
         Unknown23086(1)
         Unknown12051(2)
-        HitCancel('SpecialAssault')
-        HitCancel('SpecialShot')
-        HitCancel('SpecialShot_C')
-        HitCancel('Kamae')
-        HitCancel('AntiAir')
-        HitCancel('SPThrow')
-        HitCancel('UltimateAssault')
-        HitCancel('UltimateAssault_OD')
-        HitCancel('UltimateShot')
-        HitCancel('UltimateShot_OD')
+        JumpCancel_(0)
+        
+        def upon_12():
+            JumpCancel_(1)
     sprite('hz410_00', 3)
     sprite('hz410_01', 3)
     SystemGFX('GuardCrushWind', 1)
