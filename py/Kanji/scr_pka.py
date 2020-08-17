@@ -6773,6 +6773,11 @@ def Kurokoge_Exe():
     sprite('ka432_11', 6)
     sprite('ka432_12', 6)
 
+@Subroutine
+def OnActionBegin():
+    HitOrBlockCancel('ResCancel')
+    HitOrBlockCancel('ResCancelAir')
+    
 @State
 def ResCancel():
 
@@ -6780,6 +6785,7 @@ def ResCancel():
         AttackDefaults_AirDD()
         Unknown23055('')
         setInvincible(1)
+        Unknown14005(1)
         Unknown1084(1)
     sprite('ka121_00', 2)
     Unknown2036(18, -1, 0)
@@ -6798,6 +6804,7 @@ def ResCancelAir():
     def upon_IMMEDIATE():
         AttackDefaults_AirDD()
         Unknown23055('')
+        Unknown14005(1)
         setInvincible(1)
     sprite('ka121_00', 2)
     Unknown2036(18, -1, 0)
