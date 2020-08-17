@@ -72,13 +72,9 @@ def MatchInit():
     Unknown15009()
     Unknown14015(0, 500000, -200000, 650000, 1500, 50)
     Move_EndRegister()
-    Move_Register('NmlAtk4B', 0x18)
+    Move_Register('StandingOverhead', 0x66)
     MoveMaxChainRepeat(1)
     Unknown14015(50000, 300000, -120000, 200000, 2000, 0)
-    Move_EndRegister()
-    Move_Register('CmnActCrushAttackNew', 0x66)
-    Unknown15008()
-    Unknown14015(0, 400000, -200000, 200000, 500, 25)
     Move_EndRegister()
     Move_Register('NmlAtk2C', 0x28)
     MoveMaxChainRepeat(1)
@@ -235,6 +231,7 @@ def MatchInit():
     Move_Input_(INPUT_PRESS_A)
     Move_Input_(INPUT_PRESS_B)
     Move_Input_(INPUT_PRESS_C)
+    Unknown14005(1)
     Unknown14015(500000, 200000, -600000, -200000, 50, 0)
     Move_EndRegister()
     Move_Register('ResCancelAir', 0x68)
@@ -244,6 +241,7 @@ def MatchInit():
     Move_Input_(INPUT_PRESS_A)
     Move_Input_(INPUT_PRESS_B)
     Move_Input_(INPUT_PRESS_C)
+    Unknown14005(1)
     Unknown14015(500000, 200000, -600000, -200000, 50, 0)
     Move_EndRegister()
     Move_Register('AstralHeat', 0x69)
@@ -1490,15 +1488,19 @@ def CmnActAComboFinalBlowFinish():
     sprite('Action_240_35', 5)
 
 @Subroutine
+def OnActionBegin():
+    HitOrBlockCancel('ResCancel')
+    HitOrBlockCancel('ResCancelAir')
+
+@Subroutine
 def ChainRoot():   
     HitOrBlockCancel('NmlAtk5A')
     HitOrBlockCancel('NmlAtk6A')
     HitOrBlockCancel('NmlAtk2A')
     HitOrBlockCancel('NmlAtk5B')
-    HitOrBlockCancel('NmlAtk4B')
     HitOrBlockCancel('NmlAtk2B')
     HitOrBlockCancel('NmlAtk2C')
-    HitOrBlockCancel('CmnActCrushAttackNew')
+    HitOrBlockCancel('StandingOverhead')
     HitJumpCancel(1)
 
 @State
@@ -2016,46 +2018,6 @@ def NmlAtk5B_3rd_Exe():
     sprite('Action_198_07', 5)
 
 @State
-def NmlAtk4B():
-
-    def upon_IMMEDIATE():
-        AttackDefaults_StandingSpecial()
-        AttackLevel_(4)
-        AttackP1(70)
-        AirPushbackX(15000)
-        PushbackX(5000)
-        GroundedHitstunAnimation(1)
-        AirHitstunAnimation(1)
-        HitOverhead(2)
-        AirPushbackY(-35000)
-        Unknown9310(20)
-        hitstun(25)
-        blockstun(18)
-    sprite('Action_190_00', 7)
-    sprite('Action_190_01', 6)
-    sprite('Action_190_02', 5)
-    sprite('Action_190_03', 4)
-    sprite('Action_190_04', 2)
-    tag_voice(1, 'ugo156_0', 'ugo156_1', '', '')
-    physicsXImpulse(43000)
-    Unknown1047(-1500)
-    sprite('Action_190_05', 2)
-    SFX_3('SE043')
-    sprite('Action_190_06', 5)
-    RefreshMultihit()
-    Unknown1084(1)
-    sprite('Action_190_07', 7)
-    Recovery()
-    Unknown2063()
-    sprite('Action_190_08', 1)
-    teleportRelativeX(88000)
-    sprite('Action_190_08', 1)
-    sprite('Action_190_08', 3)
-    sprite('Action_190_09', 4)
-    teleportRelativeX(75000)
-    loopRest()
-
-@State
 def NmlAtk2A():
 
     def upon_IMMEDIATE():
@@ -2183,8 +2145,8 @@ def NmlAtk2C():
         HitOrBlockCancel('NmlAtk6A')
         HitOrBlockCancel('NmlAtk2A')
         HitOrBlockCancel('NmlAtk5B')
-        HitOrBlockCancel('NmlAtk4B')
         HitOrBlockCancel('NmlAtk2B')
+        HitOrBlockCancel('StandingOverhead')
         HitJumpCancel(1)
 
         def upon_ON_HIT_OR_BLOCK():
@@ -2371,6 +2333,46 @@ def NmlAtkAIR5C():
     sprite('Action_180_10', 5)
     sprite('Action_180_11', 6)
     sprite('Action_180_12', 6)
+
+@State
+def StandingOverhead():
+
+    def upon_IMMEDIATE():
+        AttackDefaults_StandingSpecial()
+        AttackLevel_(4)
+        AttackP1(70)
+        AirPushbackX(15000)
+        PushbackX(5000)
+        GroundedHitstunAnimation(1)
+        AirHitstunAnimation(1)
+        HitOverhead(2)
+        AirPushbackY(-35000)
+        Unknown9310(20)
+        hitstun(25)
+        blockstun(18)
+    sprite('Action_190_00', 7)
+    sprite('Action_190_01', 6)
+    sprite('Action_190_02', 5)
+    sprite('Action_190_03', 4)
+    sprite('Action_190_04', 2)
+    tag_voice(1, 'ugo156_0', 'ugo156_1', '', '')
+    physicsXImpulse(43000)
+    Unknown1047(-1500)
+    sprite('Action_190_05', 2)
+    SFX_3('SE043')
+    sprite('Action_190_06', 5)
+    RefreshMultihit()
+    Unknown1084(1)
+    sprite('Action_190_07', 7)
+    Recovery()
+    Unknown2063()
+    sprite('Action_190_08', 1)
+    teleportRelativeX(88000)
+    sprite('Action_190_08', 1)
+    sprite('Action_190_08', 3)
+    sprite('Action_190_09', 4)
+    teleportRelativeX(75000)
+    loopRest()
 
 @State
 def CmnActCrushAttackNew():

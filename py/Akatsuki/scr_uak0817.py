@@ -107,21 +107,17 @@ def MatchInit():
     Unknown14005(1)
     Unknown14015(0, 450000, -200000, 300000, 750, 50)
     Move_EndRegister()
-    Move_Register('NmlAtk6B', 0x1a)
-    MoveMaxChainRepeat(1)
-    Unknown14020(1)
-    Unknown15021(2000)
-    Unknown15013(500)
-    Unknown15008()
-    Unknown14015(0, 400000, -200000, 200000, 500, 25)
-    Move_EndRegister()
     Move_Register('NmlAtk2B', 0x16)
     MoveMaxChainRepeat(1)
     Unknown14020(1)
     Unknown15009()
     Unknown14015(0, 400000, -100000, 200000, 1000, 50)
     Move_EndRegister()
-    Move_Register('CmnActCrushAttackNew', 0x66)
+    Move_Register('HelmCrusher', 0x66)
+    MoveMaxChainRepeat(1)
+    Unknown14020(1)
+    Unknown15021(2000)
+    Unknown15013(500)
     Unknown15008()
     Unknown14015(0, 400000, -200000, 200000, 500, 25)
     Move_EndRegister()
@@ -398,6 +394,7 @@ def MatchInit():
     Move_Input_(INPUT_PRESS_A)
     Move_Input_(INPUT_PRESS_B)
     Move_Input_(INPUT_PRESS_C)
+    Unknown14005(1)
     Unknown14015(500000, 200000, -600000, -200000, 50, 0)
     Move_EndRegister()
     Move_Register('ResCancelAir', 0x68)
@@ -407,6 +404,7 @@ def MatchInit():
     Move_Input_(INPUT_PRESS_A)
     Move_Input_(INPUT_PRESS_B)
     Move_Input_(INPUT_PRESS_C)
+    Unknown14005(1)
     Unknown14015(500000, 200000, -600000, -200000, 50, 0)
     Move_EndRegister()
     Move_Register('AstralHeat', 0x69)
@@ -1759,14 +1757,18 @@ def CmnActAComboFinalBlowFinish():
     sprite('Action_159_09', 3)
 
 @Subroutine
+def OnActionBegin():
+    HitOrBlockCancel('ResCancel')
+    HitOrBlockCancel('ResCancelAir')
+
+@Subroutine
 def ChainRoot():
     HitOrBlockCancel('NmlAtk4A')
     HitOrBlockCancel('NmlAtk5A')
     HitOrBlockCancel('NmlAtk2A')
     HitOrBlockCancel('NmlAtk5B')
-    HitOrBlockCancel('NmlAtk6B')
     HitOrBlockCancel('NmlAtk2B')
-    HitOrBlockCancel('CmnActCrushAttackNew')
+    HitOrBlockCancel('HelmCrusher')
     HitOrBlockCancel('NmlAtk6C')
     HitJumpCancel(1)
 
@@ -2060,42 +2062,6 @@ def NmlAtk5B():
     sprite('Action_003_09', 3)
 
 @State
-def NmlAtk6B():
-
-    def upon_IMMEDIATE():
-        AttackDefaults_StandingSpecial()
-        AttackLevel_(4)
-        AttackP1(70)
-        AttackP2(80)
-        AirPushbackX(15000)
-        PushbackX(5000)
-        GroundedHitstunAnimation(1)
-        AirHitstunAnimation(1)
-        AirPushbackY(-35000)
-        Unknown9310(20)
-        HitOverhead(1)
-        callSubroutine('AtkEffLightning')
-        callSubroutine('AtkEffLightningHitmark')
-        callSubroutine('CheckAtemiMuteki')
-    sprite('Action_150_00', 3)
-    sprite('Action_150_01', 5)
-    tag_voice(1, 'uak110_1', 'uak110_1', '', '')
-    if random_(2, 0, 50):
-        tag_voice(1, 'uak156_0', 'uak156_1', '', '')
-    sprite('Action_150_02', 4)
-    sprite('Action_150_03', 5)
-    sprite('Action_150_04', 2)
-    sprite('Action_150_05', 2)
-    SFX_3('SE043')
-    GFX_0('EffNmlAtkCrush', 100)
-    sprite('Action_150_06', 3)
-    sprite('Action_150_07', 4)
-    sprite('Action_150_08', 6)
-    sprite('Action_150_09', 5)
-    sprite('Action_150_10', 5)
-    sprite('Action_150_11', 4)
-
-@State
 def NmlAtk5B_2nd():
 
     def upon_IMMEDIATE():
@@ -2374,7 +2340,7 @@ def NmlAtk2C():
         HitOrBlockCancel('NmlAtk5A')
         HitOrBlockCancel('NmlAtk2A')
         HitOrBlockCancel('NmlAtk5B')
-        HitOrBlockCancel('NmlAtk6B')
+        HitOrBlockCancel('HelmCrusher')
         HitOrBlockCancel('NmlAtk2B')
         HitOrBlockCancel('NmlAtk6C')
         callSubroutine('CheckAtemiMuteki')
@@ -2674,6 +2640,42 @@ def NmlAtkAIR2C():
     sprite('Action_152_10', 3)
     sprite('Action_152_11', 3)
     sprite('Action_152_12', 3)
+
+@State
+def HelmCrusher():
+
+    def upon_IMMEDIATE():
+        AttackDefaults_StandingSpecial()
+        AttackLevel_(4)
+        AttackP1(70)
+        AttackP2(80)
+        AirPushbackX(15000)
+        PushbackX(5000)
+        GroundedHitstunAnimation(1)
+        AirHitstunAnimation(1)
+        AirPushbackY(-35000)
+        Unknown9310(20)
+        HitOverhead(1)
+        callSubroutine('AtkEffLightning')
+        callSubroutine('AtkEffLightningHitmark')
+        callSubroutine('CheckAtemiMuteki')
+    sprite('Action_150_00', 3)
+    sprite('Action_150_01', 5)
+    tag_voice(1, 'uak110_1', 'uak110_1', '', '')
+    if random_(2, 0, 50):
+        tag_voice(1, 'uak156_0', 'uak156_1', '', '')
+    sprite('Action_150_02', 4)
+    sprite('Action_150_03', 5)
+    sprite('Action_150_04', 2)
+    sprite('Action_150_05', 2)
+    SFX_3('SE043')
+    GFX_0('EffNmlAtkCrush', 100)
+    sprite('Action_150_06', 3)
+    sprite('Action_150_07', 4)
+    sprite('Action_150_08', 6)
+    sprite('Action_150_09', 5)
+    sprite('Action_150_10', 5)
+    sprite('Action_150_11', 4)
 
 @State
 def CmnActCrushAttackNew():
