@@ -257,6 +257,26 @@ def MatchInit():
     Move_Input_(0xde)
     Unknown14015(-100000, 350000, 100000, 450000, 100, 0)
     Move_EndRegister()
+    Move_Register('ResCancel', 0x68)
+    Move_AirGround_(0x2000)
+    Move_AirGround_(0x3086)
+    Move_AirGround_(0x3081)
+    Move_Input_(INPUT_PRESS_A)
+    Move_Input_(INPUT_PRESS_B)
+    Move_Input_(INPUT_PRESS_C)
+    Unknown14005(1)
+    Unknown14015(500000, 200000, -600000, -200000, 50, 0)
+    Move_EndRegister()
+    Move_Register('ResCancelAir', 0x68)
+    Move_AirGround_(0x2001)
+    Move_AirGround_(0x3086)
+    Move_AirGround_(0x3081)
+    Move_Input_(INPUT_PRESS_A)
+    Move_Input_(INPUT_PRESS_B)
+    Move_Input_(INPUT_PRESS_C)
+    Unknown14005(1)
+    Unknown14015(500000, 200000, -600000, -200000, 50, 0)
+    Move_EndRegister()
     Move_Register('AstralHeat', 0x69)
     Move_AirGround_(0x304a)
     Move_AirGround_(0x2000)
@@ -1367,6 +1387,7 @@ def CmnActOverDriveBegin():
 
 @State
 def CmnActOverDriveLoop():
+    Unknown2036(40, -1, 0)
     sprite('mi121_03', 3)
     label(0)
     sprite('mi121_04', 2)
@@ -1377,8 +1398,8 @@ def CmnActOverDriveLoop():
 
 @State
 def CmnActOverDriveEnd():
-    sprite('mi121_07', 6)
-    sprite('mi010_00', 6)
+    sprite('mi121_07', 1)
+    sprite('mi010_00', 1)
 
 @State
 def CmnActAirOverDriveBegin():
@@ -1391,6 +1412,7 @@ def CmnActAirOverDriveBegin():
 
 @State
 def CmnActAirOverDriveLoop():
+    Unknown2036(40, -1, 0)
     sprite('mi121_03', 3)
     label(0)
     sprite('mi121_04', 2)
@@ -1401,15 +1423,8 @@ def CmnActAirOverDriveLoop():
 
 @State
 def CmnActAirOverDriveEnd():
-    sprite('mi121_07', 3)
-    sprite('mi020_04', 3)
-    sprite('mi020_05', 3)
-    sprite('mi020_06', 3)
-    label(0)
-    sprite('mi020_07', 4)
-    sprite('mi020_08', 4)
-    loopRest()
-    gotoLabel(0)
+    sprite('mi020_07', 1)
+    sprite('mi020_08', 1)
 
 @State
 def CmnActCrossRushBegin():
@@ -2166,6 +2181,11 @@ def BDashCancel():
     Unknown8000(100, 1, 1)
     sprite('mi033_04', 3)
 
+@Subroutine
+def OnActionBegin():
+    HitOrBlockCancel('ResCancel')
+    HitOrBlockCancel('ResCancelAir')
+
 @State
 def NmlAtk5A():
 
@@ -2186,7 +2206,6 @@ def NmlAtk5A():
         HitOrBlockCancel('FDashCancel')
         sendToLabelUpon(2, 1)
         physicsXImpulse(0)
-        
     setInvincible(1)
     Unknown22019(0, 0, 0, 0, 1)
     sprite('mi203_00', 3)       
@@ -2642,8 +2661,6 @@ def NmlAtk5B():
 
     def upon_IMMEDIATE():
         AttackDefaults_StandingSpecial()
-        HitOrBlockCancel('NmlAtk5A')
-        HitOrBlockCancel('NmlAtk2B')
         HitOrBlockCancel('NmlAtk2C')
         HitOrBlockCancel('BDashCancel')
         HitOrBlockCancel('FDashCancel')
@@ -2989,7 +3006,7 @@ def NmlAtkAIR5B():
         AirPushbackY(-36000)
         Unknown9016(1)
         HitJumpCancel(1)
-        JumpCancel_(0)
+        JumpCancel_(1)
         Unknown14082(1)
         HitCancel('NmlAtkAIR5A')
         HitCancel('NmlAtkAIR2A')
@@ -4713,6 +4730,43 @@ def BufudyneSP():
     Unknown2021(0)
     sprite('mi431_01', 6)
     sprite('mi431_00', 4)
+
+@State
+def ResCancel():
+
+    def upon_IMMEDIATE():
+        AttackDefaults_AirDD()
+        Unknown23055('')
+        setInvincible(1)
+        Unknown1084(1)
+    sprite('mi121_00', 2)
+    Unknown2036(18, -1, 0)
+    sprite('mi121_01', 2)
+    ConsumeSuperMeter(-5000)
+    sprite('mi121_02', 2)
+    sprite('mi121_03', 2)
+    sprite('mi121_04', 3)
+    sprite('mi121_05', 3)
+    sprite('mi121_06', 3)
+    setInvincible(0)
+    
+@State
+def ResCancelAir():
+
+    def upon_IMMEDIATE():
+        AttackDefaults_AirDD()
+        Unknown23055('')
+        setInvincible(1)
+    sprite('mi121_00', 2)
+    Unknown2036(18, -1, 0)
+    sprite('mi121_01', 2)
+    ConsumeSuperMeter(-5000)
+    sprite('mi121_02', 2)
+    sprite('mi121_03', 2)
+    sprite('mi121_04', 3)
+    sprite('mi020_07', 3)
+    sprite('mi020_08', 3)
+    setInvincible(0)
 
 @State
 def AstralHeat():
