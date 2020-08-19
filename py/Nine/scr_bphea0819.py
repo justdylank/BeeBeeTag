@@ -210,14 +210,13 @@ def MidAssault_Atk():
         def upon_32():
             Unknown11028(25)
 
-        def upon_33():
-            sendToLabel(1)
-
-        def upon_34():
-            Damage(1625)
-
         def upon_12():
             Unknown21007(3, 32)
+         
+        def upon_43():
+            if (SLOT_48 == 1001):
+                Unknown4010(2)
+                sendToLabel(1)
     sprite('null', 10)
     label(0)
     sprite('null', 4)
@@ -227,13 +226,6 @@ def MidAssault_Atk():
     Unknown8003(104, 1, 1)
     ExitState()
     label(1)
-    sprite('null', 4)
-    Unknown1056(7200)
-    Unknown1064(14400)
-    GFX_0('Eff_402_G', -1)
-    SFX_0('016_explode_2')
-    sprite('vr_ph_magictest', 5)
-    Unknown8003(104, 1, 1)
     ExitState()
 
 @State

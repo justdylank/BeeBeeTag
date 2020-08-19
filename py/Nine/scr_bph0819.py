@@ -808,6 +808,8 @@ def OnFrameStep():
 
 @Subroutine
 def OnActionBegin():
+    HitOrBlockCancel('ResCancel')
+    HitOrBlockCancel('ResCancelAir')
     callSubroutine('MagicIconUpDate')
     if Unknown23148('CmnActTagBattleWait'):
         callSubroutine('ActiveMagicAllDelete')
@@ -3409,11 +3411,6 @@ def MagicNormalAssistInit():
             SLOT_55 = 0
             setInvincible(0)
 
-@Subroutine
-def OnActionBegin():
-    HitOrBlockCancel('ResCancel')
-    HitOrBlockCancel('ResCancelAir')
-
 @State
 def NmlAtk5A():
 
@@ -4727,6 +4724,7 @@ def NmlAtk5C():
     def upon_IMMEDIATE():
         AttackDefaults_StandingSpecial()
         callSubroutine('MagicNormalAtkInit')
+        Unknown14077(0)
     sprite('ph402_00', 3)
     tag_voice(1, 'bph202_2', 'bph202_1', '', '')
     SFX_1('ph202')
