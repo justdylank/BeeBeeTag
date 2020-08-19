@@ -655,6 +655,7 @@ def MatchInit():
     Move_Input_(INPUT_PRESS_A)
     Move_Input_(INPUT_PRESS_B)
     Move_Input_(INPUT_PRESS_C)
+    Unknown14005(1)
     Unknown14015(500000, 200000, -600000, -200000, 50, 0)
     Move_EndRegister()
     Move_Register('ResCancelAir', 0x68)
@@ -664,6 +665,7 @@ def MatchInit():
     Move_Input_(INPUT_PRESS_A)
     Move_Input_(INPUT_PRESS_B)
     Move_Input_(INPUT_PRESS_C)
+    Unknown14005(1)
     Unknown14015(500000, 200000, -600000, -200000, 50, 0)
     Move_EndRegister()
     Move_Register('AstralHeat', 0x69)
@@ -3074,6 +3076,11 @@ def CmnActAComboFinalBlowFinish():
     sprite('mk003_01', 3)
     sprite('mk003_02', 3)
 
+@Subroutine
+def OnActionBegin():
+    HitOrBlockCancel('ResCancel')
+    HitOrBlockCancel('ResCancelAir')
+
 @State
 def NmlAtk5A():
 
@@ -3492,6 +3499,7 @@ def NmlAtk5B():
         AirUntechableTime(23)
         HitOrBlockCancel('Atk5BB')
         HitOrBlockCancel('NmlAtk5A')
+        HitOrBlockCancel('NmlAtk4B')
         HitOrBlockCancel('NmlAtk2B')
         HitOrBlockCancel('NmlAtk2C')
         HitOrBlockCancel('CmnActCrushAttackNew')

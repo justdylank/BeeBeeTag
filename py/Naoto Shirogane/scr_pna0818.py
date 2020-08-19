@@ -523,6 +523,26 @@ def MatchInit():
     Unknown14013('UltimateKillOD')
     Unknown15000(0)
     Move_EndRegister()
+    Move_Register('ResCancel', 0x68)
+    Move_AirGround_(0x2000)
+    Move_AirGround_(0x3086)
+    Move_AirGround_(0x3081)
+    Move_Input_(INPUT_PRESS_A)
+    Move_Input_(INPUT_PRESS_B)
+    Move_Input_(INPUT_PRESS_C)
+    Unknown14005(1)
+    Unknown14015(500000, 200000, -600000, -200000, 50, 0)
+    Move_EndRegister()
+    Move_Register('ResCancelAir', 0x68)
+    Move_AirGround_(0x2001)
+    Move_AirGround_(0x3086)
+    Move_AirGround_(0x3081)
+    Move_Input_(INPUT_PRESS_A)
+    Move_Input_(INPUT_PRESS_B)
+    Move_Input_(INPUT_PRESS_C)
+    Unknown14005(1)
+    Unknown14015(500000, 200000, -600000, -200000, 50, 0)
+    Move_EndRegister()
     Move_Register('AstralHeat', 0x69)
     Move_AirGround_(0x304a)
     Move_AirGround_(0x2000)
@@ -1812,6 +1832,7 @@ def CmnActOverDriveBegin():
 
 @State
 def CmnActOverDriveLoop():
+    Unknown2036(40, -1, 0)
     sprite('na121_03', 3)
     label(1)
     sprite('na121_04', 2)
@@ -1822,8 +1843,8 @@ def CmnActOverDriveLoop():
 
 @State
 def CmnActOverDriveEnd():
-    sprite('na121_07', 6)
-    sprite('na010_00', 6)
+    sprite('na121_07', 1)
+    sprite('na010_00', 1)
 
 @State
 def CmnActAirOverDriveBegin():
@@ -1836,6 +1857,7 @@ def CmnActAirOverDriveBegin():
 
 @State
 def CmnActAirOverDriveLoop():
+    Unknown2036(40, -1, 0)
     sprite('na121_03', 3)
     label(1)
     sprite('na121_04', 2)
@@ -1846,15 +1868,8 @@ def CmnActAirOverDriveLoop():
 
 @State
 def CmnActAirOverDriveEnd():
-    sprite('na121_07', 3)
-    sprite('na121_08', 3)
-    sprite('na020_05', 3)
-    sprite('na020_06', 3)
-    label(0)
-    sprite('na020_07', 4)
-    sprite('na020_08', 4)
-    loopRest()
-    gotoLabel(0)
+    sprite('na020_07', 1)
+    sprite('na020_08', 1)
 
 @State
 def CmnActCrossRushBegin():
@@ -2695,6 +2710,11 @@ def FDashCancel():
     clearUponHandler(3)
     Unknown8010(100, 1, 1)
     sprite('na032_10', 3)
+
+@Subroutine
+def OnActionBegin():
+    HitOrBlockCancel('ResCancel')
+    HitOrBlockCancel('ResCancelAir')
     
 @State
 def NmlAtk5A():
@@ -5717,6 +5737,7 @@ def WalkingShotUltimate():
         Unknown14083(1)
         SLOT_62 = 1
         Unknown23055('')
+        setInvincible(1) 
         WhiffCancel('WalkingShotUltimateKick')
         
         def upon_3():
@@ -5756,6 +5777,7 @@ def WalkingShotUltimate():
     sprite('na433_02', 3)
     WhiffCancelEnable(1)
     sprite('na433_03', 5)
+    setInvincible(0)
     physicsXImpulse(7000)
     label(0)
     sprite('na433_04', 7)
@@ -5798,6 +5820,7 @@ def WalkingShotUltimateOD():
         Unknown14083(1)
         SLOT_62 = 1
         Unknown23055('')
+        setInvincible(1) 
         WhiffCancel('WalkingShotUltimateKickOD')        
 
         def upon_3():
@@ -5836,7 +5859,8 @@ def WalkingShotUltimateOD():
     tag_voice(1, 'pna219_0', 'pna219_1', '', '')
     sprite('na433_02', 3)
     WhiffCancelEnable(1)
-    sprite('na433_03', 5)
+    sprite('na433_03', 5) 
+    setInvincible(0) 
     physicsXImpulse(7000)
     label(0)
     sprite('na433_04', 7)
@@ -5880,8 +5904,8 @@ def WalkingShotUltimateKick():
         Unknown30063(1)
         AttackLevel_(5)
         Damage(4500)
-        AttackP1(100)
-        AttackP2(100)
+        AttackP1(50)
+        AttackP2(80)
         MinimumDamagePct(50)
         Hitstop(30)
         GroundedHitstunAnimation(9)
@@ -5942,8 +5966,8 @@ def WalkingShotUltimateKickOD():
         Unknown30063(1)
         AttackLevel_(5)
         Damage(5000)
-        AttackP1(100)
-        AttackP2(100)
+        AttackP1(70)
+        AttackP2(90)
         MinimumDamagePct(50)
         Hitstop(30)
         GroundedHitstunAnimation(9)
@@ -6175,6 +6199,43 @@ def UltimateKillAirOD():
     YAccel(85)
     physicsYImpulse(8000)
     sprite('na255_00', 3)
+
+@State
+def ResCancel():
+
+    def upon_IMMEDIATE():
+        AttackDefaults_AirDD()
+        Unknown23055('')
+        setInvincible(1)
+        Unknown1084(1)
+    sprite('na121_00', 2)
+    Unknown2036(18, -1, 0)
+    sprite('na121_01', 2)
+    ConsumeSuperMeter(-5000)
+    sprite('na121_02', 2)
+    sprite('na121_03', 2)
+    sprite('na121_04', 3)
+    sprite('na121_05', 3)
+    sprite('na121_06', 3)
+    setInvincible(0)
+    
+@State
+def ResCancelAir():
+
+    def upon_IMMEDIATE():
+        AttackDefaults_AirDD()
+        Unknown23055('')
+        setInvincible(1)
+    sprite('na121_00', 2)
+    Unknown2036(18, -1, 0)
+    sprite('na121_01', 2)
+    ConsumeSuperMeter(-5000)
+    sprite('na121_02', 2)
+    sprite('na121_03', 2)
+    sprite('na121_04', 3)
+    sprite('na020_07', 3)
+    sprite('na020_08', 3)
+    setInvincible(0)
 
 @State
 def AstralHeat():
