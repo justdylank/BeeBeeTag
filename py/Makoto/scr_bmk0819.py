@@ -4141,6 +4141,7 @@ def NmlAtkAIR5C():
     def upon_IMMEDIATE():
         Unknown17003()
         AttackP1(80)
+        HitOverhead(2)
         AirHitstunAnimation(10)
         AirPushbackY(-44000)
         YImpluseBeforeWallbounce(0)
