@@ -5,7 +5,7 @@ def PreInit():
 
 @Subroutine
 def MatchInit():
-    Health(20000)
+    Health(21000)
     Unknown12045(100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100)
     Unknown12024(2)
     Unknown13039(0)
@@ -23,10 +23,6 @@ def MatchInit():
     MoveMaxChainRepeat(3)
     Unknown14015(0, 450000, -200000, 200000, 1500, 50)
     Move_EndRegister()
-    Move_Register('NmlAtk4A', 0x6)
-    MoveMaxChainRepeat(3)
-    Unknown14015(0, 300000, -100000, 200000, 1500, 50)
-    Move_EndRegister()
     Move_Register('NmlAtk5AA', 0x7)
     Unknown14005(1)
     Unknown14015(0, 500000, -200000, 100000, 1000, 50)
@@ -42,9 +38,10 @@ def MatchInit():
     Unknown14015(0, 300000, -100000, 200000, 1000, 50)
     Move_EndRegister()
     Move_Register('NmlAtk5B', 0x19)
-    MoveMaxChainRepeat(2)
-    Unknown15013(1)
-    Unknown14015(100000, 400000, 50000, 400000, 3000, 50)
+    Unknown14015(0, 500000, -200000, 100000, 1000, 50)
+    Move_EndRegister()
+    Move_Register('NmlAtk5BB', 0x19)
+    Unknown14005(1)
     Move_EndRegister()
     Move_Register('NmlAtk5BBB', 0x19)
     Unknown14005(1)
@@ -53,15 +50,6 @@ def MatchInit():
     MoveMaxChainRepeat(1)
     Unknown15013(1)
     Unknown14015(100000, 400000, 50000, 400000, 3000, 50)
-    Move_EndRegister()
-    Move_Register('NmlAtk6B', 0x1A)
-    Unknown14015(0, 500000, -200000, 100000, 1000, 50)
-    Move_EndRegister()
-    Move_Register('NmlAtk3B', 0x17)
-    Unknown15009()
-    Unknown15021(1)
-    Unknown15015(60, 65)
-    Unknown14015(200000, 400000, -80000, 150000, 1000, 50)
     Move_EndRegister()
     Move_Register('NmlAtk2B', 0x16)
     MoveMaxChainRepeat(1)
@@ -187,6 +175,7 @@ def MatchInit():
     Move_AirGround_(0x2000)
     Move_Input_(INPUT_22)
     Move_Input_(INPUT_PRESS_C)
+    Unknown14005(1)
     Move_EndRegister()
     Move_Register('Assault', 0x2)
     Move_AirGround_(0x2000)
@@ -380,6 +369,24 @@ def MatchInit():
     Unknown14024('CheckBloodKain')
     Unknown15020(500, 1000, 100, 1000)
     Unknown14015(0, 200000, -200000, 200000, 250, 5)
+    Move_EndRegister()
+    Move_Register('ResCancel', 0x68)
+    Move_AirGround_(0x2000)
+    Move_AirGround_(0x3086)
+    Move_AirGround_(0x3081)
+    Move_Input_(INPUT_PRESS_A)
+    Move_Input_(INPUT_PRESS_B)
+    Move_Input_(INPUT_PRESS_C)
+    Unknown14015(500000, 200000, -600000, -200000, 50, 0)
+    Move_EndRegister()
+    Move_Register('ResCancelAir', 0x68)
+    Move_AirGround_(0x2001)
+    Move_AirGround_(0x3086)
+    Move_AirGround_(0x3081)
+    Move_Input_(INPUT_PRESS_A)
+    Move_Input_(INPUT_PRESS_B)
+    Move_Input_(INPUT_PRESS_C)
+    Unknown14015(500000, 200000, -600000, -200000, 50, 0)
     Move_EndRegister()
     Move_Register('AstralHeat', 0x69)
     Move_AirGround_(0x304a)
@@ -590,7 +597,6 @@ def MatchInit():
     Unknown7010(94, 'brg400_0')
     Unknown7010(95, 'brg400_1')
     Unknown12059(0, 'CmnActInvincibleAttack')
-    Unknown12059(1, 'NmlAtk4A')
     Unknown12059(2, 'UltimateAssault')
     Unknown12059(3, 'UltimateAssault_OD')
     Unknown12059(4, 'BloodWeaponFinish')
@@ -1711,6 +1717,7 @@ def CmnActOverDriveBegin():
 
 @State
 def CmnActOverDriveLoop():
+    Unknown2036(40, -1, 0)
     sprite('rg431_07', 3)
     SFX_3('rgse_01')
     SFX_3('rgse_02')
@@ -1732,10 +1739,8 @@ def CmnActOverDriveLoop():
 
 @State
 def CmnActOverDriveEnd():
-    sprite('rg431_10', 4)
-    sprite('rg431_13', 4)
-    Unknown3060(0, '')
-    sprite('rg431_15', 4)
+    sprite('Action_431_00', 1)
+    sprite('Action_431_01', 1)
 
 @State
 def CmnActAirOverDriveBegin():
@@ -1757,6 +1762,7 @@ def CmnActAirOverDriveBegin():
 
 @State
 def CmnActAirOverDriveLoop():
+    Unknown2036(40, -1, 0)
     sprite('rg333_04', 3)
     SFX_3('rgse_01')
     SFX_3('rgse_02')
@@ -1778,16 +1784,8 @@ def CmnActAirOverDriveLoop():
 
 @State
 def CmnActAirOverDriveEnd():
-    sprite('rg333_08', 2)
-    sprite('rg333_09', 2)
-    sprite('rg333_10', 2)
-    sprite('rg020_05', 3)
-    sprite('rg020_06', 3)
-    label(0)
-    sprite('rg020_07', 4)
-    sprite('rg020_08', 4)
-    loopRest()
-    gotoLabel(0)
+    sprite('Action_431_00', 1)
+    sprite('Action_431_01', 1)
 
 @State
 def CmnActCrossRushBegin():
@@ -2186,7 +2184,7 @@ def CmnActChangePartnerAssistAtk_A():
 
     def upon_IMMEDIATE():
         AttackDefaults_StandingSpecial()
-        Unknown11097(300, 300)
+        Unknown11097(150, 100)
         ChipDamagePct(0)
         AttackLevel_(5)
         AttackP1(70)
@@ -2275,6 +2273,7 @@ def CmnActChangePartnerAssistAtk_A():
     Damage(2460)
     AttackP1(80)
     AttackP2(70)
+    Unknown11042(1)
     SLOT_58 = SLOT_31
     sprite('rg408_00', 2)
     sprite('rg408_01', 2)
@@ -2320,6 +2319,7 @@ def CmnActChangePartnerAssistAtk_B():
         AirUntechableTime(60)
         AirPushbackY(37000)
         AirPushbackX(8000)
+        Unknown11042(1)
         Unknown11001(0, 0, 0)
         Unknown9015(1)
         if (SLOT_31 >= 1):
@@ -2392,6 +2392,7 @@ def CmnActChangePartnerAssistAtk_B():
     label(4)
     AttackDefaults_StandingSpecial()
     Unknown11097(100, 100)
+    Unknown11042(1)
     ChipDamagePct(0)
     AttackLevel_(4)
     Damage(2200)
@@ -2588,7 +2589,7 @@ def CmnActChangePartnerAssistAtk_D():
     clearUponHandler(3)
     clearUponHandler(12)
     Unknown13(4)
-    Unknown11097(300, 300)
+    Unknown11097(150, 100)
     ChipDamagePct(0)
     Unknown9015(1)
     Unknown11097(100, 100)
@@ -2638,6 +2639,7 @@ def CmnActChangePartnerAssistAtk_D():
     Unknown1084(0)
     AttackLevel_(4)
     Damage(1400)
+    Unknown11042(1)
     Unknown11092(1)
     AirHitstunAnimation(11)
     GroundedHitstunAnimation(2)
@@ -2728,7 +2730,7 @@ def CmnActChangePartnerAssistAtk_D():
     SFX_3('rgse_23')
     sprite('rg451_07', 4)
     RefreshMultihit()
-    Unknown11097(300, 300)
+    Unknown11097(150, 100)
     ChipDamagePct(0)
     Damage(2000)
     AirHitstunAnimation(13)
@@ -2940,7 +2942,7 @@ def BloodWeaponFinishDDD_3rd():
 
     def upon_IMMEDIATE():
         Unknown17012(3, 0, 0)
-        Unknown11097(300, 300)
+        Unknown11097(150, 100)
         ChipDamagePct(0)
         AttackLevel_(4)
         Damage(2500)
@@ -3194,7 +3196,7 @@ def BloodWeaponFinishDDDOD_3rd():
         Unknown17012(3, 0, 0)
         Unknown23056()
         Unknown30063(1)
-        Unknown11097(300, 300)
+        Unknown11097(150, 100)
         ChipDamagePct(0)
         AttackLevel_(4)
         Damage(3000)
@@ -3628,42 +3630,6 @@ def CmnActAComboFinalBlowFinish():
     sprite('rg440_14', 6)
     sprite('rg440_15', 6)
 
-@State
-def NmlAtk4A():
-
-    def upon_IMMEDIATE():
-        AttackDefaults_StandingNormal()
-        AttackLevel_(1)
-        Damage(1000)
-        AttackP1(75)
-        PushbackX(12000)
-        WhiffCancel('NmlAtk4A')
-        HitOrBlockCancel('NmlAtk4A')
-        HitOrBlockCancel('NmlAtk5A')
-        HitOrBlockCancel('NmlAtk6A')
-        HitOrBlockCancel('NmlAtk2A')
-        HitOrBlockCancel('NmlAtk5B')
-        HitOrBlockCancel('NmlAtk6B')
-        HitOrBlockCancel('NmlAtk2B')
-        HitOrBlockCancel('NmlAtk2C')
-        HitOrBlockCancel('NmlAtk3C')
-        HitOrBlockCancel('NmlAtk5c')
-        HitOrBlockCancel('NmlAtkThrow')
-        HitOrBlockCancel('NmlAtkBackThrow')
-        HitOrBlockJumpCancel(1)
-    sprite('rg200_00', 2)
-    Unknown1051(60)
-    sprite('rg200_01', 1)
-    sprite('rg200_01', 1)
-    Unknown7009(0)
-    SFX_0('004_swing_grap_1_0')
-    sprite('rg200_02', 3)
-    sprite('rg200_03', 3)
-    WhiffCancelEnable(1)
-    Recovery()
-    Unknown2063()
-    sprite('rg200_04', 3)
-    sprite('rg200_05', 3)
 
 @State
 def NmlAtk5A():
@@ -3681,8 +3647,6 @@ def NmlAtk5A():
         HitOrBlockCancel('NmlAtk6A')
         HitOrBlockCancel('NmlAtk5B')
         HitOrBlockCancel('NmlAtk2B')
-        HitOrBlockCancel('NmlAtk6B')
-        HitOrBlockCancel('NmlAtk3B')
         HitOrBlockCancel('NmlAtk2C')
         HitOrBlockCancel('NmlAtk3C')
         HitOrBlockCancel('NmlAtk5c')
@@ -3726,8 +3690,6 @@ def NmlAtk5AA():
         HitOrBlockCancel('NmlAtk5AAA')
         HitOrBlockCancel('NmlAtk6A')
         HitOrBlockCancel('NmlAtk5B')
-        HitOrBlockCancel('NmlAtk6B')
-        HitOrBlockCancel('NmlAtk3B')
         HitOrBlockCancel('NmlAtk2B')
         HitOrBlockCancel('NmlAtk2C')
         HitOrBlockCancel('NmlAtk3C')
@@ -3763,7 +3725,7 @@ def NmlAtk5AAA():
 
     def upon_IMMEDIATE():
         AttackDefaults_StandingNormal()
-        Unknown11097(300, 300)
+        Unknown11097(150, 100)
         ChipDamagePct(0)
         AttackLevel_(5)
         AirHitstunAnimation(13)
@@ -3776,7 +3738,7 @@ def NmlAtk5AAA():
         JumpCancel_(0)
         DisableAttackRestOfMove()
         if (SLOT_31 >= 1):
-            Unknown11097(450, 450)
+            Unknown11097(300, 200)
     sprite('rg450_00', 3)
     sprite('rg450_01', 4)
     sprite('rg450_02', 4)
@@ -3812,86 +3774,45 @@ def NmlAtk5B():
 
     def upon_IMMEDIATE():
         AttackDefaults_StandingNormal()
-        AttackLevel_(5)
-        Damage(1400)
-        AttackP1(100)
-        AttackP2(95)
-        AirUntechableTime(24)
-        Hitstop(6)
-        AirPushbackY(18000)
-        PushbackX(19800)
+        AttackLevel_(4)
+        Damage(1500)
+        AttackP1(95)
+        AttackP2(90)
         Unknown9016(1)
+        Unknown2004(1, 0)
+        HitOrBlockCancel('NmlAtk6A')
+        HitOrBlockCancel('NmlAtk6C')
+        HitOrBlockCancel('NmlAtk5c')
+        HitOrBlockCancel('NmlAtk2C')
+        HitOrBlockCancel('NmlAtk3C')
+        HitOrBlockCancel('NmlAtk5BB')
+        HitJumpCancel(1)
         FatalCounter(1)
         if (SLOT_31 >= 1):
-            Unknown11097(450, 450)
-            SLOT_58 = 1
-            Unknown11097(450, 450)
-            GroundedHitstunAnimation(9)
-        if SLOT_94:
-            JumpCancel_(0)
-    sprite('rg203_00', 2)
-    sprite('rg203_01', 2)
-    sprite('rg203_02', 3)
-    SFX_0('005_swing_grap_2_1')
-    sprite('rg203_03', 5)
-    sprite('rg203_04', 1)
-    if SLOT_58:
-        Unknown7007('rg108', 100, 'rg109', 100, '', 0, '', 0)
-    else:
-        Unknown7009(3)
-    sprite('rg203_05', 1)
+            AttackP1(100)
+            AttackP2(95)
+    sprite('rg202_00', 1)
+    sprite('rg202_01', 1)
+    sprite('rg202_02', 2)
+    sprite('rg202_05', 3)
+    SFX_0('008_swing_pole_2')
+    Unknown7009(2)
+    sprite('rg202_06', 2)
+    sprite('rg202_07', 2)
+    sprite('rg202_08', 1)
     StartMultihit()
-    sprite('rg203_05', 2)
-    if SLOT_58:
-        GFX_0('rgef203atkD', -1)
-    else:
-        GFX_0('rgef203atk', -1)
-    sprite('rg203_06', 3)
-    sprite('rg203_07', 5)
-    sprite('rg203_08', 4)
-    sprite('rg203_09', 3)
-    SFX_3('rgse_02')
-    SFX_0('005_swing_grap_2_2')
-    sprite('rg203_10', 3)
-    Unknown23183('rg203_10ex01', 3, 2, 58)
-    RefreshMultihit()
-    Unknown11097(300, 300)
-    ChipDamagePct(0)
-    Damage(600)
-    AttackP2(84)
-    Hitstop(13)
-    AirUntechableTime(38)
-    AirPushbackY(-100000)
-    YImpluseBeforeWallbounce(0)
-    PushbackX(39900)
-    Unknown9310(1)
-    Unknown9118(35)
-    if SLOT_58:
-        Unknown11097(150, 150)
-        ChipDamagePct(0)
-        Unknown10000(110)
-        Hitstop(16)
-        Unknown9190(1)
-        Unknown9118(20)
-
-        def upon_ON_HIT_OR_BLOCK():
-            HitOrBlockCancel('ShortDash')
-            if SLOT_94:
-                JumpCancel_(1)
-    elif SLOT_94:
-
-        def upon_ON_HIT_OR_BLOCK():
-            JumpCancel_(1)
-    sprite('rg203_11', 3)
+    sprite('rg202_09', 4)
+    sprite('rg202_10', 2)
     Recovery()
     Unknown2063()
-    sprite('rg203_12', 4)
-    sprite('rg203_13', 4)
-    sprite('rg203_14', 4)
-    sprite('rg203_15', 4)
-    sprite('rg203_16', 4)
-    sprite('rg203_17', 3)
-    sprite('rg203_18', 3)
+    sprite('rg202_11', 2)
+    sprite('rg202_12', 2)
+    sprite('rg202_13', 2)
+    sprite('rg202_14', 2)
+    sprite('rg202_15', 2)
+    sprite('rg202_16', 3)
+    sprite('rg202_17', 3)
+    sprite('rg202_18', 2)
 
 @State
 def NmlAtk5BBB():
@@ -4041,53 +3962,10 @@ def NmlAtk6A():
     sprite('rg210_11', 4)
     sprite('rg210_12', 4)
     
-@State
-def NmlAtk6B():
 
-    def upon_IMMEDIATE():
-        AttackDefaults_StandingNormal()
-        AttackLevel_(4)
-        Damage(1500)
-        AttackP1(95)
-        AttackP2(90)
-        Unknown9016(1)
-        Unknown2004(1, 0)
-        HitOrBlockCancel('NmlAtk6A')
-        HitOrBlockCancel('NmlAtk6C')
-        HitOrBlockCancel('NmlAtk5B')
-        HitOrBlockCancel('NmlAtk3B')
-        HitOrBlockCancel('NmlAtk2C')
-        HitOrBlockCancel('NmlAtk3C')
-        HitJumpCancel(1)
-        FatalCounter(1)
-        if (SLOT_31 >= 1):
-            AttackP1(100)
-            AttackP2(95)
-    sprite('rg202_00', 1)
-    sprite('rg202_01', 1)
-    sprite('rg202_02', 2)
-    sprite('rg202_05', 3)
-    SFX_0('008_swing_pole_2')
-    Unknown7009(2)
-    sprite('rg202_06', 2)
-    sprite('rg202_07', 2)
-    sprite('rg202_08', 1)
-    StartMultihit()
-    sprite('rg202_09', 4)
-    sprite('rg202_10', 2)
-    Recovery()
-    Unknown2063()
-    sprite('rg202_11', 2)
-    sprite('rg202_12', 2)
-    sprite('rg202_13', 2)
-    sprite('rg202_14', 2)
-    sprite('rg202_15', 2)
-    sprite('rg202_16', 3)
-    sprite('rg202_17', 3)
-    sprite('rg202_18', 2)
     
 @State
-def NmlAtk3B():
+def NmlAtk5BB():
 
     def upon_IMMEDIATE():
         AttackDefaults_StandingNormal()
@@ -4158,12 +4036,10 @@ def NmlAtk2A():
         AttackP1(75)
         AttackP2(80)
         HitOrBlockCancel('NmlAtk2A')
-        HitOrBlockCancel('NmlAtk4A')
         HitOrBlockCancel('NmlAtk5A')
         HitOrBlockCancel('NmlAtk6A')
         HitOrBlockCancel('NmlAtk5B')
         HitOrBlockCancel('NmlAtk2B')
-        HitOrBlockCancel('NmlAtk6B')
         HitOrBlockCancel('NmlAtk6C')
         HitOrBlockCancel('NmlAtk2C')
         HitOrBlockCancel('NmlAtk3C')
@@ -4171,7 +4047,6 @@ def NmlAtk2A():
         HitOrBlockCancel('NmlAtkBackThrow')
         HitOrBlockCancel('NmlAtk5c')
         WhiffCancel('NmlAtk2A')
-        WhiffCancel('NmlAtk4A')
     sprite('rg230_00', 4)
     sprite('rg230_01', 2)
     Unknown7009(0)
@@ -4197,8 +4072,8 @@ def NmlAtk2B():
         HitOrBlockCancel('NmlAtk6A')
         HitOrBlockCancel('NmlAtk5A')
         HitOrBlockCancel('NmlAtk5B')
+        HitOrBlockCancel('NmlAtk5c')
         HitOrBlockCancel('NmlAtk2B')
-        HitOrBlockCancel('NmlAtk6B')
         HitOrBlockCancel('NmlAtk6C')
         HitOrBlockCancel('NmlAtk2C')
         HitOrBlockCancel('NmlAtk3C')
@@ -4236,7 +4111,7 @@ def NmlAtk2C():
         Unknown9192(1)
         Unknown9118(30)
         Unknown9016(1)
-        Unknown11097(300, 300)
+        Unknown11097(150, 100)
         HitLow(0)
         HitOrBlockCancel('ShotA')
         HitOrBlockCancel('ShotB')
@@ -4244,10 +4119,10 @@ def NmlAtk2C():
         HitOrBlockCancel('Assault')
         HitOrBlockCancel('MidAssault')
         HitOrBlockCancel('JumpAssault')
-        HitOrBlockCancel('Oiuchi')
+        HitCancel('Oiuchi')
         if (SLOT_31 >= 1):
             SLOT_58 = 1
-            Unknown11097(450, 450)
+            Unknown11097(300, 200)
             AttackP1(95)
             AttackP2(95)
             ChipDamagePct(0)
@@ -4285,8 +4160,8 @@ def NmlAtk2C():
     sprite('rg233_08', 4)
     sprite('rg233_09', 3)
     sprite('rg233_10', 3)
-    sprite('rg233_11', 2)
-    sprite('rg233_12', 3)
+    sprite('rg233_11', 3)
+    sprite('rg233_12', 4)
     
 @State
 def NmlAtk3C():
@@ -4305,6 +4180,7 @@ def NmlAtk3C():
         Unknown9312(3)
         AttackP1(90)
         HitOrBlockCancel('NmlAtk2C')
+        HitCancel('Oiuchi')
         HitOrBlockJumpCancel(1)
     sprite('rg234_00', 2)
     sprite('rg234_01', 1)
@@ -4367,6 +4243,7 @@ def NmlAtkAIR5B():
         AttackP2(85)
         HitOrBlockCancel('NmlAtkAIR5BB')
         HitOrBlockCancel('NmlAtkAIR5C')
+        HitCancel('Oiuchi')
         HitOrBlockJumpCancel(1)
         if (SLOT_31 >= 1):
             AttackP1(95)
@@ -4426,7 +4303,7 @@ def NmlAtkAIR5C():
 
     def upon_IMMEDIATE():
         AttackDefaults_AirNormal()
-        Unknown11097(300, 300)
+        Unknown11097(150, 100)
         ChipDamagePct(0)
         AttackLevel_(4)
         Damage(1200)
@@ -4437,9 +4314,9 @@ def NmlAtkAIR5C():
         AirPushbackY(28000)
         Unknown9016(1)
         HitOrBlockJumpCancel(1)
-        Unknown11097(300, 300)
+        Unknown11097(150, 100)
         if (SLOT_31 >= 1):
-            Unknown11097(450, 450)
+            Unknown11097(300, 200)
             AirUntechableTime(40)
             AttackP1(95)
             AttackP2(95)
@@ -4470,49 +4347,87 @@ def NmlAtkAIR5C():
 def NmlAtk5c():
 
     def upon_IMMEDIATE():
-        AttackDefaults_StandingSpecial()
+        AttackDefaults_StandingNormal()
         AttackLevel_(5)
-        Damage(2000)
-        Unknown9310(10)
-        AttackP1(75)
-        AttackP2(75)
-        AirPushbackX(1500)
-        AirPushbackY(-80000)
-        PushbackX(10000)
-        AirUntechableTime(35)
-        blockstun(13)
-        HitOverhead(2)
-        GroundedHitstunAnimation(9)
-        sendToLabelUpon(2, 0)
-        Unknown11097(300, 300)
-        HitCancel('CmnActInvincibleAttack')
+        Damage(1400)
+        AttackP1(100)
+        AttackP2(95)
+        AirUntechableTime(24)
+        Hitstop(6)
+        AirPushbackY(18000)
+        PushbackX(19800)
+        Unknown9016(1)
+        FatalCounter(1)
         if (SLOT_31 >= 1):
-            Unknown11097(450, 450)
-            HitOrBlockCancel('NmlAtk6C')
-            HitOrBlockCancel('NmlAtk6A')
-            HitOrBlockCancel('NmlAtk5B')
-            HitOrBlockCancel('NmlAtk2C')
-    sprite('rg413_00', 2)
-    sprite('rg413_01', 1)
-    sprite('rg413_01', 1)
-    tag_voice(1, 'brg156_0', 'brg156_1', '', '')
-    sprite('rg413_02', 2)
-    Unknown4047(224, 224, 224)
-    Unknown4045('rgef_413_hensin01', 0)
-    sprite('rg413_03', 3)
-    sprite('rg413_04', 3)
-    sprite('rg413_05', 3)
-    sprite('rg413_06', 3)
-    sprite('rg413_07', 3)
-    SFX_3('rgse_22')
-    sprite('rg413_08', 3)
-    sprite('rg413_09', 4)
-    sprite('rg413_10', 4)
-    sprite('rg413_11', 4)
-    sprite('rg413_12', 4)
-    sprite('rg413_13', 3)
-    sprite('rg413_14', 3)
-    sprite('rg413_15', 2)
+            Unknown11097(300, 200)
+            SLOT_58 = 1
+            Unknown11097(300, 200)
+            GroundedHitstunAnimation(9)
+        if SLOT_94:
+            JumpCancel_(0)
+    sprite('rg203_00', 2)
+    sprite('rg203_01', 2)
+    sprite('rg203_02', 3)
+    SFX_0('005_swing_grap_2_1')
+    sprite('rg203_03', 5)
+    sprite('rg203_04', 1)
+    if SLOT_58:
+        Unknown7007('rg108', 100, 'rg109', 100, '', 0, '', 0)
+    else:
+        Unknown7009(3)
+    sprite('rg203_05', 1)
+    StartMultihit()
+    sprite('rg203_05', 2)
+    if SLOT_58:
+        GFX_0('rgef203atkD', -1)
+    else:
+        GFX_0('rgef203atk', -1)
+    sprite('rg203_06', 3)
+    sprite('rg203_07', 5)
+    sprite('rg203_08', 4)
+    sprite('rg203_09', 3)
+    SFX_3('rgse_02')
+    SFX_0('005_swing_grap_2_2')
+    sprite('rg203_10', 3)
+    Unknown23183('rg203_10ex01', 3, 2, 58)
+    RefreshMultihit()
+    Unknown11097(150, 100)
+    ChipDamagePct(0)
+    Damage(600)
+    AttackP2(84)
+    Hitstop(13)
+    AirUntechableTime(38)
+    AirPushbackY(-100000)
+    YImpluseBeforeWallbounce(0)
+    PushbackX(39900)
+    Unknown9310(1)
+    Unknown9118(35)
+    if SLOT_58:
+        Unknown11097(150, 150)
+        ChipDamagePct(0)
+        Unknown10000(110)
+        Hitstop(16)
+        Unknown9190(1)
+        Unknown9118(20)
+
+        def upon_ON_HIT_OR_BLOCK():
+            HitOrBlockCancel('ShortDash')
+            if SLOT_94:
+                JumpCancel_(1)
+    elif SLOT_94:
+
+        def upon_ON_HIT_OR_BLOCK():
+            JumpCancel_(1)
+    sprite('rg203_11', 3)
+    Recovery()
+    Unknown2063()
+    sprite('rg203_12', 4)
+    sprite('rg203_13', 4)
+    sprite('rg203_14', 4)
+    sprite('rg203_15', 4)
+    sprite('rg203_16', 4)
+    sprite('rg203_17', 3)
+    sprite('rg203_18', 3)
 
 @State
 def CmnActCrushAttackChase1st():
@@ -4905,7 +4820,7 @@ def NmlAtk6C():
 
     def upon_IMMEDIATE():
         AttackDefaults_StandingNormal()
-        Unknown11097(300, 300)
+        Unknown11097(150, 100)
         ChipDamagePct(0)
         AttackLevel_(4)
         AttackP1(90)
@@ -4917,7 +4832,7 @@ def NmlAtk6C():
         HitOrBlockCancel('NmlAtkAIR5C')
         HitOrBlockJumpCancel(1)
         if (SLOT_31 >= 1):
-            Unknown11097(450, 450)
+            Unknown11097(300, 200)
     sprite('rg213_00', 3)
     sprite('rg213_01', 3)
     Unknown7009(2)
@@ -5228,7 +5143,7 @@ def ShotA():
     sprite('rg408_09', 6)
     sprite('rg408_10', 5)
     SFX_3('rgse_21')
-    sprite('rg408_11', 5)
+    sprite('rg408_11', 4)
     Recovery()
     sprite('rg408_12', 1)
     sprite('rg408_13', 1)
@@ -5401,7 +5316,7 @@ def ShotC_3rd():
         MinimumDamagePct(10)
         Unknown11068(1)
         Unknown11001(0, 8, 13)
-        Unknown11097(300, 300)
+        Unknown11097(150, 100)
         ChipDamagePct(0)
         Unknown30068(1)
         Unknown3029(1)
@@ -5606,7 +5521,7 @@ def CmnActInvincibleAttack_OD():
 
     def upon_IMMEDIATE():
         Unknown17024()
-        Unknown11097(300, 300)
+        Unknown11097(150, 100)
         ChipDamagePct(0)
         AttackLevel_(4)
         Damage(1300)
@@ -5692,7 +5607,7 @@ def CmnActInvincibleAttackAir_OD():
 
     def upon_IMMEDIATE():
         Unknown17025()
-        Unknown11097(300, 300)
+        Unknown11097(150, 100)
         ChipDamagePct(0)
         AttackLevel_(4)
         Damage(1300)
@@ -5848,7 +5763,7 @@ def AxeKick():
         Unknown17003()
         Unknown30087(0)
         setInvincible(0)
-        Unknown11097(300, 300)
+        Unknown11097(150, 100)
         ChipDamagePct(0)
         AttackLevel_(4)
         AttackP1(30)
@@ -5867,7 +5782,7 @@ def AxeKick():
         Unknown3029(1)
         Unknown3069(2)
         if (SLOT_31>= 1):
-            Unknown11097(450, 450)
+            Unknown11097(300, 200)
             Unknown9190(1)
             Unknown9118(100)
     sprite('rg404_00', 4)
@@ -5977,7 +5892,7 @@ def AxeKick3rd():
         Unknown17025()
         Unknown30087(0)
         setInvincible(0)
-        Unknown11097(300, 300)
+        Unknown11097(150, 100)
         ChipDamagePct(0)
         AttackLevel_(4)
         AttackP1(30)
@@ -5997,7 +5912,7 @@ def AxeKick3rd():
         Unknown9192(1)
         Unknown9118(100)
         if (SLOT_31>= 1):
-            Unknown11097(450, 450)
+            Unknown11097(300, 200)
             Unknown9190(1)
             Unknown9118(55)
         AfterimageColor_1(96, 0, 0, 0)
@@ -6369,7 +6284,7 @@ def Assault2nd():
     def upon_IMMEDIATE():
         Unknown1017()
         AttackDefaults_StandingSpecial()
-        Unknown11097(300, 300)
+        Unknown11097(150, 100)
         ChipDamagePct(0)
         AttackLevel_(4)
         Damage(1000)
@@ -6785,13 +6700,13 @@ def AirAssault2nd():
         AirPushbackX(30000)
         AirPushbackY(30000)
         Hitstop(16)
-        Unknown11097(600, 600)
+        Unknown11097(400, 400)
         PushbackX(19800)
         Unknown30068(1)
         if (SLOT_31 >= 1):
             AttackP1(150)
             AttackP2(85)
-            Unknown11097(900, 900)
+            Unknown11097(600, 600)
             Unknown9178(1)
             AirPushbackX(44000)
             AirPushbackY(12000)
@@ -7173,7 +7088,7 @@ def StraightPunch():
 def StraightPunch3rd():
 
     def upon_IMMEDIATE():
-        Unknown17003()
+        Unknown17025()
         AttackLevel_(4)
         Damage(500)
         AttackP2(60)
@@ -7342,7 +7257,6 @@ def BelialEdgeEX():
         HitOrBlockCancel('NmlAtk2C')
         HitOrBlockCancel('NmlAtk3C')
         HitOrBlockCancel('NmlAtk6A')
-        HitOrBlockCancel('NmlAtk6B')
         HitOrBlockCancel('NmlAtk6C')
     sprite('rg411_08', 3)
     DisableAttackRestOfMove()
@@ -7352,6 +7266,49 @@ def BelialEdgeEX():
     sprite('rg411_10', 5)
     sprite('rg411_11', 5)
     sprite('rg411_12', 5)
+    
+@Subroutine
+def OnActionBegin():
+    HitOrBlockCancel('ResCancel')
+    HitOrBlockCancel('ResCancelAir')
+
+    
+@State
+def ResCancel():
+
+    def upon_IMMEDIATE():
+        AttackDefaults_AirDD()
+        Unknown23055('')
+        setInvincible(1)
+        Unknown1084(1)
+    sprite('rg431_00', 2)
+    Unknown2036(18, -1, 0)
+    sprite('rg431_01', 2)
+    ConsumeSuperMeter(-5000)
+    sprite('rg431_02', 2)
+    sprite('rg431_03', 2)
+    sprite('rg431_04', 3)
+    sprite('rg431_05', 3)
+    sprite('rg431_06', 3)
+    setInvincible(0)
+    
+@State
+def ResCancelAir():
+
+    def upon_IMMEDIATE():
+        AttackDefaults_AirDD()
+        Unknown23055('')
+        setInvincible(1)
+    sprite('rg431_00', 2)
+    Unknown2036(18, -1, 0)
+    sprite('rg431_01', 2)
+    ConsumeSuperMeter(-5000)
+    sprite('rg431_02', 2)
+    sprite('rg431_03', 2)
+    sprite('rg431_04', 3)
+    sprite('rg431_07', 3)
+    sprite('rg431_08', 3)
+    setInvincible(0)
     
 @State
 def UltimateAssault():
@@ -7458,7 +7415,7 @@ def UltimateAssault():
     SFX_3('rgse_23')
     sprite('rg451_07', 4)
     RefreshMultihit()
-    Unknown11097(300, 300)
+    Unknown11097(150, 100)
     ChipDamagePct(0)
     Damage(5800)
     AirHitstunAnimation(13)
@@ -7601,7 +7558,7 @@ def UltimateAssault_OD():
     SFX_3('rgse_23')
     sprite('rg451_07', 4)
     RefreshMultihit()
-    Unknown11097(300, 300)
+    Unknown11097(150, 100)
     ChipDamagePct(0)
     Damage(5600)
     AirHitstunAnimation(13)
@@ -7621,7 +7578,7 @@ def UltimateAssault_OD():
     SFX_3('rgse_01')
     sprite('rg451_07', 1)
     RefreshMultihit()
-    Unknown11097(300, 300)
+    Unknown11097(150, 100)
     Damage(700)
     Hitstop(5)
     sprite('rg451_07', 1)
@@ -7865,7 +7822,7 @@ def BloodWeaponFinish3rd():
     def upon_IMMEDIATE():
         Unknown17012(3, 0, 0)
         Unknown23056()
-        Unknown11097(300, 300)
+        Unknown11097(150, 100)
         ChipDamagePct(0)
         AttackLevel_(4)
         Damage(6000)
@@ -7881,7 +7838,7 @@ def BloodWeaponFinish3rd():
         Unknown9016(1)
         StarterRating(0)
         Unknown11002(-1)
-        Unknown11097(2000, 2000)
+        Unknown11097(3000, 3000)
         Unknown11108(3)
         Unknown30061(0)
         setInvincible(1)
@@ -8134,7 +8091,7 @@ def BloodWeaponFinish3rd_OD():
         Unknown9016(1)
         StarterRating(0)
         Unknown11002(-1)
-        Unknown11097(3000, 3000)
+        Unknown11097(4000, 4000)
         Unknown11108(3)
         Unknown30061(0)
         setInvincible(1)
@@ -13544,7 +13501,7 @@ def EventJumpAssaultToBDash():
 
     def upon_IMMEDIATE():
         AttackDefaults_StandingSpecial()
-        Unknown11097(300, 300)
+        Unknown11097(150, 100)
         ChipDamagePct(0)
         AttackLevel_(5)
         Unknown1000(-400000)
