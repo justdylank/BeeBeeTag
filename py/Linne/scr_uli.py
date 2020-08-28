@@ -313,6 +313,7 @@ def MatchInit():
     Move_Input_(INPUT_PRESS_A)
     Move_Input_(INPUT_PRESS_B)
     Move_Input_(INPUT_PRESS_C)
+    Unknown14005(1)
     Unknown14015(500000, 200000, -600000, -200000, 50, 0)
     Move_EndRegister()
     Move_Register('ResCancelAir', 0x68)
@@ -322,6 +323,7 @@ def MatchInit():
     Move_Input_(INPUT_PRESS_A)
     Move_Input_(INPUT_PRESS_B)
     Move_Input_(INPUT_PRESS_C)
+    Unknown14005(1)
     Unknown14015(500000, 200000, -600000, -200000, 50, 0)
     Move_EndRegister()
     Move_Register('AstralHeat', 0x69)
@@ -525,6 +527,8 @@ def OnActionBegin():
             Unknown23029(11, 9901, 0)
         else:
             Unknown23029(11, 9900, 0)
+    HitOrBlockCancel('ResCancel')
+    HitOrBlockCancel('ResCancelAir')
 
 @Subroutine
 def ChainRoot():

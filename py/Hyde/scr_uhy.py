@@ -350,6 +350,7 @@ def MatchInit():
     Move_Input_(INPUT_PRESS_A)
     Move_Input_(INPUT_PRESS_B)
     Move_Input_(INPUT_PRESS_C)
+    Unknown14005(1)
     Unknown14015(500000, 200000, -600000, -200000, 50, 0)
     Move_EndRegister()
     Move_Register('ResCancelAir', 0x68)
@@ -359,6 +360,7 @@ def MatchInit():
     Move_Input_(INPUT_PRESS_A)
     Move_Input_(INPUT_PRESS_B)
     Move_Input_(INPUT_PRESS_C)
+    Unknown14005(1)
     Unknown14015(500000, 200000, -600000, -200000, 50, 0)
     Move_EndRegister()
     Move_Register('AstralHeat', 0x69)
@@ -537,6 +539,11 @@ def MatchInit2():
     SLOT_64 = 600
     SLOT_65 = 100
     SLOT_66 = 100
+
+@Subroutine
+def OnActionBegin():
+    HitOrBlockCancel('ResCancel')
+    HitOrBlockCancel('ResCancelAir')
 
 @Subroutine
 def InsulatorInit():
@@ -5388,6 +5395,7 @@ def CmnActChangePartnerAssistAtk_A():
         WallbounceReboundTime(25)
         Unknown9016(1)
         ProjectileDurabilityLvl(5)
+        Unknown11042(1)
         callSubroutine('InsulatorSpecialInit')
 
         def upon_14():
