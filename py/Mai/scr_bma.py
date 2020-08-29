@@ -382,7 +382,7 @@ def MatchInit():
     Move_EndRegister()
     Move_Register('ResCancel', 0x68)
     Move_AirGround_(0x2000)
-    Move_AirGround_(0x3086)
+    Move_AirGround_(0x3089)
     Move_AirGround_(0x3081)
     Move_Input_(INPUT_PRESS_A)
     Move_Input_(INPUT_PRESS_B)
@@ -392,7 +392,7 @@ def MatchInit():
     Move_EndRegister()
     Move_Register('ResCancelAir', 0x68)
     Move_AirGround_(0x2001)
-    Move_AirGround_(0x3086)
+    Move_AirGround_(0x3089)
     Move_AirGround_(0x3081)
     Move_Input_(INPUT_PRESS_A)
     Move_Input_(INPUT_PRESS_B)
@@ -3949,10 +3949,18 @@ def NmlAtk5C2nd():
         Unknown23085(1)
         AttackDefaults_StandingNormal()
         Unknown11063(1)
+        JumpCancel_(0)
 
         def upon_43():
-            if (SLOT_48 == 1001):
-                JumpCancel_(1)
+            if (SLOT_48 == 1000):
+                SLOT_51 = 1
+                callSubroutine('DeriveInputBegin')
+
+        def upon_3():
+            if SLOT_52:
+                if SLOT_51:
+                    callSubroutine('DeriveTimingBegin')
+
 
         def upon_STATE_END():
             Unknown23029(11, 1003, 0)
@@ -4472,11 +4480,25 @@ def NmlAtkAIR5C2nd():
     def upon_IMMEDIATE():
         AttackDefaults_AirNormal()
         Unknown11063(1)
-        JumpCancel_(1)
+        JumpCancel_(0)
 
         def upon_43():
-            if (SLOT_48 == 1001):
-                JumpCancel_(1)
+            if (SLOT_48 == 1000):
+                SLOT_51 = 1
+                Unknown14070('Backflip')
+                Unknown14070('Backflip_A_nama')
+                Unknown14070('Backflip_B_nama')
+                Unknown14070('Backflip_C_nama')
+                Unknown14070('CmnActInvincibleAttackAir')
+
+        def upon_3():
+            if SLOT_52:
+                if SLOT_51:
+                    Unknown14072('Backflip')
+                    Unknown14072('Backflip_A_nama')
+                    Unknown14072('Backflip_B_nama')
+                    Unknown14072('Backflip_C_nama')
+                    Unknown14072('CmnActInvincibleAttackAir')
 
         def upon_LANDING():
             Unknown23029(11, 1003, 0)
@@ -6157,7 +6179,7 @@ def CmnActInvincibleAttack():
         sendToLabelUpon(2, 99)
     sprite('ma431_00', 2)
     sprite('ma431_01', 2)
-    tag_voice(1, 'bma252_0', 'bma252_1', '', '')
+    Unknown7007('bma203_0', 100, 'bma203_1', 100, 'bma203_2', 100, '', 0)
     sprite('ma431_02', 2)
     Unknown1084(1)
     sprite('ma431_03', 3)
@@ -6166,7 +6188,6 @@ def CmnActInvincibleAttack():
     GFX_0('maef431_jump', -1)
     sprite('ma431_05', 2)
     sprite('ma431_06', 2)
-    Unknown8001(1, 0)
     sprite('ma431_06', 3)
     RefreshMultihit()
     Damage(500)
@@ -6175,7 +6196,6 @@ def CmnActInvincibleAttack():
     AirPushbackX(100)
     AirPushbackY(32000)
     YImpluseBeforeWallbounce(100)
-    Unknown11001(0, 0, 8)
     Hitstop(6)
     physicsXImpulse(3000)
     physicsYImpulse(180000)
@@ -7116,8 +7136,8 @@ def ResCancel():
         Unknown1084(1)
     sprite('ma333_00', 2)
     Unknown2036(18, -1, 0)
+    ConsumeSuperMeter(-10000)
     sprite('ma333_01', 2)
-    ConsumeSuperMeter(-5000)
     sprite('ma333_04', 2)
     sprite('ma333_06', 2)
     sprite('ma333_07', 3)
@@ -7134,8 +7154,8 @@ def ResCancelAir():
         setInvincible(1)
     sprite('ma333_11', 2)
     Unknown2036(18, -1, 0)
+    ConsumeSuperMeter(-10000)
     sprite('ma333_13', 2)
-    ConsumeSuperMeter(-5000)
     sprite('ma333_14', 2)
     sprite('ma333_05', 2)
     sprite('ma333_06', 3)
