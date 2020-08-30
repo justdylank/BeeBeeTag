@@ -943,7 +943,7 @@ def Assault_Chage_Atk():
                 Unknown23119(16763080, 4, 2)
             if (SLOT_18 >= 17):
                 if (not SLOT_2):
-                    if CheckInput(0x0A):
+                    if CheckInput(0x0E):
                         sendToLabel(8)
 
 @Subroutine
@@ -5026,6 +5026,7 @@ def CmnActInvincibleAttack():
             ScreenShake(10000, 10000)
             enterState('CounterExe')
         GuardPoint_(1)
+        Unknown22019(1, 1, 1, 1, 1)
         Unknown22030(0)
         Unknown22031(20, 35)
     sprite('jb210_00', 3)
